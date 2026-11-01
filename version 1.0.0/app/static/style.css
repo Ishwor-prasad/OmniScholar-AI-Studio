@@ -187,6 +187,23 @@ body {
     color: var(--text-secondary);
 }
 
+.format-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.format-pill {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    background: #f0f0f2;
+    padding: 2px 7px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-hairline);
+}
+
 .quick-demo-box {
     background: var(--bg-card-secondary);
     border: 1px solid var(--border-hairline);

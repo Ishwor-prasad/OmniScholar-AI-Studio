@@ -389,8 +389,7 @@ def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id:
         else:
             plt.figure(figsize=(7, 4.5))
             top_vc = vc.head(10)
-            y_cats = [str(x)[:28] for x in top_vc.index]
-            ax = sns.barplot(x=top_vc.values, y=y_cats, orient="h", hue=y_cats, legend=False, palette="viridis")
+            ax = sns.barplot(x=top_vc.values, y=[str(x)[:28] for x in top_vc.index], orient="h", palette="viridis")
             plt.title(f"Frequencies: {col[:45]}...", fontsize=11, weight="bold")
             plt.xlabel("Count (n)")
             plt.ylabel("Category")
@@ -574,15 +573,15 @@ def health():
 
 @app.post("/api/load-sample")
 def load_sample():
-    sample_path = os.path.join("e:\\Nesfield\\Data sheets", "dummy_data.csv")
+    sample_path = os.path.join(BASE_DIR, "dummy_data.csv")
     if not os.path.exists(sample_path):
-        sample_path = os.path.join(BASE_DIR, "dummy_data.csv")
+        sample_path = os.path.join("e:\\Nesfield\\Data sheets", "dummy_data.csv")
     
     if not os.path.exists(sample_path):
         raise HTTPException(status_code=404, detail="Sample dataset not found.")
 
     df = pd.read_csv(sample_path)
-    filename = "DSE_Market_Trading_Sample.csv"
+    filename = "Global_Empirical_Research_Benchmark.csv"
     summary, run_dir = analyze_dataframe(df, run_id="sample", filename=filename)
 
     SESSION_DATA["df"] = df
@@ -641,7 +640,7 @@ def set_grouping(req: GroupingRequest):
     if req.group_col not in SESSION_DATA["df"].columns:
         raise HTTPException(status_code=400, detail=f"Column {req.group_col} not in dataset.")
 
-    run_id = "sample" if SESSION_DATA["filename"] == "DSE_Market_Trading_Sample.csv" else "uploaded"
+    run_id = "sample" if SESSION_DATA["filename"] == "Global_Empirical_Research_Benchmark.csv" else "uploaded"
     summary, run_dir = analyze_dataframe(
         SESSION_DATA["df"],
         group_col=req.group_col,
