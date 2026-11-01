@@ -1,0 +1,101 @@
+Timestamp,1. What is your primary role in the Dhaka Stock Exchange (DSE)?,2. How many years of experience do you have trading or analyzing the DSE?,3. Which technical trading strategy do you most frequently employ in your DSE portfolio?,"4. On a scale of 1 to 5, how effective do you find Moving Average crossover strategies for identifying trends in DSE A and B category shares?",5. How frequently do you use automated hard stop-loss orders in your trading strategy?,"6. When employing stop-loss orders, what is your typical threshold below the purchase price?",7. Which performance evaluation metric do you prioritize when assessing your trading strategies?,"8. In your experience, how resilient are technical trading models during periods of high volatility in the DSE?",9. To what extent do you proactively adjust your entry/exit points and profit targets based on shifting market conditions?,10. How significant is portfolio diversification across A and B category shares in managing downside risk on the DSE?
+09/15/2026 09:00:32,Financial Analyst,0-2 years,Momentum,2,Frequently,8% to 10%,Cumulative Return,Moderately Vulnerable,Slightly,Moderately significant
+10/06/2026 23:50:03,Financial Analyst,3-5 years,Moving Average,3,Never,Less than 5%,Logarithmic Return,Neutral,Not at all,Not significant
+09/13/2026 13:30:20,Financial Analyst,3-5 years,Momentum,3,Frequently,Greater than 10%,Simple Return,Highly Resilient,Extensively,Moderately significant
+09/13/2026 00:27:26,Other,0-2 years,Moving Average,3,Rarely,I do not use stop-loss orders,Simple Return,Moderately Resilient,Not at all,Very significant
+09/25/2026 08:52:32,Retail Trader,3-5 years,Momentum,1,Always,Less than 5%,Cumulative Return,Moderately Resilient,Slightly,Very significant
+09/18/2026 23:00:27,Financial Analyst,0-2 years,Moving Average,5,Rarely,Greater than 10%,Cumulative Return,Moderately Resilient,Slightly,Moderately significant
+10/05/2026 14:37:52,Institutional Investor,6-10 years,Momentum,4,Rarely,8% to 10%,Simple Return,Moderately Vulnerable,Not at all,Very significant
+09/26/2026 02:16:29,Institutional Investor,6-10 years,Moving Average,3,Rarely,I do not use stop-loss orders,Cumulative Return,Highly Vulnerable,Not at all,Not significant
+10/03/2026 11:11:30,Retail Trader,3-5 years,Momentum,3,Never,I do not use stop-loss orders,Cumulative Return,Moderately Resilient,Moderately,Slightly significant
+10/05/2026 15:38:11,Financial Analyst,6-10 years,Pullback,3,Occasionally,Less than 5%,Cumulative Return,Neutral,Not at all,Very significant
+09/22/2026 23:17:21,Financial Analyst,6-10 years,Swing Trading,2,Rarely,8% to 10%,Annualized Return,Neutral,Slightly,Slightly significant
+09/18/2026 23:47:25,Institutional Investor,0-2 years,Moving Average,3,Frequently,8% to 10%,Annualized Return,Moderately Vulnerable,Slightly,Slightly significant
+09/11/2026 09:43:12,Retail Trader,More than 10 years,Moving Average,2,Always,I do not use stop-loss orders,Annualized Return,Highly Vulnerable,Not at all,Very significant
+10/06/2026 16:58:35,Institutional Investor,More than 10 years,Swing Trading,4,Always,Greater than 10%,Logarithmic Return,Highly Resilient,Slightly,Very significant
+09/23/2026 15:31:43,Other,6-10 years,Moving Average,3,Always,I do not use stop-loss orders,Simple Return,Moderately Vulnerable,Not at all,Extremely significant
+09/16/2026 09:43:36,Retail Trader,3-5 years,Moving Average,5,Frequently,Less than 5%,Logarithmic Return,Highly Resilient,Moderately,Slightly significant
+09/09/2026 22:47:06,Institutional Investor,6-10 years,Moving Average,2,Occasionally,Greater than 10%,Cumulative Return,Highly Resilient,Extensively,Slightly significant
+10/05/2026 19:13:57,Retail Trader,More than 10 years,Moving Average,4,Rarely,8% to 10%,Logarithmic Return,Highly Resilient,Not at all,Not significant
+10/08/2026 21:14:03,Financial Analyst,More than 10 years,Other / None,1,Frequently,5% to 7%,Cumulative Return,Moderately Resilient,Extensively,Moderately significant
+09/09/2026 13:31:33,Institutional Investor,More than 10 years,Swing Trading,4,Never,Less than 5%,Annualized Return,Highly Resilient,Slightly,Slightly significant
+10/09/2026 00:45:33,Institutional Investor,6-10 years,Swing Trading,4,Always,I do not use stop-loss orders,Logarithmic Return,Highly Resilient,Moderately,Moderately significant
+09/14/2026 16:54:24,Other,6-10 years,Moving Average,1,Never,8% to 10%,Simple Return,Highly Vulnerable,Slightly,Very significant
+10/08/2026 02:04:05,Retail Trader,6-10 years,Moving Average,5,Rarely,Greater than 10%,Simple Return,Moderately Vulnerable,Not at all,Moderately significant
+09/21/2026 00:49:52,Institutional Investor,6-10 years,Swing Trading,2,Frequently,Greater than 10%,Cumulative Return,Moderately Resilient,Moderately,Not significant
+09/28/2026 10:03:48,Institutional Investor,6-10 years,Moving Average,5,Always,5% to 7%,Simple Return,Neutral,Slightly,Slightly significant
+10/06/2026 08:00:15,Other,0-2 years,Other / None,5,Always,8% to 10%,Logarithmic Return,Moderately Vulnerable,Slightly,Not significant
+09/11/2026 04:58:21,Financial Analyst,3-5 years,Moving Average,3,Rarely,I do not use stop-loss orders,Logarithmic Return,Highly Vulnerable,Slightly,Slightly significant
+09/23/2026 05:54:40,Retail Trader,6-10 years,Moving Average,1,Frequently,Greater than 10%,Annualized Return,Moderately Vulnerable,Not at all,Extremely significant
+09/29/2026 23:24:31,Institutional Investor,3-5 years,Momentum,1,Rarely,8% to 10%,Logarithmic Return,Moderately Resilient,Slightly,Extremely significant
+10/01/2026 01:40:34,Other,0-2 years,Pullback,5,Occasionally,I do not use stop-loss orders,Logarithmic Return,Highly Resilient,Not at all,Moderately significant
+09/26/2026 03:09:08,Other,0-2 years,Swing Trading,3,Always,8% to 10%,Annualized Return,Neutral,Moderately,Slightly significant
+09/29/2026 08:53:33,Retail Trader,6-10 years,Moving Average,3,Frequently,I do not use stop-loss orders,Logarithmic Return,Neutral,Moderately,Very significant
+10/06/2026 02:22:55,Financial Analyst,More than 10 years,Swing Trading,5,Always,Greater than 10%,Simple Return,Highly Resilient,Slightly,Moderately significant
+09/26/2026 09:38:15,Retail Trader,6-10 years,Swing Trading,3,Always,Less than 5%,Annualized Return,Moderately Resilient,Moderately,Moderately significant
+09/27/2026 14:46:58,Retail Trader,More than 10 years,Momentum,2,Never,I do not use stop-loss orders,Logarithmic Return,Moderately Vulnerable,Not at all,Moderately significant
+10/02/2026 21:59:48,Retail Trader,More than 10 years,Other / None,5,Frequently,Greater than 10%,Cumulative Return,Neutral,Not at all,Not significant
+09/29/2026 11:33:13,Retail Trader,6-10 years,Swing Trading,1,Frequently,8% to 10%,Cumulative Return,Highly Vulnerable,Slightly,Very significant
+09/08/2026 23:04:25,Retail Trader,6-10 years,Pullback,3,Frequently,Greater than 10%,Cumulative Return,Neutral,Not at all,Extremely significant
+09/28/2026 17:28:34,Financial Analyst,6-10 years,Moving Average,2,Occasionally,Less than 5%,Annualized Return,Moderately Resilient,Not at all,Very significant
+09/18/2026 21:34:07,Other,3-5 years,Other / None,2,Always,I do not use stop-loss orders,Cumulative Return,Highly Resilient,Slightly,Slightly significant
+10/06/2026 21:57:34,Retail Trader,0-2 years,Momentum,5,Frequently,8% to 10%,Logarithmic Return,Highly Vulnerable,Not at all,Not significant
+10/04/2026 11:55:50,Retail Trader,6-10 years,Swing Trading,1,Never,Less than 5%,Cumulative Return,Moderately Resilient,Extensively,Moderately significant
+09/15/2026 11:10:12,Other,3-5 years,Moving Average,1,Occasionally,Less than 5%,Logarithmic Return,Moderately Resilient,Moderately,Extremely significant
+10/02/2026 07:34:57,Retail Trader,3-5 years,Moving Average,5,Rarely,Greater than 10%,Logarithmic Return,Moderately Vulnerable,Extensively,Not significant
+10/09/2026 01:50:42,Institutional Investor,3-5 years,Momentum,2,Always,Greater than 10%,Logarithmic Return,Moderately Vulnerable,Not at all,Extremely significant
+10/06/2026 10:07:41,Other,0-2 years,Moving Average,1,Occasionally,Less than 5%,Simple Return,Moderately Resilient,Extensively,Moderately significant
+09/25/2026 01:04:19,Other,0-2 years,Swing Trading,5,Rarely,Less than 5%,Cumulative Return,Highly Resilient,Slightly,Slightly significant
+09/28/2026 10:34:49,Retail Trader,3-5 years,Momentum,3,Always,5% to 7%,Annualized Return,Moderately Vulnerable,Not at all,Very significant
+09/09/2026 15:08:25,Financial Analyst,0-2 years,Moving Average,4,Never,Less than 5%,Cumulative Return,Highly Resilient,Moderately,Moderately significant
+09/09/2026 17:05:23,Financial Analyst,6-10 years,Other / None,4,Always,5% to 7%,Logarithmic Return,Neutral,Slightly,Very significant
+09/24/2026 12:23:28,Other,6-10 years,Pullback,1,Occasionally,5% to 7%,Logarithmic Return,Neutral,Extensively,Extremely significant
+09/29/2026 15:44:19,Other,More than 10 years,Momentum,5,Rarely,Less than 5%,Simple Return,Highly Resilient,Not at all,Extremely significant
+09/25/2026 09:15:11,Other,6-10 years,Pullback,3,Rarely,Greater than 10%,Simple Return,Moderately Vulnerable,Moderately,Not significant
+10/01/2026 23:47:24,Other,More than 10 years,Pullback,2,Occasionally,I do not use stop-loss orders,Annualized Return,Neutral,Slightly,Slightly significant
+09/12/2026 05:01:34,Retail Trader,More than 10 years,Pullback,1,Rarely,Greater than 10%,Cumulative Return,Neutral,Slightly,Moderately significant
+09/29/2026 12:23:35,Institutional Investor,6-10 years,Swing Trading,4,Occasionally,8% to 10%,Logarithmic Return,Highly Vulnerable,Moderately,Not significant
+09/18/2026 14:24:33,Institutional Investor,More than 10 years,Swing Trading,4,Occasionally,I do not use stop-loss orders,Simple Return,Neutral,Extensively,Very significant
+10/05/2026 22:58:26,Institutional Investor,6-10 years,Swing Trading,4,Rarely,Greater than 10%,Logarithmic Return,Highly Resilient,Not at all,Extremely significant
+09/15/2026 06:34:04,Institutional Investor,6-10 years,Moving Average,4,Occasionally,Greater than 10%,Cumulative Return,Neutral,Slightly,Extremely significant
+10/06/2026 19:48:11,Institutional Investor,6-10 years,Other / None,4,Never,8% to 10%,Logarithmic Return,Highly Resilient,Moderately,Slightly significant
+09/25/2026 00:40:39,Institutional Investor,0-2 years,Other / None,4,Frequently,5% to 7%,Cumulative Return,Neutral,Moderately,Moderately significant
+09/15/2026 18:00:58,Retail Trader,3-5 years,Other / None,2,Rarely,Less than 5%,Cumulative Return,Moderately Resilient,Extensively,Extremely significant
+09/25/2026 20:36:45,Financial Analyst,3-5 years,Pullback,1,Frequently,I do not use stop-loss orders,Simple Return,Highly Vulnerable,Not at all,Slightly significant
+09/09/2026 07:54:39,Institutional Investor,3-5 years,Momentum,5,Always,I do not use stop-loss orders,Cumulative Return,Highly Resilient,Extensively,Slightly significant
+09/25/2026 12:39:39,Other,More than 10 years,Moving Average,1,Frequently,8% to 10%,Simple Return,Highly Resilient,Not at all,Not significant
+09/19/2026 09:53:57,Institutional Investor,6-10 years,Swing Trading,2,Never,Less than 5%,Cumulative Return,Highly Resilient,Moderately,Very significant
+09/21/2026 21:42:54,Other,3-5 years,Other / None,3,Always,Greater than 10%,Logarithmic Return,Neutral,Not at all,Not significant
+09/30/2026 16:47:03,Other,6-10 years,Momentum,5,Rarely,5% to 7%,Annualized Return,Highly Vulnerable,Extensively,Very significant
+09/16/2026 18:42:38,Financial Analyst,More than 10 years,Moving Average,1,Rarely,Less than 5%,Simple Return,Highly Vulnerable,Extensively,Moderately significant
+09/23/2026 01:35:30,Retail Trader,3-5 years,Swing Trading,1,Frequently,5% to 7%,Cumulative Return,Moderately Resilient,Slightly,Extremely significant
+09/18/2026 11:06:50,Retail Trader,6-10 years,Other / None,1,Occasionally,8% to 10%,Logarithmic Return,Highly Resilient,Not at all,Moderately significant
+09/13/2026 05:52:41,Financial Analyst,More than 10 years,Moving Average,4,Rarely,I do not use stop-loss orders,Cumulative Return,Neutral,Moderately,Not significant
+10/06/2026 05:27:20,Retail Trader,More than 10 years,Pullback,1,Occasionally,Less than 5%,Simple Return,Highly Vulnerable,Moderately,Not significant
+09/16/2026 03:42:42,Retail Trader,More than 10 years,Pullback,3,Always,Greater than 10%,Simple Return,Neutral,Extensively,Slightly significant
+09/23/2026 08:11:14,Retail Trader,More than 10 years,Swing Trading,2,Always,5% to 7%,Annualized Return,Moderately Vulnerable,Slightly,Slightly significant
+09/21/2026 02:08:22,Financial Analyst,6-10 years,Momentum,2,Always,8% to 10%,Simple Return,Highly Vulnerable,Not at all,Extremely significant
+09/15/2026 18:34:39,Retail Trader,6-10 years,Pullback,3,Rarely,8% to 10%,Annualized Return,Highly Resilient,Not at all,Not significant
+09/15/2026 20:31:31,Retail Trader,More than 10 years,Pullback,4,Rarely,Greater than 10%,Simple Return,Highly Resilient,Slightly,Moderately significant
+10/08/2026 02:43:24,Retail Trader,More than 10 years,Momentum,3,Rarely,Greater than 10%,Annualized Return,Highly Vulnerable,Extensively,Not significant
+09/20/2026 19:50:19,Financial Analyst,0-2 years,Other / None,1,Never,I do not use stop-loss orders,Cumulative Return,Neutral,Slightly,Very significant
+09/29/2026 21:32:54,Retail Trader,6-10 years,Moving Average,4,Never,5% to 7%,Annualized Return,Moderately Resilient,Not at all,Extremely significant
+09/23/2026 10:36:59,Institutional Investor,0-2 years,Pullback,4,Never,Greater than 10%,Logarithmic Return,Moderately Resilient,Extensively,Extremely significant
+09/29/2026 18:59:24,Financial Analyst,6-10 years,Moving Average,3,Occasionally,8% to 10%,Logarithmic Return,Highly Resilient,Moderately,Moderately significant
+10/02/2026 16:53:12,Retail Trader,6-10 years,Momentum,1,Always,Less than 5%,Cumulative Return,Moderately Resilient,Moderately,Very significant
+09/16/2026 15:57:14,Other,0-2 years,Other / None,2,Occasionally,Greater than 10%,Annualized Return,Highly Vulnerable,Extensively,Moderately significant
+10/09/2026 02:25:17,Financial Analyst,6-10 years,Pullback,3,Rarely,8% to 10%,Logarithmic Return,Highly Resilient,Slightly,Very significant
+10/08/2026 19:12:29,Retail Trader,3-5 years,Pullback,2,Rarely,8% to 10%,Simple Return,Highly Resilient,Moderately,Extremely significant
+10/08/2026 17:33:01,Financial Analyst,6-10 years,Momentum,5,Never,I do not use stop-loss orders,Annualized Return,Highly Vulnerable,Not at all,Not significant
+09/26/2026 02:06:33,Institutional Investor,0-2 years,Moving Average,2,Occasionally,5% to 7%,Logarithmic Return,Neutral,Moderately,Slightly significant
+09/10/2026 12:34:36,Institutional Investor,More than 10 years,Pullback,3,Never,I do not use stop-loss orders,Cumulative Return,Moderately Resilient,Moderately,Slightly significant
+09/10/2026 23:14:52,Institutional Investor,0-2 years,Pullback,3,Rarely,I do not use stop-loss orders,Annualized Return,Highly Resilient,Slightly,Not significant
+09/24/2026 16:29:50,Other,3-5 years,Momentum,3,Frequently,8% to 10%,Annualized Return,Moderately Vulnerable,Not at all,Very significant
+10/04/2026 23:50:27,Financial Analyst,6-10 years,Momentum,4,Frequently,8% to 10%,Simple Return,Highly Vulnerable,Moderately,Very significant
+09/23/2026 15:14:46,Institutional Investor,0-2 years,Moving Average,1,Always,Greater than 10%,Logarithmic Return,Highly Resilient,Moderately,Moderately significant
+10/05/2026 16:55:03,Other,3-5 years,Other / None,3,Occasionally,8% to 10%,Cumulative Return,Moderately Vulnerable,Not at all,Moderately significant
+09/24/2026 07:13:29,Retail Trader,More than 10 years,Pullback,5,Frequently,5% to 7%,Logarithmic Return,Moderately Resilient,Extensively,Not significant
+09/24/2026 08:20:49,Other,More than 10 years,Moving Average,5,Occasionally,I do not use stop-loss orders,Simple Return,Highly Resilient,Extensively,Moderately significant
+10/03/2026 11:38:02,Other,3-5 years,Pullback,5,Rarely,8% to 10%,Logarithmic Return,Neutral,Extensively,Very significant
+09/28/2026 20:43:48,Financial Analyst,3-5 years,Momentum,3,Always,Less than 5%,Cumulative Return,Moderately Resilient,Not at all,Extremely significant
+09/24/2026 19:54:32,Institutional Investor,0-2 years,Swing Trading,2,Rarely,8% to 10%,Cumulative Return,Moderately Resilient,Moderately,Extremely significant

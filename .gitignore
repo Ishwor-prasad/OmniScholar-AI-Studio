@@ -1,0 +1,20 @@
+# Temporary analysis runs
+version 1.0.0/app/runs/*
+!version 1.0.0/app/runs/.gitkeep
+
+# Python cache & build
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+*.tmp
