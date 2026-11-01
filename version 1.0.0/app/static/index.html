@@ -3,47 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniScholar | The Autonomous AI Research Studio v1.0.0</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>OmniScholar — Autonomous Empirical Research Studio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Top Global Navigation Bar -->
     <header class="app-header">
-        <div class="logo-group">
-            <div class="logo-mark">Ω</div>
-            <div class="logo-text">
-                <h1>OmniScholar <span class="badge-version">v1.0.0</span></h1>
-                <p class="tagline">Empirical AI Research Operating System & Anti-Ghostwriting Engine</p>
+        <div class="header-inner">
+            <div class="logo-group">
+                <span class="logo-title">OmniScholar</span>
+                <span class="badge-version">v1.0</span>
             </div>
-        </div>
-        <div class="header-status">
-            <span class="status-indicator">
-                <span class="pulse-dot"></span> Sandbox Core Active
-            </span>
-            <span class="badge-integrity">Zero-Hallucination Verified</span>
+            <div class="header-status">
+                <span class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Sandbox Core Active</span>
+                </span>
+                <span class="badge-integrity">Bitwise Verification</span>
+            </div>
         </div>
     </header>
 
     <div class="app-container">
-        <!-- Hero Upload & Quick Launch Bar -->
-        <section class="action-card glass-panel">
+        <!-- Hero Section & Ingestion -->
+        <section class="action-card">
             <div class="action-grid">
                 <div class="upload-dropzone" id="dropzone">
                     <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display: none;">
-                    <div class="drop-icon">📂</div>
                     <div class="drop-content">
-                        <h3>Drop your Empirical CSV or Excel (.xlsx) Dataset</h3>
-                        <p>or click to browse local survey & experimental data</p>
+                        <div class="drop-icon-symbol">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h3>Upload Empirical Dataset</h3>
+                        <p>Drag and drop a CSV or Excel (.xlsx) file, or click to browse</p>
                     </div>
                 </div>
                 <div class="quick-demo-box">
-                    <h4>Instant Quick Start</h4>
-                    <p>Test the full pipeline immediately with verified Dhaka Stock Exchange market data ($N=100$).</p>
+                    <div>
+                        <h4>Dhaka Stock Exchange Sample</h4>
+                        <p>Instant empirical analysis on N = 100 verified observational market vectors.</p>
+                    </div>
                     <button class="btn btn-primary" id="btnLoadSample">
-                        ⚡ Load Sample Research Dataset
+                        Load Sample Dataset
                     </button>
                 </div>
             </div>
@@ -51,33 +56,33 @@
             <!-- Active Dataset Info Strip (Hidden until loaded) -->
             <div class="dataset-meta-strip" id="datasetMeta" style="display: none;">
                 <div class="meta-item">
-                    <span class="meta-label">Active Dataset:</span>
-                    <span class="meta-val" id="metaFilename">-</span>
+                    <span class="meta-label">Active Dataset</span>
+                    <span class="meta-val" id="metaFilename">—</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Sample Size ($N$):</span>
+                    <span class="meta-label">Sample Size (N)</span>
                     <span class="meta-val highlight" id="metaSampleSize">0</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Variables:</span>
+                    <span class="meta-label">Variables</span>
                     <span class="meta-val" id="metaVarCount">0</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Grouping Cohort:</span>
+                    <span class="meta-label">Cohort Grouping</span>
                     <select id="selectGroupCol" class="meta-select" title="Choose cohort grouping variable for inferential tests">
                         <!-- Populated dynamically -->
                     </select>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">SHA-256 Checksum:</span>
-                    <span class="meta-val mono" id="metaHash">-</span>
+                    <span class="meta-label">SHA-256 Fingerprint</span>
+                    <span class="meta-val mono" id="metaHash">—</span>
                 </div>
                 <div class="meta-actions">
-                    <button class="btn btn-sm btn-primary" id="btnExportPdf" title="Download publication-grade compiled PDF manuscript">
-                        📄 Download Manuscript (PDF)
+                    <button class="btn btn-sm btn-primary" id="btnExportPdf">
+                        Download Manuscript (PDF)
                     </button>
-                    <button class="btn btn-sm btn-outline" id="btnExportZip" title="Download complete bundle with 300 DPI figures, CSV tables, and LaTeX source">
-                        📥 Download Full Package (.ZIP)
+                    <button class="btn btn-sm btn-secondary" id="btnExportZip">
+                        Export Full Package (.ZIP)
                     </button>
                 </div>
             </div>
@@ -85,36 +90,43 @@
 
         <!-- Dynamic Workspace Tabs -->
         <main class="workspace-area">
-            <nav class="tab-nav">
-                <button class="tab-btn active" data-tab="tabVariables">
-                    📊 1. Variable Profiler & Distributions
-                </button>
-                <button class="tab-btn" data-tab="tabInferential">
-                    📐 2. Correlation & Hypothesis Tests
-                </button>
-                <button class="tab-btn" data-tab="tabLatex">
-                    📋 3. LaTeX Booktabs Tables
-                </button>
-                <button class="tab-btn" data-tab="tabManuscript">
-                    📝 4. Living Manuscript Draft
-                </button>
-                <button class="tab-btn" data-tab="tabPassport">
-                    🛡️ 5. Reproducibility Passport
-                </button>
-            </nav>
+            <div class="tab-nav-wrapper">
+                <nav class="tab-nav">
+                    <button class="tab-btn active" data-tab="tabVariables">
+                        Variables & Distributions
+                    </button>
+                    <button class="tab-btn" data-tab="tabInferential">
+                        Hypothesis Tests
+                    </button>
+                    <button class="tab-btn" data-tab="tabLatex">
+                        LaTeX Booktabs
+                    </button>
+                    <button class="tab-btn" data-tab="tabManuscript">
+                        Manuscript Draft
+                    </button>
+                    <button class="tab-btn" data-tab="tabPassport">
+                        Reproducibility Passport
+                    </button>
+                </nav>
+            </div>
 
             <!-- Tab Content 1: Variable Profiler -->
             <div class="tab-pane active" id="tabVariables">
                 <div class="pane-header">
-                    <h2>Empirical Variables & Frequency Distributions</h2>
-                    <p>Every percentage and frequency calculated programmatically from verified observational vectors.</p>
+                    <h2>Variables and Descriptive Diagnostics</h2>
+                    <p>Programmatic univariate profiling and frequency distributions computed directly from raw observational vectors.</p>
                 </div>
                 <div class="variables-grid" id="variablesGrid">
-                    <!-- Populated dynamically via JS -->
                     <div class="empty-state">
-                        <div class="empty-icon">📈</div>
-                        <h3>No dataset active yet</h3>
-                        <p>Upload a CSV/Excel file or click "Load Sample Research Dataset" above to run the pipeline.</p>
+                        <div class="empty-icon-symbol">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                        </div>
+                        <h3>No dataset active</h3>
+                        <p>Upload a CSV or Excel dataset above or click Load Sample Dataset to inspect distributions.</p>
                     </div>
                 </div>
             </div>
@@ -122,14 +134,14 @@
             <!-- Tab Content 2: Inferential & Correlation -->
             <div class="tab-pane" id="tabInferential">
                 <div class="pane-header">
-                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+                    <div class="pane-header-flex">
                         <div>
-                            <h2>Inferential Hypotheses & Bivariate Correlation</h2>
-                            <p>Parametric (ANOVA, t-test) and Non-Parametric (Kruskal-Wallis, Mann-Whitney U, Spearman Rank Matrix) verification.</p>
+                            <h2>Inferential Hypotheses and Bivariate Correlation</h2>
+                            <p>Non-parametric (Kruskal-Wallis, Mann-Whitney U, Spearman Rank Matrix) and parametric (ANOVA, t-test) evaluations.</p>
                         </div>
                         <div class="group-control-banner">
-                            <span style="font-size:0.85rem; color:var(--text-secondary);">Active Grouping Cohort:</span>
-                            <span id="activeGroupBadge" class="badge-cohort">-</span>
+                            <span class="group-label">Active Cohort</span>
+                            <span id="activeGroupBadge" class="badge-cohort">—</span>
                         </div>
                     </div>
                 </div>
@@ -139,9 +151,14 @@
                         <!-- Populated dynamically -->
                     </div>
                     <div class="correlation-view-col">
-                        <h3>Spearman Rank Correlation Heatmap (300 DPI)</h3>
-                        <div class="heatmap-card" id="heatmapBox">
-                            <p class="placeholder-text">Awaiting data computation...</p>
+                        <div class="card-box">
+                            <div class="card-box-header">
+                                <h3>Spearman Rank Correlation Matrix</h3>
+                                <span class="badge-subtle">300 DPI Vector</span>
+                            </div>
+                            <div class="heatmap-card" id="heatmapBox">
+                                <p class="placeholder-text">Awaiting data computation...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,14 +166,16 @@
 
             <!-- Tab Content 3: LaTeX Booktabs Tables -->
             <div class="tab-pane" id="tabLatex">
-                <div class="pane-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-                    <div>
-                        <h2>Publication-Ready LaTeX Booktabs</h2>
-                        <p>Ready to copy and paste directly into your Overleaf or local LaTeX manuscript (`main.tex`).</p>
+                <div class="pane-header">
+                    <div class="pane-header-flex">
+                        <div>
+                            <h2>Publication-Ready LaTeX Booktabs</h2>
+                            <p>Pre-formatted tables adhering to standard academic syntax, ready for Overleaf or local compilation.</p>
+                        </div>
+                        <button class="btn btn-secondary" id="btnExportTex">
+                            Download main.tex Source
+                        </button>
                     </div>
-                    <button class="btn btn-secondary" id="btnExportTex">
-                        📥 Download main.tex Source
-                    </button>
                 </div>
                 <div class="latex-container" id="latexContainer">
                     <!-- Populated dynamically -->
@@ -165,20 +184,24 @@
 
             <!-- Tab Content 4: Living Manuscript Draft -->
             <div class="tab-pane" id="tabManuscript">
-                <div class="pane-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-                    <div>
-                        <h2>Anti-Ghostwriting IMRaD Results Chapter</h2>
-                        <p>Drafted section-by-section with zero hallucination. All numbers match the data audit with exact fidelity.</p>
-                    </div>
-                    <div style="font-size:0.85rem; color:var(--text-secondary);" id="manuscriptStats">
-                        Words: <strong id="wordCount">0</strong> | Characters: <strong id="charCount">0</strong>
+                <div class="pane-header">
+                    <div class="pane-header-flex">
+                        <div>
+                            <h2>Empirical Results Chapter</h2>
+                            <p>Drafted section-by-section with exact numerical fidelity. Every statistic reflects verified data provenance.</p>
+                        </div>
+                        <div class="manuscript-metrics" id="manuscriptStats">
+                            <span>Words: <strong id="wordCount">0</strong></span>
+                            <span class="divider">/</span>
+                            <span>Characters: <strong id="charCount">0</strong></span>
+                        </div>
                     </div>
                 </div>
                 <div class="manuscript-editor-card">
-                    <textarea class="manuscript-editor" id="manuscriptText" spellcheck="false" placeholder="Draft text will appear here..."></textarea>
+                    <textarea class="manuscript-editor" id="manuscriptText" spellcheck="false" placeholder="Draft manuscript text will render here..."></textarea>
                     <div class="editor-footer">
-                        <button class="btn btn-secondary" id="btnCopyManuscript">📋 Copy Markdown Text</button>
-                        <button class="btn btn-primary" id="btnManuscriptPdf">📄 Download Compiled PDF</button>
+                        <button class="btn btn-secondary" id="btnCopyManuscript">Copy Markdown</button>
+                        <button class="btn btn-primary" id="btnManuscriptPdf">Download Compiled PDF</button>
                     </div>
                 </div>
             </div>
@@ -187,9 +210,9 @@
             <div class="tab-pane" id="tabPassport">
                 <div class="pane-header">
                     <h2>Cryptographic Reproducibility Passport</h2>
-                    <p>Verifiable provenance proof to satisfy university ethics committees and Scopus/WoS journal editors.</p>
+                    <p>Cryptographic audit parameters guaranteeing zero ghostwriting and bitwise research fidelity.</p>
                 </div>
-                <div class="passport-certificate glass-panel" id="passportBox">
+                <div class="passport-certificate" id="passportBox">
                     <!-- Populated dynamically -->
                 </div>
             </div>
@@ -200,7 +223,7 @@
     <div class="modal" id="imageModal" style="display: none;">
         <div class="modal-content">
             <span class="close-btn" id="closeModal">&times;</span>
-            <img id="modalImg" src="" alt="High resolution figure">
+            <img id="modalImg" src="" alt="Full resolution figure">
         </div>
     </div>
 

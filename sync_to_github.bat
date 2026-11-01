@@ -12,3 +12,4 @@ for %%R in ("%temp%\git_status.tmp") do if %%~zR gtr 0 (
 )
 del "%temp%\git_status.tmp"
 pause
+

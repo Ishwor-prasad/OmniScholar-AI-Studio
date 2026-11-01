@@ -1,4 +1,5 @@
-// Project OmniScholar - Research AI Studio v1.0.0 Frontend Logic
+// Project OmniScholar - Autonomous AI Research Studio v1.0.0
+// Apple Minimalist Interface Logic
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
@@ -59,16 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     dropzone.addEventListener('dragover', (e) => {
         e.preventDefault();
-        dropzone.style.borderColor = 'var(--primary)';
+        dropzone.style.borderColor = 'var(--apple-blue)';
+        dropzone.style.backgroundColor = 'var(--apple-blue-subtle)';
     });
 
     dropzone.addEventListener('dragleave', () => {
-        dropzone.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+        dropzone.style.borderColor = 'var(--border-subtle)';
+        dropzone.style.backgroundColor = 'var(--bg-card-secondary)';
     });
 
     dropzone.addEventListener('drop', (e) => {
         e.preventDefault();
-        dropzone.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+        dropzone.style.borderColor = 'var(--border-subtle)';
+        dropzone.style.backgroundColor = 'var(--bg-card-secondary)';
         if (e.dataTransfer.files.length > 0) {
             handleFileUpload(e.dataTransfer.files[0]);
         }
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnLoadSample.addEventListener('click', async () => {
         btnLoadSample.disabled = true;
-        btnLoadSample.innerHTML = '⚡ Processing Empirical Pipeline...';
+        btnLoadSample.textContent = 'Processing Dataset...';
         try {
             const resp = await fetch('/api/load-sample', { method: 'POST' });
             if (!resp.ok) throw new Error('Failed to load sample dataset');
@@ -92,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Error loading sample dataset: ' + err.message);
         } finally {
             btnLoadSample.disabled = false;
-            btnLoadSample.innerHTML = '⚡ Load Sample Research Dataset';
+            btnLoadSample.textContent = 'Load Sample Dataset';
         }
     });
 
@@ -101,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('file', file);
 
         const originalText = dropzone.querySelector('h3').textContent;
-        dropzone.querySelector('h3').textContent = 'Uploading, auditing and compiling PDF...';
+        dropzone.querySelector('h3').textContent = 'Uploading and auditing dataset...';
 
         try {
             const resp = await fetch('/api/upload', {
@@ -202,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <tbody>${freqRows}</tbody>
                 </table>
                 <div class="var-chart-preview" data-src="${vInfo.chart_url}">
-                    <img src="${vInfo.chart_url}" alt="Figure for ${colName}" loading="lazy">
+                    <img src="${vInfo.chart_url}" alt="Distribution figure for ${colName}" loading="lazy">
                 </div>
             `;
             variablesGrid.appendChild(card);
@@ -227,24 +231,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="inferential-header">
                         <h4>${inf.test}</h4>
                         <span class="sig-badge ${inf.significant ? 'pass' : 'null'}">
-                            ${inf.significant ? 'Statistically Significant (p < .05)' : 'Fail to Reject Null (p > .05)'}
+                            ${inf.significant ? 'Significant (p < .05)' : 'Fail to Reject Null (p > .05)'}
                         </span>
                     </div>
-                    <p style="font-size:0.85rem; margin-bottom: 0.5rem;">Target: <strong>${inf.target_variable}</strong> across <strong>${inf.grouping_variable}</strong></p>
-                    <div style="font-family: var(--font-mono); font-size:0.8rem; background: rgba(0,0,0,0.3); padding:0.5rem; border-radius:4px; margin-bottom:0.5rem;">
-                        Test Statistic: ${inf.statistic} | Degrees of Freedom (df): ${inf.df} | p-value: ${inf.p_value}
+                    <p style="font-size:13px; color:var(--text-secondary); margin-bottom: 8px;">Target: <strong style="color:var(--text-primary);">${inf.target_variable}</strong> across <strong style="color:var(--text-primary);">${inf.grouping_variable}</strong></p>
+                    <div style="font-family: var(--font-mono); font-size:12px; background: #fafafc; border:1px solid var(--border-hairline); padding:8px 12px; border-radius:6px; margin-bottom:10px;">
+                        Statistic: ${inf.statistic} | Degrees of Freedom: ${inf.df} | p-value: ${inf.p_value}
                     </div>
-                    <p style="font-size:0.85rem; color: var(--text-secondary);">${inf.interpretation}</p>
+                    <p style="font-size:13px; color: var(--text-secondary);">${inf.interpretation}</p>
                 `;
                 inferentialContainer.appendChild(card);
             });
         } else {
-            inferentialContainer.innerHTML = '<p class="placeholder-text">No inferential groupings identified or sample size too small.</p>';
+            inferentialContainer.innerHTML = '<p style="color:var(--text-secondary); font-size:13px;">No inferential groupings identified or sample size insufficient.</p>';
         }
 
         if (summary.correlation && summary.correlation.chart_url) {
             heatmapBox.innerHTML = `
-                <img src="${summary.correlation.chart_url}" alt="Correlation Heatmap" style="cursor:pointer;" id="heatmapImg">
+                <img src="${summary.correlation.chart_url}" alt="Spearman Correlation Heatmap" style="cursor:pointer;" id="heatmapImg">
             `;
             document.getElementById('heatmapImg').addEventListener('click', () => {
                 modalImg.src = summary.correlation.chart_url;
@@ -262,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="latex-card-header">
                         <h4>Table ${idx + 1}: ${t.variable}</h4>
                         <button class="btn btn-sm btn-secondary copy-latex-btn" data-code="${encodeURIComponent(t.latex)}">
-                            📋 Copy LaTeX
+                            Copy LaTeX
                         </button>
                     </div>
                     <pre class="latex-code-block">${t.latex}</pre>
@@ -274,8 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.addEventListener('click', () => {
                     const code = decodeURIComponent(btn.getAttribute('data-code'));
                     navigator.clipboard.writeText(code);
-                    btn.textContent = '✅ Copied!';
-                    setTimeout(() => btn.textContent = '📋 Copy LaTeX', 2000);
+                    btn.textContent = 'Copied';
+                    setTimeout(() => btn.textContent = 'Copy LaTeX', 2000);
                 });
             });
         }
@@ -288,44 +292,43 @@ document.addEventListener('DOMContentLoaded', () => {
         const pass = summary.passport;
         passportBox.innerHTML = `
             <div class="passport-seal">
-                <div class="seal-icon">🛡️</div>
                 <div class="seal-title">
                     <h3>Cryptographic Reproducibility Passport</h3>
-                    <p style="font-size:0.85rem; color: var(--text-secondary);">${pass.audit_statement}</p>
+                    <p>${pass.audit_statement}</p>
                 </div>
             </div>
             <div class="passport-grid">
                 <div class="pass-row">
-                    <span class="pass-label">Audit Status:</span>
+                    <span class="pass-label">Audit Status</span>
                     <span class="pass-value" style="color: var(--success);">${pass.status}</span>
                 </div>
                 <div class="pass-row">
-                    <span class="pass-label">Ghostwriting Risk Index:</span>
+                    <span class="pass-label">Ghostwriting Risk Index</span>
                     <span class="pass-value" style="color: var(--success);">${pass.ghostwriting_risk_score}</span>
                 </div>
                 <div class="pass-row">
-                    <span class="pass-label">Verified Sample Size:</span>
+                    <span class="pass-label">Verified Sample Size</span>
                     <span class="pass-value">N = ${pass.sample_size}</span>
                 </div>
                 <div class="pass-row">
-                    <span class="pass-label">Execution Environment:</span>
+                    <span class="pass-label">Execution Sandbox</span>
                     <span class="pass-value">${pass.code_sandbox}</span>
                 </div>
                 <div class="pass-row" style="grid-column: 1 / -1;">
-                    <span class="pass-label">Dataset SHA-256 Fingerprint:</span>
+                    <span class="pass-label">Dataset SHA-256 Fingerprint</span>
                     <span class="pass-value mono">${pass.sha256_checksum}</span>
                 </div>
                 <div class="pass-row" style="grid-column: 1 / -1;">
-                    <span class="pass-label">Audit Timestamp (UTC):</span>
+                    <span class="pass-label">Audit Timestamp (UTC)</span>
                     <span class="pass-value mono">${pass.timestamp_utc}</span>
                 </div>
             </div>
-            <div style="display:flex; justify-content:center; gap:1rem; margin-top: 1.5rem; flex-wrap:wrap;">
+            <div style="display:flex; justify-content:center; gap:12px; margin-top: 24px; flex-wrap:wrap;">
                 <button class="btn btn-primary" id="btnPassportPdf">
-                    📄 Download Compiled Manuscript (PDF)
+                    Download Manuscript (PDF)
                 </button>
                 <button class="btn btn-secondary" id="btnPassportDownload">
-                    📥 Download Full Package (.ZIP)
+                    Export Full Package (.ZIP)
                 </button>
             </div>
         `;
@@ -352,8 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Copy Manuscript Draft
     btnCopyManuscript.addEventListener('click', () => {
         navigator.clipboard.writeText(manuscriptText.value);
-        btnCopyManuscript.textContent = '✅ Copied Draft!';
-        setTimeout(() => btnCopyManuscript.textContent = '📋 Copy Markdown Text', 2000);
+        btnCopyManuscript.textContent = 'Copied';
+        setTimeout(() => btnCopyManuscript.textContent = 'Copy Markdown', 2000);
     });
 
     // 7. Download Handlers

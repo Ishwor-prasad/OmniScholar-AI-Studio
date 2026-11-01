@@ -11,3 +11,4 @@ if ($status) {
 } else {
     Write-Host "Working directory clean; no changes to commit." -ForegroundColor Yellow
 }
+
