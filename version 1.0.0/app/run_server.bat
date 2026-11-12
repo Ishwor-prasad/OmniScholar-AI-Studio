@@ -1,7 +1,13 @@
 @echo off
+title OmniScholar - Scientific Research Studio v1.0.0
 echo ========================================================
-echo   Starting Project OmniScholar - Research AI Studio v1.0.0
+echo   Starting OmniScholar - Scientific Research Studio v1.0.0
+echo   Live URL: http://127.0.0.1:8000
 echo ========================================================
 cd /d "%~dp0"
-uv run --with fastapi --with uvicorn --with python-multipart --with pandas --with scipy --with matplotlib --with seaborn --with openpyxl python server.py
+if exist "..\..\.venv\Scripts\python.exe" (
+    "..\..\.venv\Scripts\python.exe" server.py
+) else (
+    python server.py
+)
 pause

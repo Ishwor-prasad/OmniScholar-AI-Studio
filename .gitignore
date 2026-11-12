@@ -1,4 +1,6 @@
-# Temporary analysis runs
+# OmniScholar Git Ignore Configuration
+
+# Temporary analysis runs & artifacts
 version 1.0.0/app/runs/*
 !version 1.0.0/app/runs/.gitkeep
 
@@ -8,14 +10,24 @@ __pycache__/
 *$py.class
 .pytest_cache/
 .mypy_cache/
+*.egg-info/
+dist/
+build/
 
 # Virtual environments
 .venv/
 venv/
 ENV/
+env/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
 # OS specific files
 .DS_Store
 Thumbs.db
 *.tmp
-
+*.log
