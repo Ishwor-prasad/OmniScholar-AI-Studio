@@ -7,8 +7,8 @@ Write-Host "====================================================================
 $appDir = Join-Path $PSScriptRoot "version 1.0.0\app"
 $pythonExe = Join-Path $PSScriptRoot ".venv\Scripts\python.exe"
 
-if (-not (Test-Path $pythonExe)) {
-    $pythonExe = "python"
+Set-Location $appDir
+& $pythonExe server.py
 }
 
 Set-Location $appDir

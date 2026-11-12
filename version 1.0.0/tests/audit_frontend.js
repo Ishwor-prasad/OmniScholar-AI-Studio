@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const htmlPath = path.join(__dirname, "static", "index.html");
-const jsPath = path.join(__dirname, "static", "app.js");
-const cssPath = path.join(__dirname, "static", "style.css");
+const htmlPath = path.join(__dirname, "..", "app", "static", "index.html");
+const jsPath = path.join(__dirname, "..", "app", "static", "app.js");
+const cssPath = path.join(__dirname, "..", "app", "static", "style.css");
 
 const html = fs.readFileSync(htmlPath, "utf8");
 const js = fs.readFileSync(jsPath, "utf8");

@@ -8,8 +8,8 @@ try {
     // jsdom not installed
 }
 
-const htmlPath = path.join(__dirname, "static", "index.html");
-const jsPath = path.join(__dirname, "static", "app.js");
+const htmlPath = path.join(__dirname, "..", "app", "static", "index.html");
+const jsPath = path.join(__dirname, "..", "app", "static", "app.js");
 
 const html = fs.readFileSync(htmlPath, "utf8");
 const js = fs.readFileSync(jsPath, "utf8");

@@ -11,3 +11,4 @@ if (-not (Test-Path $pythonExe)) {
 }
 
 & $pythonExe comprehensive_verifier.py
+

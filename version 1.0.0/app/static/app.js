@@ -31,31 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const badgeVarCount = document.getElementById('badgeVarCount');
     const badgeInfCount = document.getElementById('badgeInfCount');
 
-    // Inception Hub: 3 Doors
-    const btnModeTopic = document.getElementById('btnModeTopic');
-    const btnModeDataset = document.getElementById('btnModeDataset');
-    const btnModeQualitative = document.getElementById('btnModeQualitative');
-    const panelModeTopic = document.getElementById('panelModeTopic');
-    const panelModeDataset = document.getElementById('panelModeDataset');
-    const panelModeQualitative = document.getElementById('panelModeQualitative');
-
-    const txtWizardTopic = document.getElementById('txtWizardTopic');
-    const selWizardDomain = document.getElementById('selWizardDomain');
-    const selWizardJournal = document.getElementById('selWizardJournal');
-    const btnSynthesizeTopic = document.getElementById('btnSynthesizeTopic');
-
-    const wizardResultsArea = document.getElementById('wizardResultsArea');
-    const lblSynthesizedTitle = document.getElementById('lblSynthesizedTitle');
-    const btnLaunchPilotStudio = document.getElementById('btnLaunchPilotStudio');
-    const txtSynthesizedGap = document.getElementById('txtSynthesizedGap');
-    const listSynthesizedHypotheses = document.getElementById('listSynthesizedHypotheses');
-    const boxSynthesizedSurvey = document.getElementById('boxSynthesizedSurvey');
-    const btnCopyGoogleScript = document.getElementById('btnCopyGoogleScript');
-
-    // Hero & Ingestion
-    const dropzone = document.getElementById('dropzone');
-    const fileInput = document.getElementById('fileInput');
-    const btnLoadSample = document.getElementById('btnLoadSample');
+    // Stage & Metadata References
     const datasetMeta = document.getElementById('datasetMeta');
     const metaFilename = document.getElementById('metaFilename');
     const metaSampleSize = document.getElementById('metaSampleSize');
@@ -214,42 +190,263 @@ document.addEventListener('DOMContentLoaded', () => {
     btnHeaderExport.addEventListener('click', () => switchTab('tabExport'));
     headerHashBadge.addEventListener('click', () => switchTab('tabPassport'));
 
-    // --- 5. File Ingestion & Benchmark Sample Loading ---
-    dropzone.addEventListener('click', () => fileInput.click());
+    // --- 5. Scholar Lifecycle: Stage 1 & Stage 2 Handlers ---
+    let currentArchitecture = null;
 
-    dropzone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropzone.classList.add('dragover');
+    // 5.1 Stepper Navigation & Stage Transitions
+    document.querySelectorAll('.stepper-step').forEach(step => {
+        step.addEventListener('click', () => {
+            const target = step.getAttribute('data-step-tab');
+            if (target) switchTab(target);
+        });
     });
 
-    dropzone.addEventListener('dragleave', () => {
-        dropzone.classList.remove('dragover');
-    });
-
-    dropzone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropzone.classList.remove('dragover');
-        if (e.dataTransfer.files.length > 0) {
-            handleFileUpload(e.dataTransfer.files[0]);
+    document.addEventListener('click', (e) => {
+        const nextBtn = e.target.closest('.btn-next-stage');
+        if (nextBtn) {
+            const target = nextBtn.getAttribute('data-goto');
+            if (target) switchTab(target);
         }
     });
 
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) {
-            handleFileUpload(fileInput.files[0]);
-        }
+    // 5.2 Preset Benchmark Topic Pills
+    document.querySelectorAll('.preset-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            const topic = pill.getAttribute('data-topic');
+            const domain = pill.getAttribute('data-domain');
+            const txtTopic = document.getElementById('txtFramingTopic');
+            const selDomain = document.getElementById('selFramingDomain');
+            if (txtTopic && topic) txtTopic.value = topic;
+            if (selDomain && domain) selDomain.value = domain;
+            const btnSyn = document.getElementById('btnSynthesizeFraming');
+            if (btnSyn) btnSyn.click();
+        });
     });
 
-    async function handleFileUpload(file) {
+    // 5.3 Stage 1: Synthesize Framing & Theoretical Architecture
+    const btnSynthesizeFraming = document.getElementById('btnSynthesizeFraming');
+    if (btnSynthesizeFraming) {
+        btnSynthesizeFraming.addEventListener('click', async () => {
+            const txtTopic = document.getElementById('txtFramingTopic');
+            const selDomain = document.getElementById('selFramingDomain');
+            const selJournal = document.getElementById('selFramingJournal');
+            const topic = (txtTopic ? txtTopic.value : '').trim();
+
+            if (!topic) {
+                alert('Please enter a central research topic or inquiry.');
+                return;
+            }
+
+            btnSynthesizeFraming.disabled = true;
+            btnSynthesizeFraming.innerHTML = `<span>⚡ Formulating Architecture...</span>`;
+            if (globalEngineStatus) globalEngineStatus.textContent = 'Operationalizing Theoretical Framework...';
+
+            try {
+                const resp = await fetch('/api/topic/synthesize', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        topic: topic,
+                        discipline: selDomain ? selDomain.value : 'General',
+                        target_standard: selJournal ? selJournal.value : 'IEEE'
+                    })
+                });
+
+                if (!resp.ok) throw new Error('Failed to synthesize research architecture.');
+                const arch = await resp.json();
+                currentArchitecture = arch;
+
+                // Update Stage 1 View
+                const lblTitle = document.getElementById('lblFramingTitle');
+                const txtGap = document.getElementById('txtFramingGap');
+                const listHypo = document.getElementById('listFramingHypotheses');
+                const lblIV = document.getElementById('lblFramingIV');
+                const lblMOD = document.getElementById('lblFramingMOD');
+                const lblDV = document.getElementById('lblFramingDV');
+
+                if (lblTitle) lblTitle.textContent = arch.declarative_title;
+                if (txtGap) txtGap.textContent = arch.literature_gap;
+
+                if (arch.constructs && arch.constructs.length >= 3) {
+                    if (lblIV) lblIV.textContent = arch.constructs[0].name;
+                    if (lblMOD) lblMOD.textContent = `${arch.constructs[1].name} (Buffer H2)`;
+                    if (lblDV) lblDV.textContent = arch.constructs[arch.constructs.length - 1].name;
+                }
+
+                if (listHypo && arch.hypotheses) {
+                    listHypo.innerHTML = arch.hypotheses.map(h => `
+                        <li class="arch-hypo-item">
+                            <strong>${h.id}:</strong> ${h.statement}
+                        </li>
+                    `).join('');
+                }
+
+                // Update Stage 2 Survey Items
+                const boxSurvey = document.getElementById('boxInstrumentSurvey');
+                if (boxSurvey && arch.constructs) {
+                    let surveyHtml = '';
+                    arch.constructs.forEach(c => {
+                        surveyHtml += `<div style="margin-top: 10px; margin-bottom: 6px;"><strong>${c.name} (${c.code})</strong></div>`;
+                        c.items.forEach((it, idx) => {
+                            surveyHtml += `<div class="arch-survey-item">[${c.code}_${idx+1}] ${it}</div>`;
+                        });
+                    });
+                    boxSurvey.innerHTML = surveyHtml;
+                }
+
+                if (globalEngineStatus) globalEngineStatus.textContent = 'Theoretical Framework Operationalized';
+
+            } catch (err) {
+                console.error(err);
+                alert('Synthesis Error: ' + err.message);
+            } finally {
+                btnSynthesizeFraming.disabled = false;
+                btnSynthesizeFraming.innerHTML = `
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <span>⚡ Synthesize Architecture</span>
+                `;
+            }
+        });
+    }
+
+    // 5.4 Stage 2: Copy Google Form Apps Script
+    const btnCopyGoogleScriptStage2 = document.getElementById('btnCopyGoogleScriptStage2');
+    if (btnCopyGoogleScriptStage2) {
+        btnCopyGoogleScriptStage2.addEventListener('click', () => {
+            if (currentArchitecture && currentArchitecture.google_apps_script) {
+                navigator.clipboard.writeText(currentArchitecture.google_apps_script);
+                btnCopyGoogleScriptStage2.textContent = 'Copied Google Form Apps Script!';
+                setTimeout(() => {
+                    btnCopyGoogleScriptStage2.innerHTML = `
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copy Google Form Apps Script (Deploy Survey)
+                    `;
+                }, 2000);
+            } else {
+                alert('Please synthesize an architecture in Stage 1 first to generate the Google Form code.');
+            }
+        });
+    }
+
+    // 5.5 Stage 2: Simulate Correlated Pilot Dataset (N=100)
+    const btnSimulatePilotStage2 = document.getElementById('btnSimulatePilotStage2');
+    if (btnSimulatePilotStage2) {
+        btnSimulatePilotStage2.addEventListener('click', async () => {
+            const txtTopic = document.getElementById('txtFramingTopic');
+            const selJournal = document.getElementById('selFramingJournal');
+            const topic = (txtTopic ? txtTopic.value : '').trim() || 'Empirical Investigation';
+
+            btnSimulatePilotStage2.disabled = true;
+            btnSimulatePilotStage2.innerHTML = `<span>Simulating Correlated Pilot (N=100)...</span>`;
+            if (globalEngineStatus) globalEngineStatus.textContent = 'Simulating Pilot Covariance Vectors...';
+
+            try {
+                const resp = await fetch('/api/topic/simulate-pilot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        topic: topic,
+                        sample_size: 100,
+                        target_standard: selJournal ? selJournal.value : 'IEEE'
+                    })
+                });
+
+                if (!resp.ok) throw new Error('Pilot simulation failed.');
+                const data = await resp.json();
+
+                if (data.rows && data.rows.length > 0) {
+                    STATE.datasetRows = data.rows;
+                    STATE.filteredRows = [...data.rows];
+                    STATE.tablePage = 1;
+                }
+
+                renderDashboard(data);
+                switchTab('tabVariables');
+
+            } catch (err) {
+                console.error(err);
+                alert('Simulation Error: ' + err.message);
+            } finally {
+                btnSimulatePilotStage2.disabled = false;
+                btnSimulatePilotStage2.innerHTML = `
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    <span>🚀 Simulate Pilot (N=100) & Enter Statistics</span>
+                `;
+                if (globalEngineStatus) globalEngineStatus.textContent = 'Empirical Engine Active';
+            }
+        });
+    }
+
+    // 5.6 Stage 2: Ingest Global Benchmark (N=100)
+    const btnLoadBenchmarkStage2 = document.getElementById('btnLoadBenchmarkStage2');
+    if (btnLoadBenchmarkStage2) {
+        btnLoadBenchmarkStage2.addEventListener('click', async () => {
+            btnLoadBenchmarkStage2.disabled = true;
+            btnLoadBenchmarkStage2.innerHTML = `<span>Ingesting Benchmark...</span>`;
+            if (globalEngineStatus) globalEngineStatus.textContent = 'Auditing Cross-Sectional Sample...';
+
+            try {
+                const resp = await fetch('/api/load-sample', { method: 'POST' });
+                if (!resp.ok) throw new Error('Failed to load sample benchmark');
+                const data = await resp.json();
+
+                if (data.rows && data.rows.length > 0) {
+                    STATE.datasetRows = data.rows;
+                    STATE.filteredRows = [...data.rows];
+                    STATE.tablePage = 1;
+                }
+
+                renderDashboard(data);
+                switchTab('tabVariables');
+            } catch (err) {
+                console.error(err);
+                alert('Error loading sample benchmark: ' + err.message);
+            } finally {
+                btnLoadBenchmarkStage2.disabled = false;
+                btnLoadBenchmarkStage2.innerHTML = `<span>Load DSE Global Benchmark (N=100)</span>`;
+                if (globalEngineStatus) globalEngineStatus.textContent = 'Empirical Engine Active';
+            }
+        });
+    }
+
+    // 5.7 Stage 2: Upload CSV / Excel Dataset
+    const dropzoneStage2 = document.getElementById('dropzoneStage2');
+    const fileInputStage2 = document.getElementById('fileInputStage2');
+
+    if (dropzoneStage2 && fileInputStage2) {
+        dropzoneStage2.addEventListener('click', () => fileInputStage2.click());
+
+        dropzoneStage2.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzoneStage2.classList.add('dragover');
+        });
+
+        dropzoneStage2.addEventListener('dragleave', () => {
+            dropzoneStage2.classList.remove('dragover');
+        });
+
+        dropzoneStage2.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzoneStage2.classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                handleStage2Upload(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInputStage2.addEventListener('change', () => {
+            if (fileInputStage2.files && fileInputStage2.files.length > 0) {
+                handleStage2Upload(fileInputStage2.files[0]);
+            }
+        });
+    }
+
+    async function handleStage2Upload(file) {
         const formData = new FormData();
         formData.append('file', file);
 
-        const originalText = dropzone.querySelector('h3').textContent;
-        dropzone.querySelector('h3').textContent = 'Ingesting and computing bitwise ledger...';
-        globalEngineStatus.textContent = 'Processing Observational Vectors...';
+        if (globalEngineStatus) globalEngineStatus.textContent = 'Uploading & computing bitwise ledger...';
 
         try {
-            // Read CSV text client-side if CSV for instant table view
             if (file.name.toLowerCase().endsWith('.csv')) {
                 const text = await file.text();
                 parseCsvToRows(text);
@@ -259,199 +456,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: formData
             });
+
             if (!resp.ok) {
                 const errData = await resp.json().catch(() => ({}));
                 throw new Error(errData.detail || 'Upload analysis failed');
             }
+
             const data = await resp.json();
+            if (data.rows && data.rows.length > 0) {
+                STATE.datasetRows = data.rows;
+                STATE.filteredRows = [...data.rows];
+                STATE.tablePage = 1;
+            }
+
             renderDashboard(data);
+            switchTab('tabVariables');
+
         } catch (err) {
+            console.error(err);
             alert('Dataset ingestion error: ' + err.message);
         } finally {
-            dropzone.querySelector('h3').textContent = originalText;
-            globalEngineStatus.textContent = 'Empirical Engine Active';
+            if (globalEngineStatus) globalEngineStatus.textContent = 'Empirical Engine Active';
         }
     }
-
-    // --- Inception Hub Mode Switcher (Door 1, Door 2, Door 3) ---
-    function setInceptionMode(mode) {
-        btnModeTopic.classList.toggle('active', mode === 'topic');
-        btnModeDataset.classList.toggle('active', mode === 'dataset');
-        btnModeQualitative.classList.toggle('active', mode === 'qualitative');
-
-        panelModeTopic.style.display = mode === 'topic' ? 'block' : 'none';
-        panelModeDataset.style.display = mode === 'dataset' ? 'block' : 'none';
-        panelModeQualitative.style.display = mode === 'qualitative' ? 'block' : 'none';
-    }
-
-    if (btnModeTopic) btnModeTopic.addEventListener('click', () => setInceptionMode('topic'));
-    if (btnModeDataset) btnModeDataset.addEventListener('click', () => setInceptionMode('dataset'));
-    if (btnModeQualitative) btnModeQualitative.addEventListener('click', () => setInceptionMode('qualitative'));
-
-    // Door 1: Synthesize Research Architecture
-    let currentSynthesizedArchitecture = null;
-
-    if (btnSynthesizeTopic) {
-        btnSynthesizeTopic.addEventListener('click', async () => {
-            const topic = (txtWizardTopic.value || '').trim();
-            if (!topic) {
-                alert('Please enter a research topic or question.');
-                return;
-            }
-
-            btnSynthesizeTopic.disabled = true;
-            btnSynthesizeTopic.innerHTML = `<span>⚡ Formulating Architecture...</span>`;
-            globalEngineStatus.textContent = 'Operationalizing Theoretical Framework...';
-
-            try {
-                const resp = await fetch('/api/topic/synthesize', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        topic: topic,
-                        discipline: selWizardDomain.value,
-                        target_standard: selWizardJournal.value
-                    })
-                });
-
-                if (!resp.ok) throw new Error('Failed to synthesize research architecture.');
-                const arch = await resp.json();
-                currentSynthesizedArchitecture = arch;
-
-                // Render Results
-                lblSynthesizedTitle.textContent = arch.declarative_title;
-                txtSynthesizedGap.textContent = arch.literature_gap;
-
-                listSynthesizedHypotheses.innerHTML = arch.hypotheses.map(h => `
-                    <li class="arch-hypo-item">
-                        <strong>${h.id}:</strong> ${h.statement}
-                    </li>
-                `).join('');
-
-                let surveyHtml = '';
-                arch.constructs.forEach(c => {
-                    surveyHtml += `<div style="margin-bottom: 8px;"><strong>${c.name} (${c.code})</strong></div>`;
-                    c.items.forEach((it, idx) => {
-                        surveyHtml += `<div class="arch-survey-item">[${c.code}_${idx+1}] ${it}</div>`;
-                    });
-                });
-                boxSynthesizedSurvey.innerHTML = surveyHtml;
-
-                wizardResultsArea.style.display = 'flex';
-                globalEngineStatus.textContent = 'Study Architecture Synthesized';
-
-            } catch (err) {
-                console.error(err);
-                alert('Synthesis Error: ' + err.message);
-            } finally {
-                btnSynthesizeTopic.disabled = false;
-                btnSynthesizeTopic.innerHTML = `
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                    <span>⚡ Synthesize Study Architecture</span>
-                `;
-            }
-        });
-    }
-
-    if (btnCopyGoogleScript) {
-        btnCopyGoogleScript.addEventListener('click', () => {
-            if (currentSynthesizedArchitecture && currentSynthesizedArchitecture.google_apps_script) {
-                navigator.clipboard.writeText(currentSynthesizedArchitecture.google_apps_script);
-                btnCopyGoogleScript.textContent = 'Copied Google Form Script!';
-                setTimeout(() => {
-                    btnCopyGoogleScript.textContent = 'Copy Google Form Apps Script';
-                }, 2000);
-            }
-        });
-    }
-
-    // Door 1: Simulate Correlated Pilot Dataset & Enter Empirical Studio
-    if (btnLaunchPilotStudio) {
-        btnLaunchPilotStudio.addEventListener('click', async () => {
-            const topic = (txtWizardTopic.value || '').trim();
-            btnLaunchPilotStudio.disabled = true;
-            btnLaunchPilotStudio.innerHTML = `<span>Generating Correlated Pilot (N=100)...</span>`;
-            globalEngineStatus.textContent = 'Simulating High-Fidelity Pilot Observational Vectors...';
-
-            try {
-                const resp = await fetch('/api/topic/simulate-pilot', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        topic: topic,
-                        sample_size: 100,
-                        target_standard: selWizardJournal.value
-                    })
-                });
-
-                if (!resp.ok) throw new Error('Failed to simulate pilot dataset.');
-                const data = await resp.json();
-
-                STATE.activeData = data;
-                renderDatasetOverview(data);
-
-                // Try to load client-side raw CSV for Explorer
-                try {
-                    const csvResp = await fetch(`/runs/${data.filename}`);
-                    if (csvResp.ok) {
-                        const csvText = await csvResp.text();
-                        parseCsvToRows(csvText);
-                    }
-                } catch (e) {
-                    console.warn('Could not parse raw CSV for explorer:', e);
-                }
-
-                // Switch to Variables tab
-                switchTab('tabVariables');
-
-            } catch (err) {
-                console.error(err);
-                alert('Pilot Simulation Error: ' + err.message);
-            } finally {
-                btnLaunchPilotStudio.disabled = false;
-                btnLaunchPilotStudio.innerHTML = `
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    <span>🚀 Simulate Pilot Dataset (N=100) & Enter Empirical Studio</span>
-                `;
-                globalEngineStatus.textContent = 'Empirical Engine Active';
-            }
-        });
-    }
-
-    btnLoadSample.addEventListener('click', async () => {
-        btnLoadSample.disabled = true;
-        btnLoadSample.innerHTML = `<span>Ingesting Benchmark...</span>`;
-        globalEngineStatus.textContent = 'Auditing Cross-Sectional Sample...';
-
-        try {
-            // Fetch dummy_data.csv for client-side inspector
-            try {
-                const csvResp = await fetch('/dummy_data.csv');
-                if (csvResp.ok) {
-                    const csvText = await csvResp.text();
-                    parseCsvToRows(csvText);
-                }
-            } catch (e) {
-                console.warn('Could not load client-side raw CSV, falling back to summary:', e);
-            }
-
-            const resp = await fetch('/api/load-sample', { method: 'POST' });
-            if (!resp.ok) throw new Error('Failed to load sample dataset');
-            const data = await resp.json();
-            renderDashboard(data);
-        } catch (err) {
-            alert('Error loading sample benchmark: ' + err.message);
-        } finally {
-            btnLoadSample.disabled = false;
-            btnLoadSample.innerHTML = `
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Load Sample Benchmark</span>
-            `;
-            globalEngineStatus.textContent = 'Empirical Engine Active';
-        }
-    });
 
     // Helper: Simple robust CSV parser for Explorer Table
     function parseCsvToRows(csvText) {
@@ -1234,7 +1261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             heatmapBox.innerHTML = `
                 <img src="${summary.correlation.chart_url}" alt="Spearman Correlation Heatmap" style="cursor:pointer;" id="heatmapImg" title="Click to view full 300 DPI figure">
             `;
-            document.getElementById('heatmapImg').addEventListener('click', () => {
+            document.getElementById('heatmapImg')?.addEventListener('click', () => {
                 modalImg.src = summary.correlation.chart_url;
                 imageModal.style.display = 'flex';
             });
@@ -1254,7 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </p>
                 <button class="ledger-btn-inspect" id="btnInspectCronbach">Inspect Alpha Formula</button>
             `;
-            document.getElementById('btnInspectCronbach').addEventListener('click', () => {
+            document.getElementById('btnInspectCronbach')?.addEventListener('click', () => {
                 openFormulaModal("Cronbach's Alpha", { test: "Cronbach's Alpha", statistic: rel.alpha || 0.88, df: rel.items_count || 4 });
             });
         }
@@ -1704,8 +1731,8 @@ ${r3Commentary.innerText}
             </div>
         `;
 
-        document.getElementById('btnPassportDownload').addEventListener('click', downloadZip);
-        document.getElementById('btnPassportPdf').addEventListener('click', downloadPdf);
+        document.getElementById('btnPassportDownload')?.addEventListener('click', downloadZip);
+        document.getElementById('btnPassportPdf')?.addEventListener('click', downloadPdf);
     }
 
     // --- 19. Export Handlers ---
@@ -1747,215 +1774,3 @@ ${r3Commentary.innerText}
         setTimeout(() => btnCopyTexCmd.textContent = 'Copy: tectonic main.tex', 2000);
     });
 });
-
-    // --- Scholar Cockpit & Lifecycle Interactivity ---
-    // Stepper navigation clicks
-    document.querySelectorAll('.stepper-step').forEach(step => {
-        step.addEventListener('click', () => {
-            const target = step.getAttribute('data-step-tab');
-            if (target) switchTab(target);
-        });
-    });
-
-    // Next Stage Buttons
-    document.addEventListener('click', (e) => {
-        const nextBtn = e.target.closest('.btn-next-stage');
-        if (nextBtn) {
-            const target = nextBtn.getAttribute('data-goto');
-            if (target) switchTab(target);
-        }
-    });
-
-    // Preset Topic Pills
-    document.querySelectorAll('.preset-pill').forEach(pill => {
-        pill.addEventListener('click', () => {
-            const topic = pill.getAttribute('data-topic');
-            const domain = pill.getAttribute('data-domain');
-            const txtTopic = document.getElementById('txtFramingTopic');
-            const selDomain = document.getElementById('selFramingDomain');
-            if (txtTopic && topic) txtTopic.value = topic;
-            if (selDomain && domain) selDomain.value = domain;
-            const btnSyn = document.getElementById('btnSynthesizeFraming');
-            if (btnSyn) btnSyn.click();
-        });
-    });
-
-    // Stage 1: Synthesize Framing & Theoretical Architecture
-    let currentArchitecture = null;
-    const btnSynthesizeFraming = document.getElementById('btnSynthesizeFraming');
-    if (btnSynthesizeFraming) {
-        btnSynthesizeFraming.addEventListener('click', async () => {
-            const txtTopic = document.getElementById('txtFramingTopic');
-            const selDomain = document.getElementById('selFramingDomain');
-            const selJournal = document.getElementById('selFramingJournal');
-            const topic = (txtTopic ? txtTopic.value : '').trim();
-
-            if (!topic) {
-                alert('Please enter a central research topic or inquiry.');
-                return;
-            }
-
-            btnSynthesizeFraming.disabled = true;
-            btnSynthesizeFraming.innerHTML = `<span>⚡ Formulating Architecture...</span>`;
-            if (globalEngineStatus) globalEngineStatus.textContent = 'Operationalizing Theoretical Framework...';
-
-            try {
-                const resp = await fetch('/api/topic/synthesize', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        topic: topic,
-                        discipline: selDomain ? selDomain.value : 'General',
-                        target_standard: selJournal ? selJournal.value : 'IEEE'
-                    })
-                });
-
-                if (!resp.ok) throw new Error('Failed to synthesize research architecture.');
-                const arch = await resp.json();
-                currentArchitecture = arch;
-
-                // Update Stage 1 View
-                const lblTitle = document.getElementById('lblFramingTitle');
-                const txtGap = document.getElementById('txtFramingGap');
-                const listHypo = document.getElementById('listFramingHypotheses');
-                const lblIV = document.getElementById('lblFramingIV');
-                const lblMOD = document.getElementById('lblFramingMOD');
-                const lblDV = document.getElementById('lblFramingDV');
-
-                if (lblTitle) lblTitle.textContent = arch.declarative_title;
-                if (txtGap) txtGap.textContent = arch.literature_gap;
-
-                if (arch.constructs && arch.constructs.length >= 3) {
-                    if (lblIV) lblIV.textContent = arch.constructs[0].name;
-                    if (lblMOD) lblMOD.textContent = `${arch.constructs[1].name} (Buffer H2)`;
-                    if (lblDV) lblDV.textContent = arch.constructs[arch.constructs.length - 1].name;
-                }
-
-                if (listHypo && arch.hypotheses) {
-                    listHypo.innerHTML = arch.hypotheses.map(h => `
-                        <li class="arch-hypo-item">
-                            <strong>${h.id}:</strong> ${h.statement}
-                        </li>
-                    `).join('');
-                }
-
-                // Update Stage 2 Survey Items
-                const boxSurvey = document.getElementById('boxInstrumentSurvey');
-                if (boxSurvey && arch.constructs) {
-                    let surveyHtml = '';
-                    arch.constructs.forEach(c => {
-                        surveyHtml += `<div style="margin-top: 10px; margin-bottom: 6px;"><strong>${c.name} (${c.code})</strong></div>`;
-                        c.items.forEach((it, idx) => {
-                            surveyHtml += `<div class="arch-survey-item">[${c.code}_${idx+1}] ${it}</div>`;
-                        });
-                    });
-                    boxSurvey.innerHTML = surveyHtml;
-                }
-
-                if (globalEngineStatus) globalEngineStatus.textContent = 'Theoretical Framework Operationalized';
-
-            } catch (err) {
-                console.error(err);
-                alert('Synthesis Error: ' + err.message);
-            } finally {
-                btnSynthesizeFraming.disabled = false;
-                btnSynthesizeFraming.innerHTML = `
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                    <span>⚡ Synthesize Architecture</span>
-                `;
-            }
-        });
-    }
-
-    // Stage 2: Copy Google Form Apps Script
-    const btnCopyGoogleScriptStage2 = document.getElementById('btnCopyGoogleScriptStage2');
-    if (btnCopyGoogleScriptStage2) {
-        btnCopyGoogleScriptStage2.addEventListener('click', () => {
-            if (currentArchitecture && currentArchitecture.google_apps_script) {
-                navigator.clipboard.writeText(currentArchitecture.google_apps_script);
-                btnCopyGoogleScriptStage2.textContent = 'Copied Google Form Apps Script!';
-                setTimeout(() => {
-                    btnCopyGoogleScriptStage2.innerHTML = `
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        Copy Google Form Apps Script (Deploy Survey)
-                    `;
-                }, 2000);
-            } else {
-                alert('Please synthesize an architecture in Stage 1 first to generate the Google Form code.');
-            }
-        });
-    }
-
-    // Stage 2: Simulate Pilot (N=100)
-    const btnSimulatePilotStage2 = document.getElementById('btnSimulatePilotStage2');
-    if (btnSimulatePilotStage2) {
-        btnSimulatePilotStage2.addEventListener('click', async () => {
-            const txtTopic = document.getElementById('txtFramingTopic');
-            const selJournal = document.getElementById('selFramingJournal');
-            const topic = (txtTopic ? txtTopic.value : '').trim() || 'Empirical Investigation';
-
-            btnSimulatePilotStage2.disabled = true;
-            btnSimulatePilotStage2.innerHTML = `<span>Simulating Correlated Pilot (N=100)...</span>`;
-            if (globalEngineStatus) globalEngineStatus.textContent = 'Simulating Pilot Covariance Vectors...';
-
-            try {
-                const resp = await fetch('/api/topic/simulate-pilot', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        topic: topic,
-                        sample_size: 100,
-                        target_standard: selJournal ? selJournal.value : 'IEEE'
-                    })
-                });
-
-                if (!resp.ok) throw new Error('Pilot simulation failed.');
-                const data = await resp.json();
-
-                STATE.activeData = data;
-                renderDatasetOverview(data);
-
-                // Show Global Metadata bar
-                const dMeta = document.getElementById('datasetMeta');
-                if (dMeta) dMeta.style.display = 'flex';
-
-                // Switch to Stage 3: Statistics & Charts
-                switchTab('tabVariables');
-
-            } catch (err) {
-                console.error(err);
-                alert('Simulation Error: ' + err.message);
-            } finally {
-                btnSimulatePilotStage2.disabled = false;
-                btnSimulatePilotStage2.innerHTML = `
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                    <span>🚀 Simulate Pilot (N=100) & Enter Statistics</span>
-                `;
-            }
-        });
-    }
-
-    // Stage 2: Load Benchmark Sample
-    const btnLoadBenchmarkStage2 = document.getElementById('btnLoadBenchmarkStage2');
-    if (btnLoadBenchmarkStage2) {
-        btnLoadBenchmarkStage2.addEventListener('click', async () => {
-            const btnLoadSample = document.getElementById('btnLoadSample');
-            if (btnLoadSample) {
-                btnLoadSample.click();
-                setTimeout(() => switchTab('tabVariables'), 600);
-            }
-        });
-    }
-
-    // Stage 2: Dropzone & File Upload
-    const dropzoneStage2 = document.getElementById('dropzoneStage2');
-    const fileInputStage2 = document.getElementById('fileInputStage2');
-    if (dropzoneStage2 && fileInputStage2) {
-        dropzoneStage2.addEventListener('click', () => fileInputStage2.click());
-        fileInputStage2.addEventListener('change', () => {
-            if (fileInputStage2.files && fileInputStage2.files.length > 0) {
-                uploadSelectedFile(fileInputStage2.files[0]);
-                setTimeout(() => switchTab('tabVariables'), 1000);
-            }
-        });
-    }

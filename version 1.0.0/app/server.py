@@ -1042,6 +1042,7 @@ def api_topic_simulate_pilot(req: TopicPilotRequest):
         "columns": list(df.columns),
         "available_grouping_cols": summary["available_grouping_cols"],
         "active_group_col": summary["active_group_col"],
+        "rows": df.fillna("").head(500).to_dict(orient="records"),
         "summary": summary
     }
 
@@ -1074,6 +1075,7 @@ def load_sample():
         "columns": list(df.columns),
         "available_grouping_cols": summary["available_grouping_cols"],
         "active_group_col": summary["active_group_col"],
+        "rows": df.fillna("").head(500).to_dict(orient="records"),
         "summary": summary
     }
 
@@ -1107,6 +1109,7 @@ async def upload_file(file: UploadFile = File(...)):
         "columns": list(df.columns),
         "available_grouping_cols": summary["available_grouping_cols"],
         "active_group_col": summary["active_group_col"],
+        "rows": df.fillna("").head(500).to_dict(orient="records"),
         "summary": summary
     }
 

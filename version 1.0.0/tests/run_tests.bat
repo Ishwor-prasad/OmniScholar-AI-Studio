@@ -10,3 +10,4 @@ if exist "..\..\.venv\Scripts\python.exe" (
     python comprehensive_verifier.py
 )
 pause
+
