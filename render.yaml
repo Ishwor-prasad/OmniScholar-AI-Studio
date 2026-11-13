@@ -1,11 +1,14 @@
 services:
   - type: web
     name: omnischolar-ai-studio
-    runtime: docker
+    runtime: python
     plan: free
     region: oregon
-    dockerfilePath: Dockerfile
+    buildCommand: "chmod +x build.sh && ./build.sh"
+    startCommand: "PATH=$PWD/bin:$PATH python main.py"
     autoDeploy: true
     envVars:
       - key: PORT
         value: 10000
+      - key: PYTHON_VERSION
+        value: 3.11.9
