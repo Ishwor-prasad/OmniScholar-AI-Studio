@@ -9,6 +9,12 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License: MIT" />
 </p>
 
+<p align="center">
+  <a href="https://render.com/deploy?repo=https://github.com/Ishwor-prasad/OmniScholar-AI-Studio">
+    <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render (24/7 Cloud)" />
+  </a>
+</p>
+
 ---
 
 ## 🔬 What is OmniScholar?
