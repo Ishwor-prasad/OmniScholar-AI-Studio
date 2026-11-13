@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OmniScholar — Premier Scientific Research Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <!-- Top Global Glassmorphic Navigation Bar -->
     <header class="app-header">
         <div class="header-inner">
             <div class="logo-group">
                 <div class="logo-mark">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                        stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                         <path d="M2 17l10 5 10-5"></path>
                         <path d="M2 12l10 5 10-5"></path>
@@ -28,7 +23,7 @@
                 </div>
                 <div class="brand-text">
                     <span class="logo-title">OmniScholar</span>
-                    <span class="logo-subtitle">Scientific Research Studio</span>
+                    <span class="logo-subtitle">Autonomous Scientific Research Studio</span>
                 </div>
                 <span class="badge-version">v1.0 Pro</span>
             </div>
@@ -39,23 +34,27 @@
                     <span class="status-dot"></span>
                     <span id="globalEngineStatus">Empirical Engine Active</span>
                 </div>
-                <div class="badge-integrity" id="headerHashBadge"
-                    title="Click to view Cryptographic Reproducibility Passport">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <div class="badge-integrity" id="headerHashBadge" title="Click to view Cryptographic Reproducibility Passport">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
                     <span id="headerHashText">Zero-Ghostwriting Verified</span>
                 </div>
             </div>
 
-            <!-- Header Actions & Theme Toggle -->
+            <!-- Header Actions & Glowing 1-Click Pipeline Button -->
             <div class="header-actions">
-                <button class="theme-toggle-btn" id="btnThemeToggle" title="Toggle Light / Dark Studio Theme"
-                    aria-label="Toggle Theme">
+                <button class="btn btn-glowing-pipeline" id="btnHeaderAutoPipeline" title="Execute Autonomous End-to-End Research Pipeline (Topic -> Manuscript)">
+                    <span class="glow-pulse"></span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Run Autonomous Pipeline</span>
+                </button>
+
+                <button class="theme-toggle-btn" id="btnThemeToggle" title="Toggle Light / Dark Studio Theme" aria-label="Toggle Theme">
                     <span class="theme-icon sun-icon">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -68,16 +67,14 @@
                         </svg>
                     </span>
                     <span class="theme-icon moon-icon">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </span>
                 </button>
-                <button class="btn btn-sm btn-export-quick" id="btnHeaderExport"
-                    title="Open Multi-Format Export Center">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
+
+                <button class="btn btn-sm btn-export-quick" id="btnHeaderExport" title="Open Multi-Format Export Center">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -93,64 +90,127 @@
         <!-- Sidebar Navigation -->
         <aside class="studio-sidebar" id="sidebar">
             <div class="sidebar-section">
-                <span class="sidebar-category-label">SCHOLAR LIFECYCLE</span>
+                <span class="sidebar-category-label">STUDIO WORKSPACE</span>
                 <nav class="sidebar-nav">
-                    <button class="nav-item active" data-tab="tabFraming">
-                        <span class="nav-icon">💡</span>
-                        <span class="nav-label">1. Framing & Hypotheses</span>
-                        <span class="nav-tag ai">Start</span>
-                    </button>
-                    <button class="nav-item" data-tab="tabInstrument">
-                        <span class="nav-icon">📋</span>
-                        <span class="nav-label">2. Survey & Data Hub</span>
-                        <span class="nav-tag new">Form</span>
-                    </button>
-                    <button class="nav-item" data-tab="tabVariables">
-                        <span class="nav-icon">📊</span>
-                        <span class="nav-label">3. Empirical Statistics</span>
+                    <button class="nav-item active" data-tab="tabVariables">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Variables & Profiler</span>
                         <span class="nav-badge" id="badgeVarCount">0</span>
                     </button>
-                    <button class="nav-item" data-tab="tabLedger">
-                        <span class="nav-icon">🛡️</span>
-                        <span class="nav-label">4. Bitwise Integrity</span>
-                        <span class="nav-tag audit">Audit</span>
-                    </button>
-                    <button class="nav-item" data-tab="tabPeerReview">
-                        <span class="nav-icon">🎓</span>
-                        <span class="nav-label">5. Peer Review Council</span>
-                        <span class="nav-tag ai">Q1 R&R</span>
-                    </button>
-                    <button class="nav-item" data-tab="tabManuscript">
-                        <span class="nav-icon">📑</span>
-                        <span class="nav-label">6. Camera-Ready Paper</span>
-                        <span class="nav-tag new">Typst</span>
+                    <button class="nav-item" data-tab="tabExplorer">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Data Explorer</span>
+                        <span class="nav-tag new">Live</span>
                     </button>
                 </nav>
             </div>
 
             <div class="sidebar-section">
-                <span class="sidebar-category-label">DEEP EXPLORATION & AUDIT</span>
+                <span class="sidebar-category-label">STATISTICAL INFERENCE</span>
                 <nav class="sidebar-nav">
-                    <button class="nav-item" data-tab="tabExplorer">
-                        <span class="nav-icon">🔍</span>
-                        <span class="nav-label">Raw Data Explorer</span>
-                    </button>
                     <button class="nav-item" data-tab="tabInferential">
-                        <span class="nav-icon">📈</span>
-                        <span class="nav-label">Inference & Regressions</span>
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Hypothesis & Inference</span>
                         <span class="nav-badge" id="badgeInfCount">0</span>
                     </button>
+                    <button class="nav-item" data-tab="tabLedger">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                <rect x="9" y="9" width="6" height="6"></rect>
+                                <line x1="9" y1="1" x2="9" y2="4"></line>
+                                <line x1="15" y1="1" x2="15" y2="4"></line>
+                                <line x1="9" y1="20" x2="9" y2="23"></line>
+                                <line x1="15" y1="20" x2="15" y2="23"></line>
+                                <line x1="20" y1="9" x2="23" y2="9"></line>
+                                <line x1="20" y1="14" x2="23" y2="14"></line>
+                                <line x1="1" y1="9" x2="4" y2="9"></line>
+                                <line x1="1" y1="14" x2="4" y2="14"></line>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Bitwise Audit Ledger</span>
+                        <span class="nav-tag audit">Math Trace</span>
+                    </button>
+                    <button class="nav-item" data-tab="tabPeerReview">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Peer Review Council</span>
+                        <span class="nav-tag ai">R&R</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <span class="sidebar-category-label">MANUSCRIPT & REPRODUCIBILITY</span>
+                <nav class="sidebar-nav">
+                    <button class="nav-item" data-tab="tabPdfViewer">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </span>
+                        <span class="nav-label">IEEE PDF Manuscript</span>
+                        <span class="nav-tag new">Live PDF</span>
+                    </button>
                     <button class="nav-item" data-tab="tabLatex">
-                        <span class="nav-icon">📐</span>
-                        <span class="nav-label">Booktabs & LaTeX Tables</span>
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </span>
+                        <span class="nav-label">LaTeX & Typst Tables</span>
+                    </button>
+                    <button class="nav-item" data-tab="tabManuscript">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9"></path>
+                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Manuscript Studio</span>
                     </button>
                     <button class="nav-item" data-tab="tabPassport">
-                        <span class="nav-icon">🔒</span>
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </span>
                         <span class="nav-label">Reproducibility Passport</span>
                     </button>
                     <button class="nav-item" data-tab="tabExport">
-                        <span class="nav-icon">📦</span>
-                        <span class="nav-label">Export Center (.ZIP)</span>
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </span>
+                        <span class="nav-label">Export Center</span>
                     </button>
                 </nav>
             </div>
@@ -161,360 +221,150 @@
                     <span class="footer-shield-icon">🛡️</span>
                     <span class="footer-card-title">Bitwise Deterministic</span>
                 </div>
-                <p class="footer-card-text">Every statistic is verified with 0% ghostwriting probability via raw vector
-                    hashing.</p>
+                <p class="footer-card-text">Every statistic is verified with 0% ghostwriting probability via raw vector hashing.</p>
                 <div class="footer-version-tag">Engine v1.0.0-PRO</div>
             </div>
         </aside>
 
         <!-- Main Workspace Surface -->
         <main class="studio-main">
-            <!-- Top Scholar Lifecycle Stepper Navigation -->
-            <div class="scholar-stepper-bar">
-                <button class="stepper-step active" data-step-tab="tabFraming">
-                    <span class="step-num">1</span>
-                    <span class="step-text">Framing & Theory</span>
-                </button>
-                <div class="stepper-arrow">➔</div>
-                <button class="stepper-step" data-step-tab="tabInstrument">
-                    <span class="step-num">2</span>
-                    <span class="step-text">Survey & Data</span>
-                </button>
-                <div class="stepper-arrow">➔</div>
-                <button class="stepper-step" data-step-tab="tabVariables">
-                    <span class="step-num">3</span>
-                    <span class="step-text">Statistics & Charts</span>
-                </button>
-                <div class="stepper-arrow">➔</div>
-                <button class="stepper-step" data-step-tab="tabLedger">
-                    <span class="step-num">4</span>
-                    <span class="step-text">Integrity Proof</span>
-                </button>
-                <div class="stepper-arrow">➔</div>
-                <button class="stepper-step" data-step-tab="tabPeerReview">
-                    <span class="step-num">5</span>
-                    <span class="step-text">Peer Review Defense</span>
-                </button>
-                <div class="stepper-arrow">➔</div>
-                <button class="stepper-step" data-step-tab="tabManuscript">
-                    <span class="step-num">6</span>
-                    <span class="step-text">Camera-Ready Paper</span>
-                </button>
-            </div>
-
-            <!-- Active Dataset Metadata & Provenance Strip (Global Floating Bar) -->
-            <div class="dataset-meta-strip" id="datasetMeta" style="display: none;">
-                <div class="meta-item">
-                    <span class="meta-label">Active Dataset</span>
-                    <span class="meta-val" id="metaFilename">—</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Sample Size (N)</span>
-                    <span class="meta-val highlight" id="metaSampleSize">0</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Constructs</span>
-                    <span class="meta-val" id="metaVarCount">0</span>
-                </div>
-                <div class="meta-item group-selector-item">
-                    <span class="meta-label">Active Cohort Partition</span>
-                    <select id="selectGroupCol" class="meta-select">
-                        <option value="">Auto-Detect Partition</option>
-                    </select>
-                </div>
-                <div class="meta-item hash-item">
-                    <span class="meta-label">Raw Vector SHA-256 Hash</span>
-                    <span class="meta-val hash-val" id="metaHash" title="Click to copy SHA-256 Hash">—</span>
-                </div>
-                <div class="meta-item active-status-item">
-                    <span class="meta-badge-success" id="activeGroupBadge">Full Cohort N=100</span>
-                </div>
-                <div class="meta-quick-exports">
-                    <button class="btn btn-sm btn-outline" id="btnQuickPdf">PDF</button>
-                    <button class="btn btn-sm btn-outline" id="btnQuickTypst">Typst</button>
-                    <button class="btn btn-sm btn-outline" id="btnQuickTex">LaTeX</button>
-                    <button class="btn btn-sm btn-primary" id="btnQuickZip">Full ZIP</button>
-                </div>
-            </div>
-
-            <!-- STAGE 1: Research Framing, Literature Gap & Hypotheses -->
-            <div class="tab-pane active" id="tabFraming">
-                <div class="stage-hero-banner">
-                    <div class="stage-hero-tag">STAGE 1 OF 6 · RESEARCH INCEPTION & THEORETICAL HOOK</div>
-                    <h2>Research Framing, Literature Gap & Hypotheses</h2>
-                    <p>Transform your research curiosity into an authoritative theoretical architecture with formal
-                        directional hypotheses and conceptual model mapping.</p>
-                </div>
-
-                <div class="framing-workspace-card">
-                    <div class="framing-input-group">
-                        <label class="topic-pill-label" for="txtFramingTopic">
-                            <span class="topic-indicator-dot"></span>
-                            <span>CENTRAL RESEARCH TOPIC OR INVESTIGATION TITLE</span>
-                        </label>
-                        <input type="text" id="txtFramingTopic" class="wizard-topic-input"
-                            value="Empirical Interactions of Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets"
-                            placeholder="Type any research topic here (e.g. Remote Work Burnout, Machine Learning in Medical Diagnosis, Cryptocurrency Volatility)...">
-
-                        <div class="framing-preset-row">
-                            <span class="preset-label">Quick Benchmarks:</span>
-                            <button class="preset-pill"
-                                data-topic="Empirical Interactions of Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets"
-                                data-domain="finance">📈 DSE Market Panic & Algorithmic Shields</button>
-                            <button class="preset-pill"
-                                data-topic="Impact of Artificial Intelligence Tools on Academic Integrity and Student Motivation"
-                                data-domain="education">🤖 AI Tools & Student Motivation</button>
-                            <button class="preset-pill"
-                                data-topic="Nocturnal Algorithmic Hyperarousal and Affective Exhaustion Among Young Adults"
-                                data-domain="psychology">🧠 Social Media & Mental Distress</button>
-                            <button class="preset-pill"
-                                data-topic="Telemedicine Integration and Diagnostic Precision in Rural Primary Healthcare"
-                                data-domain="health">🏥 Telemedicine & Diagnostic Quality</button>
+            <!-- Stage 1: Autonomous Topic Inception & Ingestion Hero Card -->
+            <section class="action-card">
+                <!-- Autonomous 1-Click Topic-to-Paper Engine Studio -->
+                <div class="topic-studio-banner">
+                    <div class="topic-banner-header">
+                        <div class="topic-title-group">
+                            <span class="banner-tag">Stage 1: Autonomous Inception Engine</span>
+                            <h3>Autonomous 1-Click Topic-to-Paper Pipeline</h3>
+                            <p>Synthesize research gaps, operationalize psychometric scales, generate N=100 covariance vectors, execute HC3 regressions, audit peer review, and compile an IEEE Transactions PDF in 5 seconds.</p>
                         </div>
-
-                        <div class="wizard-row-meta" style="margin-top: 14px;">
-                            <div class="meta-field">
-                                <label class="topic-pill-label"><span>DISCIPLINARY DOMAIN</span></label>
-                                <select id="selFramingDomain" class="wizard-select">
-                                    <option value="finance">Finance & Financial Economics</option>
-                                    <option value="psychology">Behavioral Sciences & Psychology</option>
-                                    <option value="education">Education & Higher Learning</option>
-                                    <option value="technology">Technology & Artificial Intelligence</option>
-                                    <option value="health">Healthcare & Clinical Medicine</option>
-                                    <option value="general">Interdisciplinary Sciences</option>
-                                </select>
-                            </div>
-                            <div class="meta-field">
-                                <label class="topic-pill-label"><span>TARGET PUBLICATION STANDARD</span></label>
-                                <select id="selFramingJournal" class="wizard-select">
-                                    <option value="IEEE">IEEE Transactions (Two-Column Q1)</option>
-                                    <option value="Nature">Nature / Springer Standard (Q1)</option>
-                                    <option value="Elsevier">Elsevier Economics & Econometrics (Q1)</option>
-                                    <option value="APA">APA 7th Behavioral Science</option>
-                                </select>
-                            </div>
-                            <div class="meta-btn-field">
-                                <button class="btn btn-primary btn-generate-architecture" id="btnSynthesizeFraming">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                                    </svg>
-                                    <span>⚡ Synthesize Architecture</span>
-                                </button>
-                            </div>
+                        <div class="topic-presets-pills">
+                            <span class="preset-label">Quick Topics:</span>
+                            <button class="topic-pill-btn" data-topic="Impact of Agentic AI on Clinical Diagnostics and Radiologist Cognitive Load" data-domain="health">🩺 Healthcare AI</button>
+                            <button class="topic-pill-btn" data-topic="Algorithmic Market Maker Arbitrage and Liquidity Fragility in High-Frequency Crypto Markets" data-domain="finance">📈 FinTech HFT</button>
+                            <button class="topic-pill-btn" data-topic="Autonomous LLM Multi-Agent Coordination and Consensus Under Byzantine Faults" data-domain="technology">🤖 Swarm AI</button>
+                            <button class="topic-pill-btn" data-topic="Nocturnal Algorithmic Feed Engagement and Academic Performance Among University Researchers" data-domain="education">🎓 Education</button>
                         </div>
                     </div>
 
-                    <!-- Framing Output Display -->
-                    <div class="wizard-results-card" id="framingOutputArea">
-                        <div class="wizard-results-header">
-                            <div class="results-badge-group">
-                                <span class="format-pill">Refined Declarative Title</span>
-                                <strong id="lblFramingTitle"
-                                    style="color: var(--text-main); font-size: 1.02rem; margin-left: 8px;">Empirical
-                                    Architecture of Algorithmic Execution Signals and Downside Asymmetric Risk in
-                                    Frontier Equity Markets: An Econometric & Psychometric Investigation</strong>
-                            </div>
+                    <div class="topic-input-grid">
+                        <div class="topic-input-wrap">
+                            <input type="text" id="inputTopic" class="topic-input-field" placeholder="Enter any scientific research topic or hypothesis (e.g. Impact of Agentic AI on Clinical Diagnostics)...">
                         </div>
-
-                        <div class="architecture-grid-3">
-                            <!-- Left: Gap & Theory -->
-                            <div class="arch-box">
-                                <div class="arch-box-title">
-                                    <span>🔍 Unresolved Literature Gap</span>
-                                </div>
-                                <p id="txtFramingGap" class="arch-text-content">While classical efficient market
-                                    paradigms presume rational Bayesian belief updating, empirical microstructures in
-                                    volatile emerging markets exhibit severe behavioral contagion. Prior literature
-                                    remains fragmented regarding the precise interaction between social media noise
-                                    cascades, cognitive reflection, and catastrophic liquidation freeze.</p>
-                            </div>
-
-                            <!-- Middle: Conceptual Model -->
-                            <div class="arch-box">
-                                <div class="arch-box-title">
-                                    <span>📐 Conceptual Model Architecture</span>
-                                </div>
-                                <div class="conceptual-model-card">
-                                    <div class="model-step-box iv">
-                                        <span class="box-role">INDEPENDENT VARIABLE</span>
-                                        <strong id="lblFramingIV">Speculative Noise & Signal Exposure</strong>
-                                    </div>
-                                    <div class="model-relation-arrow">⬇️ (+ Direct Impact H1)</div>
-                                    <div class="model-step-box mod">
-                                        <span class="box-role">MODERATOR / BUFFER</span>
-                                        <strong id="lblFramingMOD">Cognitive Reflection & Analytical Restraint (–
-                                            H2)</strong>
-                                    </div>
-                                    <div class="model-relation-arrow">⬇️ (Asymmetric Trap H3)</div>
-                                    <div class="model-step-box dv">
-                                        <span class="box-role">DEPENDENT OUTCOME</span>
-                                        <strong id="lblFramingDV">Downside Panic Liquidation Susceptibility</strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right: Formal Hypotheses -->
-                            <div class="arch-box">
-                                <div class="arch-box-title">
-                                    <span>🎯 Formal Testable Hypotheses</span>
-                                </div>
-                                <ul id="listFramingHypotheses" class="arch-hypo-list">
-                                    <li class="arch-hypo-item"><strong>H1:</strong> Higher exposure to speculative
-                                        digital signals significantly amplifies downside panic liquidation
-                                        susceptibility (Beta > 0, p &lt; 0.01).</li>
-                                    <li class="arch-hypo-item"><strong>H2:</strong> Cognitive reflection and analytical
-                                        restraint significantly attenuates panic liquidation susceptibility, buffering
-                                        traders against emotional contagion (Beta &lt; 0, p &lt; 0.01).</li>
-                                    <li class="arch-hypo-item"><strong>H3:</strong> Trading tenure paradoxically
-                                        magnifies overconfidence bias, generating an experience trap that exacerbates
-                                        tail-risk drawdowns (Beta > 0, p &lt; 0.01).</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Footer Navigation Button -->
-                        <div class="stage-footer-nav">
-                            <span class="stage-footer-hint">Theoretical architecture locked. Ready to inspect survey
-                                scales or collect data.</span>
-                            <button class="btn btn-primary btn-next-stage" data-goto="tabInstrument">
-                                <span>Proceed to Stage 2: Survey & Field Instrument Hub</span>
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.5">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
+                        <div class="topic-controls-row">
+                            <select id="selectDiscipline" class="meta-select topic-select" title="Target Academic Discipline">
+                                <option value="General">Discipline: General / Interdisciplinary</option>
+                                <option value="Healthcare & Medical AI">Discipline: Healthcare & Medical AI</option>
+                                <option value="Econometrics & Quantitative Finance">Discipline: Econometrics & Quantitative Finance</option>
+                                <option value="Computer Science & Swarm Systems">Discipline: Computer Science & Swarm AI</option>
+                                <option value="Psychometrics & Social Science">Discipline: Psychometrics & Social Science</option>
+                            </select>
+                            <select id="selectStandard" class="meta-select topic-select" title="Target Journal Standards">
+                                <option value="IEEE">Standard: IEEE Transactions 2-Column</option>
+                                <option value="Nature">Standard: Nature / Science Layout</option>
+                                <option value="ACM">Standard: ACM Computing Surveys</option>
+                            </select>
+                            <button class="btn btn-primary btn-hero-pipeline" id="btnRunAutoPipeline">
+                                <span class="glow-pulse"></span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                 </svg>
+                                <span>Generate Empirical Research Paper</span>
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- STAGE 2: Survey & Field Instrument Hub -->
-            <div class="tab-pane" id="tabInstrument">
-                <div class="stage-hero-banner">
-                    <div class="stage-hero-tag">STAGE 2 OF 6 · DATA COLLECTION & FIELD DEPLOYMENT</div>
-                    <h2>Survey Instrument & Empirical Data Ingestion</h2>
-                    <p>Deploy psychometrically validated 5-point Likert scales, auto-generate Google Forms, simulate
-                        pilot datasets, or ingest collected survey responses.</p>
-                </div>
-
-                <div class="instrument-workspace-card">
-                    <div class="instrument-top-grid">
-                        <!-- Left: Constructs & Likert Scales -->
-                        <div class="instrument-scales-box">
-                            <div class="arch-box-title" style="margin-bottom: 12px;">
-                                <span>📋 4 Operationalized Constructs & 12 Validated Likert Items</span>
+                <!-- Secondary Ingestion: Custom File Upload & Benchmark Demo -->
+                <div class="action-grid mt-4">
+                    <div class="upload-dropzone" id="dropzone">
+                        <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" style="display: none;">
+                        <div class="drop-content">
+                            <div class="drop-icon-symbol">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="2" x2="12" y2="15"></line>
+                                </svg>
                             </div>
-                            <div class="arch-survey-scroll" id="boxInstrumentSurvey" style="max-height: 280px;">
-                                <div style="margin-bottom: 8px;"><strong>Speculative Noise & Signal Exposure
-                                        (SNSE)</strong></div>
-                                <div class="arch-survey-item">[SNSE_1] I actively monitor unverified online community
-                                    channels for execution clues.</div>
-                                <div class="arch-survey-item">[SNSE_2] Sudden trading spikes in online discussion groups
-                                    compel me to adjust my open positions.</div>
-                                <div class="arch-survey-item">[SNSE_3] I feel heightened urgency to trade when rumors
-                                    circulate regarding pending volatility.</div>
-                                <div style="margin-top: 10px; margin-bottom: 8px;"><strong>Cognitive Reflection &
-                                        Analytical Restraint (CRAR)</strong></div>
-                                <div class="arch-survey-item">[CRAR_1] Before entering an order, I systematically
-                                    double-check underlying risk-reward parameters.</div>
-                                <div class="arch-survey-item">[CRAR_2] I resist impulsive market entry even when peers
-                                    report rapid short-term windfalls.</div>
-                                <div class="arch-survey-item">[CRAR_3] I adhere to strict predefined exit rules
-                                    regardless of emotional distress.</div>
-                                <div style="margin-top: 10px; margin-bottom: 8px;"><strong>Overconfidence & Experience
-                                        Bias (OEB)</strong></div>
-                                <div class="arch-survey-item">[OEB_1] My past trading longevity allows me to time
-                                    unpredictable market turning points accurately.</div>
-                                <div class="arch-survey-item">[OEB_2] I believe my proprietary market intuition exceeds
-                                    that of typical active participants.</div>
-                                <div class="arch-survey-item">[OEB_3] I occasionally override risk limits because my
-                                    directional conviction feels justified.</div>
-                                <div style="margin-top: 10px; margin-bottom: 8px;"><strong>Downside Panic Liquidation
-                                        Susceptibility (DPLS)</strong></div>
-                                <div class="arch-survey-item">[DPLS_1] Sharp unexpected market drawdowns cause acute
-                                    physiological anxiety and hesitation.</div>
-                                <div class="arch-survey-item">[DPLS_2] During market free-falls, I have liquidated sound
-                                    positions solely to stop emotional discomfort.</div>
-                                <div class="arch-survey-item">[DPLS_3] Experiencing a rapid drawdown impairs my ability
-                                    to execute disciplined capital preservation.</div>
-                            </div>
-                            <div style="margin-top: 14px;">
-                                <button class="btn btn-secondary btn-block" id="btnCopyGoogleScriptStage2">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                    </svg>
-                                    Copy Google Form Apps Script (Deploy Survey)
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Right: Execution Accelerators (Simulate Pilot vs Ingest Data) -->
-                        <div class="instrument-accelerators-box">
-                            <div class="deploy-action-box highlight-pilot">
-                                <span class="format-pill"
-                                    style="background: rgba(5, 150, 105, 0.2); color: #10b981; border: 1px solid #059669;">Zero-Data
-                                    Accelerator</span>
-                                <h4 style="margin: 8px 0 4px; font-size: 1.05rem;">Simulate Correlated Pilot Dataset
-                                    (N=100)</h4>
-                                <p
-                                    style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
-                                    Test your study in under 5 seconds. Generates 100 correlated observational records
-                                    matching your exact hypotheses covariance structure, draws 300 DPI plots, and runs
-                                    all regressions.</p>
-                                <button class="btn btn-success btn-block" id="btnSimulatePilotStage2">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                    </svg>
-                                    <span>🚀 Simulate Pilot (N=100) & Enter Statistics</span>
-                                </button>
-                            </div>
-
-                            <div class="deploy-action-box" style="margin-top: 16px;">
-                                <h4 style="margin-bottom: 4px; font-size: 0.95rem;">Upload Collected Survey Responses
-                                </h4>
-                                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Already
-                                    have responses from Google Forms or Qualtrics? Drop your CSV or Excel file here.</p>
-                                <div class="upload-dropzone" id="dropzoneStage2"
-                                    style="padding: 18px; border: 1.5px dashed var(--border-color); border-radius: 8px; cursor: pointer; text-align: center;">
-                                    <input type="file" id="fileInputStage2" accept=".csv,.xlsx,.xls"
-                                        style="display: none;">
-                                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-main);">Click
-                                        or Drag & Drop CSV / Excel</span>
-                                </div>
-                                <div style="margin-top: 10px;">
-                                    <button class="btn btn-outline btn-block" id="btnLoadBenchmarkStage2">
-                                        <span>Load DSE Global Benchmark (N=100)</span>
-                                    </button>
+                            <div class="drop-text-group">
+                                <h3>Or Upload Existing Empirical Dataset</h3>
+                                <p>Drag and drop raw observational vectors (CSV / Excel)</p>
+                                <div class="format-tags">
+                                    <span class="format-pill">CSV</span>
+                                    <span class="format-pill">XLSX</span>
+                                    <span class="format-pill">Auto-Sanitize</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="stage-footer-nav" style="margin-top: 24px;">
-                        <span class="stage-footer-hint">Dataset loaded? Proceed to explore descriptive profiler and
-                            inferential models.</span>
-                        <button class="btn btn-primary btn-next-stage" data-goto="tabVariables">
-                            <span>Proceed to Stage 3: Empirical Statistics & Profiler</span>
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.5">
-                                <polyline points="9 18 15 12 9 6"></polyline>
+                    <div class="quick-demo-box">
+                        <div class="demo-info">
+                            <div class="demo-badge">Global Empirical Benchmark</div>
+                            <h4>Validated Research Sample</h4>
+                            <p>Instant evaluation with verified cross-sectional research vectors (N = 100, 11 constructs).</p>
+                        </div>
+                        <button class="btn btn-secondary" id="btnLoadSample">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
+                            <span>Load Sample Benchmark</span>
                         </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- TAB 3: Variables & Descriptive Profiler -->
-            <div class="tab-pane" id="tabVariables">
+                <!-- Active Dataset Metadata & Provenance Strip -->
+                <div class="dataset-meta-strip" id="datasetMeta" style="display: none;">
+                    <div class="meta-item">
+                        <span class="meta-label">Active Dataset</span>
+                        <span class="meta-val" id="metaFilename">—</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Sample Size (N)</span>
+                        <span class="meta-val highlight" id="metaSampleSize">0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Constructs</span>
+                        <span class="meta-val" id="metaVarCount">0</span>
+                    </div>
+                    <div class="meta-item group-selector-item">
+                        <span class="meta-label">Active Cohort Partition</span>
+                        <select id="selectGroupCol" class="meta-select" title="Choose cohort grouping variable for inferential tests">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="meta-item hash-item">
+                        <span class="meta-label">SHA-256 Checksum</span>
+                        <span class="meta-val mono" id="metaHash" title="Click to copy full checksum">—</span>
+                    </div>
+                    <div class="meta-actions">
+                        <button class="btn btn-sm btn-outline" id="btnQuickPdf">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                            PDF
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="btnQuickTypst">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                            Typst
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="btnQuickTex">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            LaTeX
+                        </button>
+                        <button class="btn btn-sm btn-primary" id="btnQuickZip">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                            Full ZIP
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 1: Variables & Descriptive Profiler -->
+            <div class="tab-pane active" id="tabVariables">
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Variables & Descriptive Diagnostics</h2>
-                        <p>Deterministic univariate profiling, central tendencies, and 300 DPI frequency distributions
-                            computed directly from raw observational vectors.</p>
+                        <p>Deterministic univariate profiling, central tendencies, and 300 DPI frequency distributions computed directly from raw observational vectors.</p>
                     </div>
                     <div class="search-filter-box">
                         <input type="text" id="filterVarsInput" class="search-input" placeholder="Search variables...">
@@ -523,16 +373,14 @@
                 <div class="variables-grid" id="variablesGrid">
                     <div class="empty-state">
                         <div class="empty-icon-symbol">
-                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="18" y1="20" x2="18" y2="10"></line>
                                 <line x1="12" y1="20" x2="12" y2="4"></line>
                                 <line x1="6" y1="20" x2="6" y2="14"></line>
                             </svg>
                         </div>
                         <h3>No dataset active</h3>
-                        <p>Upload a CSV/Excel file or click "Load Sample Benchmark" above to generate descriptive
-                            diagnostics.</p>
+                        <p>Enter a research topic above or click "Generate Empirical Research Paper" to run the autonomous pipeline.</p>
                     </div>
                 </div>
             </div>
@@ -542,8 +390,7 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Interactive Data Explorer & Variable Studio</h2>
-                        <p>Live tabular inspection, automatic column type classification, and on-the-fly group
-                            comparison / bivariate regression builder.</p>
+                        <p>Live tabular inspection, automatic column type classification, and on-the-fly group comparison / bivariate regression builder.</p>
                     </div>
                 </div>
 
@@ -555,8 +402,7 @@
                             <span class="badge-subtle" id="explorerRowCount">0 rows loaded</span>
                         </div>
                         <div class="table-tools">
-                            <input type="text" id="tableSearchInput" class="search-input table-search"
-                                placeholder="Filter rows across columns...">
+                            <input type="text" id="tableSearchInput" class="search-input table-search" placeholder="Filter rows across columns...">
                             <span class="page-info" id="tablePageInfo">Page 1 of 1</span>
                             <div class="pagination-btns">
                                 <button class="btn btn-sm btn-secondary" id="btnPrevPage" disabled>&larr; Prev</button>
@@ -573,7 +419,7 @@
                             </thead>
                             <tbody id="dataTableBody">
                                 <tr>
-                                    <td class="empty-cell">Please load or upload a dataset to inspect records.</td>
+                                    <td class="empty-cell">Please load or generate a dataset to inspect records.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -625,8 +471,7 @@
                                 <button class="btn btn-primary" id="btnRunSandbox">
                                     Compute Sandbox Test
                                 </button>
-                                <button class="btn btn-secondary" id="btnApplyAsCohort"
-                                    title="Set this cohort as active for the entire pipeline and re-run backend inference">
+                                <button class="btn btn-secondary" id="btnApplyAsCohort" title="Set this cohort as active for the entire pipeline and re-run backend inference">
                                     Set as Global Pipeline Cohort
                                 </button>
                             </div>
@@ -636,8 +481,7 @@
                         <div class="sandbox-display">
                             <div class="sandbox-stats-card" id="sandboxStatsOutput">
                                 <div class="sandbox-placeholder">
-                                    Select a target variable and grouping cohort, then click <strong>Compute Sandbox
-                                        Test</strong> to generate live statistical evaluations and interactive visuals.
+                                    Select a target variable and grouping cohort, then click <strong>Compute Sandbox Test</strong> to generate live statistical evaluations and interactive visuals.
                                 </div>
                             </div>
                             <div class="sandbox-canvas-wrapper" id="sandboxCanvasWrapper" style="display:none;">
@@ -649,13 +493,12 @@
                 </div>
             </div>
 
-            <!-- TAB 3: Advanced Inferential & Hypothesis Tests -->
+            <!-- TAB 3: Advanced Inferential & Hypothesis Tests (with Stage 3 SVG Charts) -->
             <div class="tab-pane" id="tabInferential">
                 <div class="pane-header">
                     <div class="pane-header-title">
-                        <h2>Inferential Hypotheses & Bivariate Correlation</h2>
-                        <p>Parametric (ANOVA, Welch's t-test) and non-parametric (Kruskal-Wallis, Mann-Whitney U,
-                            Spearman Rank Correlation Matrix) evaluations.</p>
+                        <h2>Inferential Hypotheses & Interactive Visual Analytics</h2>
+                        <p>Parametric (ANOVA, Welch's t-test, Hierarchical OLS HC3) and non-parametric (Kruskal-Wallis, Mann-Whitney U, Spearman Matrix) evaluations with live interactive SVG visualizations.</p>
                     </div>
                     <div class="group-control-banner">
                         <span class="group-label">Active Cohort:</span>
@@ -663,13 +506,63 @@
                     </div>
                 </div>
 
-                <div class="inferential-layout">
-                    <!-- Left: Inferential Hypothesis Cards -->
+                <!-- Interactive Visual Charts Row (Stage 3 SVG Visualizers) -->
+                <div class="charts-interactive-row">
+                    <!-- Chart 1: ANOVA Cohort Distributions & Tukey Significance -->
+                    <div class="card-box chart-interactive-card">
+                        <div class="card-box-header">
+                            <div>
+                                <h3>ANOVA Cohort Distributions & Tukey HSD Pairwise</h3>
+                                <p class="chart-subtitle">Group means, standard errors, and post-hoc significance brackets (* p < .05, ** p < .01)</p>
+                            </div>
+                            <span class="badge-subtle">Vector SVG</span>
+                        </div>
+                        <div class="svg-chart-container" id="anovaSvgContainer">
+                            <!-- Populated dynamically via renderAnovaSvgChart() -->
+                            <div class="placeholder-text">Awaiting ANOVA computation...</div>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Hierarchical OLS Regression with HC3 Robust Confidence Envelope -->
+                    <div class="card-box chart-interactive-card">
+                        <div class="card-box-header">
+                            <div>
+                                <h3>Hierarchical OLS Fit & Huber-White HC3 Robust Envelope</h3>
+                                <p class="chart-subtitle">Bivariate fit line with heteroscedasticity-consistent 95% confidence intervals</p>
+                            </div>
+                            <span class="badge-subtle">Robust HC3</span>
+                        </div>
+                        <div class="svg-chart-container" id="regressionSvgContainer">
+                            <!-- Populated dynamically via renderRegressionSvgChart() -->
+                            <div class="placeholder-text">Awaiting regression computation...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive SVG Correlation Heatmap -->
+                <div class="card-box mt-4">
+                    <div class="card-box-header">
+                        <div>
+                            <h3>Interactive Correlation Matrix Heatmap (Pearson & Spearman)</h3>
+                            <p class="chart-subtitle">Hover over any matrix cell to inspect correlation coefficient, sample size, and exact two-tailed p-value</p>
+                        </div>
+                        <div class="matrix-toggle-group">
+                            <button class="matrix-toggle-btn active" id="btnToggleSpearman">Spearman Rank (ρ)</button>
+                            <button class="matrix-toggle-btn" id="btnTogglePearson">Pearson (r)</button>
+                        </div>
+                    </div>
+                    <div class="svg-heatmap-container" id="heatmapSvgContainer">
+                        <!-- Populated dynamically via renderCorrelationSvgHeatmap() -->
+                        <div class="placeholder-text">Awaiting correlation computation...</div>
+                    </div>
+                </div>
+
+                <!-- Inferential Hypothesis Cards Column -->
+                <div class="inferential-layout mt-4">
                     <div class="inferential-cards-col">
                         <div class="section-title-strip">
-                            <h3>Hypothesis Test Findings</h3>
-                            <span class="subtext">Click any test card or statistic to view its exact mathematical
-                                formulation</span>
+                            <h3>Hypothesis Test Findings & Model Coefficients</h3>
+                            <span class="subtext">Click any test card or statistic to inspect its exact mathematical derivation</span>
                         </div>
                         <div id="inferentialContainer">
                             <div class="empty-state">
@@ -679,23 +572,22 @@
                         </div>
                     </div>
 
-                    <!-- Right: Spearman Heatmap & Correlation Matrix -->
+                    <!-- Secondary Analytics: Scale Reliability & Multicollinearity -->
                     <div class="correlation-view-col">
-                        <div class="card-box">
+                        <div class="card-box" id="regressionMetricsCard" style="display:none;">
                             <div class="card-box-header">
-                                <h3>Spearman Rank Correlation Matrix</h3>
-                                <span class="badge-subtle">300 DPI Publication Quality</span>
+                                <h3>Hierarchical Model Diagnostics</h3>
+                                <span class="badge-subtle">HC3 Standard Errors</span>
                             </div>
-                            <div class="heatmap-card" id="heatmapBox">
-                                <p class="placeholder-text">Awaiting data computation...</p>
+                            <div id="regressionMetricsBody" class="reliability-body">
+                                <!-- Populated dynamically -->
                             </div>
                         </div>
 
-                        <!-- Additional analytics card -->
                         <div class="card-box mt-4" id="reliabilityCard" style="display:none;">
                             <div class="card-box-header">
-                                <h3>Scale Reliability & Diagnostics</h3>
-                                <span class="badge-subtle">Internal Consistency</span>
+                                <h3>Scale Reliability & Consistency</h3>
+                                <span class="badge-subtle">Cronbach's Alpha</span>
                             </div>
                             <div id="reliabilityContent" class="reliability-body">
                                 <!-- Populated dynamically -->
@@ -710,8 +602,7 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Bitwise Calculation Ledger & Mathematical Trace</h2>
-                        <p>100% auditable zero-ghostwriting verification. Click any row or statistic to inspect its
-                            exact mathematical derivation, degrees of freedom, and reproducible Python code.</p>
+                        <p>100% auditable zero-ghostwriting verification. Click any row or statistic to inspect its exact mathematical derivation, degrees of freedom, and reproducible Python code.</p>
                     </div>
                     <div class="ledger-summary-pill">
                         <span class="ledger-dot"></span>
@@ -735,8 +626,7 @@
                             </thead>
                             <tbody id="ledgerTableBody">
                                 <tr>
-                                    <td colspan="7" class="empty-cell">Load a dataset to generate calculation audit
-                                        traces.</td>
+                                    <td colspan="7" class="empty-cell">Load a dataset to generate calculation audit traces.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -748,10 +638,7 @@
                     <div class="explainer-icon">🔍</div>
                     <div class="explainer-text">
                         <h4>Zero-Ghostwriting Computational Guarantee</h4>
-                        <p>Unlike generative text models that approximate statistical figures, every number in
-                            OmniScholar is computed deterministically in a secure Python sandbox using SciPy, NumPy, and
-                            Statsmodels. Each statistic logs its exact formula, intermediate sums of squares, degrees of
-                            freedom, and raw observational vector slice.</p>
+                        <p>Unlike generative text models that approximate statistical figures, every number in OmniScholar is computed deterministically in a secure Python sandbox using SciPy, NumPy, and Statsmodels. Each statistic logs its exact formula, intermediate sums of squares, degrees of freedom, and raw observational vector slice.</p>
                     </div>
                 </div>
             </div>
@@ -761,16 +648,11 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Autonomous Peer Review Council Panel</h2>
-                        <p>Simulated triple-blind peer review evaluating statistical power, p-hacking risks, construct
-                            validity, and editorial publication readiness.</p>
+                        <p>Simulated triple-blind peer review evaluating statistical power, p-hacking risks, construct validity, and editorial publication readiness.</p>
                     </div>
                     <div class="peer-actions">
                         <button class="btn btn-secondary" id="btnRunPeerAudit">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M23 4v6h-6"></path>
-                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-                            </svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                             Re-run Live Peer Review
                         </button>
                         <button class="btn btn-outline" id="btnDownloadReviewReport">
@@ -810,22 +692,16 @@
                         <div class="referee-header">
                             <div class="referee-avatar">R1</div>
                             <div>
-                                <h4>Reviewer #1: Methodological Rigor & Statistical Power</h4>
-                                <span class="referee-role">Quantitative Methods Specialist</span>
+                                <h4>Reviewer #1: Prof. Eleanor Vance (Methodological Rigor & Statistical Power)</h4>
+                                <span class="referee-role">Quantitative Empirical Methods Chair</span>
                             </div>
                             <span class="referee-verdict pass">Positive (Minor Revisions)</span>
                         </div>
                         <div class="referee-body" id="r1Commentary">
-                            <p><strong>Evaluation of Sample & Power:</strong> The dataset vector satisfies minimum
-                                asymptotic power requirements for detecting medium to large effect sizes. Post-hoc power
-                                estimation confirms $1 - \beta &gt; 0.95$ under $\alpha = 0.05$.</p>
-                            <p><strong>Distributional Assumptions:</strong> The dual application of both parametric
-                                (One-Way ANOVA) and non-parametric tests (Kruskal-Wallis / Mann-Whitney U) is
-                                methodologically commendable, shielding conclusions against non-normality and
-                                heteroscedasticity.</p>
+                            <p><strong>Evaluation of Sample & Power:</strong> The dataset vector satisfies minimum asymptotic power requirements for detecting medium to large effect sizes. Post-hoc power estimation confirms $1 - \beta &gt; 0.95$ under $\alpha = 0.05$.</p>
+                            <p><strong>Distributional Assumptions:</strong> The dual application of both parametric (One-Way ANOVA with Tukey HSD) and non-parametric tests (Kruskal-Wallis / Mann-Whitney U) is methodologically commendable, shielding conclusions against non-normality and heteroscedasticity.</p>
                             <div class="referee-action-box">
-                                <strong>Required Author Action:</strong> State degrees of freedom explicitly and report
-                                confidence intervals alongside exact $p$-values.
+                                <strong>Required Author Action:</strong> State degrees of freedom explicitly and report confidence intervals alongside exact $p$-values.
                             </div>
                         </div>
                     </div>
@@ -835,22 +711,16 @@
                         <div class="referee-header">
                             <div class="referee-avatar">R2</div>
                             <div>
-                                <h4>Reviewer #2: Construct Validity & Effect Sizes</h4>
+                                <h4>Reviewer #2: Dr. Marcus Thorne (Construct Validity & Effect Sizes)</h4>
                                 <span class="referee-role">Empirical Domain Specialist</span>
                             </div>
                             <span class="referee-verdict pass">Accept as is</span>
                         </div>
                         <div class="referee-body" id="r2Commentary">
-                            <p><strong>Practical vs Statistical Significance:</strong> The observed cohort variances
-                                show substantial effect magnitudes ($\eta^2 &gt; 0.35$). The findings are not mere
-                                artifacts of sample size; they reflect meaningful underlying variations across cohorts.
-                            </p>
-                            <p><strong>Bivariate Architecture:</strong> Spearman rank correlation matrix accounts for
-                                potential monotonic non-linearities among rating constructs, providing reliable
-                                structural evidence.</p>
+                            <p><strong>Practical vs Statistical Significance:</strong> The observed cohort variances show substantial effect magnitudes ($\eta^2 &gt; 0.35$). The findings are not mere artifacts of sample size; they reflect meaningful underlying variations across cohorts.</p>
+                            <p><strong>Bivariate Architecture:</strong> Spearman rank correlation matrix accounts for potential monotonic non-linearities among rating constructs, providing reliable structural evidence.</p>
                             <div class="referee-action-box">
-                                <strong>Required Author Action:</strong> Highlight practical implications in the
-                                Discussion section of the manuscript.
+                                <strong>Required Author Action:</strong> Highlight practical implications in the Discussion section of the manuscript.
                             </div>
                         </div>
                     </div>
@@ -860,22 +730,64 @@
                         <div class="referee-header">
                             <div class="referee-avatar">R3</div>
                             <div>
-                                <h4>Reviewer #3: Publication Standards & Reproducibility</h4>
+                                <h4>Reviewer #3: Dr. Aris Thorne (Publication Standards & Reproducibility)</h4>
                                 <span class="referee-role">Open Science & Publication Auditor</span>
                             </div>
                             <span class="referee-verdict perfect">Exceptional</span>
                         </div>
                         <div class="referee-body" id="r3Commentary">
-                            <p><strong>Open Science Provenance:</strong> The inclusion of the Bitwise Calculation Ledger
-                                and SHA-256 cryptographic passport sets a gold standard for zero-ghostwriting academic
-                                honesty.</p>
-                            <p><strong>Typesetting & Booktabs:</strong> LaTeX Booktabs tables and Typst 0.15 templates
-                                conform strictly to top-tier academic journal styling (IEEE/ACM/Nature standards).</p>
+                            <p><strong>Open Science Provenance:</strong> The inclusion of the Bitwise Calculation Ledger and SHA-256 cryptographic passport sets a gold standard for zero-ghostwriting academic honesty.</p>
+                            <p><strong>Typesetting & Booktabs:</strong> LaTeX Booktabs tables and Typst 0.15 templates conform strictly to top-tier academic journal styling (IEEE/ACM/Nature standards).</p>
                             <div class="referee-action-box">
-                                <strong>Required Author Action:</strong> Maintain the cryptographic seal in the
-                                camera-ready supplementary material.
+                                <strong>Required Author Action:</strong> Maintain the cryptographic seal in the camera-ready supplementary material.
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Stage 6 In-Browser PDF Manuscript Viewer -->
+            <div class="tab-pane" id="tabPdfViewer">
+                <div class="pane-header">
+                    <div class="pane-header-title">
+                        <h2>Stage 6: In-Browser IEEE Transactions Manuscript Viewer</h2>
+                        <p>Real-time interactive PDF preview generated via lightning-fast Typst 0.15 compiler. Adheres strictly to IEEE Transactions 2-column format with embedded 300 DPI figures and booktabs tables.</p>
+                    </div>
+                    <div class="pdf-viewer-toolbar">
+                        <button class="btn btn-secondary" id="btnRecompilePdf" title="Recompile Typst manuscript on-the-fly">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                            Recompile Typst
+                        </button>
+                        <button class="btn btn-outline" id="btnPdfOpenNewTab" title="Open compiled PDF in separate tab">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            Full Tab
+                        </button>
+                        <button class="btn btn-primary" id="btnDownloadPdfViewer">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download PDF
+                        </button>
+                        <button class="btn btn-outline" id="btnDownloadTypstViewer">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                            Download Typst (.typ)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pdf-viewer-card">
+                    <div class="pdf-viewer-status-bar">
+                        <div class="pdf-status-item">
+                            <span class="status-dot"></span>
+                            <span>Renderer: <strong>Typst 0.15 Native Sub-Second Engine</strong></span>
+                        </div>
+                        <div class="pdf-status-item">
+                            <span>Format: <strong>IEEE Transactions 2-Column</strong></span>
+                        </div>
+                        <div class="pdf-status-item">
+                            <span>Resolution: <strong>300 DPI Vector Typography</strong></span>
+                        </div>
+                    </div>
+                    <div class="pdf-iframe-container">
+                        <iframe id="pdfPreviewIframe" src="/api/preview-pdf" class="pdf-viewer-frame" title="Compiled IEEE Manuscript"></iframe>
                     </div>
                 </div>
             </div>
@@ -885,25 +797,15 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Publication-Ready LaTeX & Typst Booktabs</h2>
-                        <p>Academic tables adhering to standard journal syntax with proper rules (`\toprule`,
-                            `\midrule`, `\bottomrule`), ready for Overleaf, Tectonic, or Typst 0.15.</p>
+                        <p>Academic tables adhering to standard journal syntax with proper rules (`\toprule`, `\midrule`, `\bottomrule`), ready for Overleaf, Tectonic, or Typst 0.15.</p>
                     </div>
                     <div class="table-export-actions">
                         <button class="btn btn-secondary" id="btnExportTex">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                             Download main.tex
                         </button>
                         <button class="btn btn-primary" id="btnExportTypstTable">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="4 7 4 4 20 4 20 7"></polyline>
-                                <line x1="9" y1="20" x2="15" y2="20"></line>
-                                <line x1="12" y1="4" x2="12" y2="20"></line>
-                            </svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
                             Download main.typ
                         </button>
                     </div>
@@ -921,8 +823,7 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Living Empirical Results Manuscript</h2>
-                        <p>Drafted section-by-section with exact numerical fidelity. Every statistic reflects verified
-                            data provenance.</p>
+                        <p>Drafted section-by-section with exact numerical fidelity. Every statistic reflects verified data provenance.</p>
                     </div>
                     <div class="manuscript-metrics" id="manuscriptStats">
                         <span>Words: <strong id="wordCount">0</strong></span>
@@ -931,16 +832,11 @@
                     </div>
                 </div>
                 <div class="manuscript-editor-card">
-                    <textarea class="manuscript-editor" id="manuscriptText" spellcheck="false"
-                        placeholder="Draft manuscript text will render here..."></textarea>
+                    <textarea class="manuscript-editor" id="manuscriptText" spellcheck="false" placeholder="Draft manuscript text will render here..."></textarea>
                     <div class="editor-footer">
                         <div class="editor-footer-left">
                             <button class="btn btn-secondary" id="btnCopyManuscript">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                </svg>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                                 Copy Markdown
                             </button>
                             <button class="btn btn-outline" id="btnResetManuscript">
@@ -948,12 +844,7 @@
                             </button>
                         </div>
                         <button class="btn btn-primary" id="btnManuscriptPdf">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                             Download Compiled PDF
                         </button>
                     </div>
@@ -965,8 +856,7 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Cryptographic Reproducibility Passport</h2>
-                        <p>Cryptographic audit parameters guaranteeing zero ghostwriting and bitwise empirical fidelity.
-                        </p>
+                        <p>Cryptographic audit parameters guaranteeing zero ghostwriting and bitwise empirical fidelity.</p>
                     </div>
                 </div>
                 <div class="passport-certificate" id="passportBox">
@@ -982,8 +872,7 @@
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Multi-Format Scientific Export Center</h2>
-                        <p>One-click generation and packaging for Typst, LaTeX, High-DPI figures, and complete
-                            reproducible bundles.</p>
+                        <p>One-click generation and packaging for Typst, LaTeX, High-DPI figures, and complete reproducible bundles.</p>
                     </div>
                 </div>
 
@@ -991,17 +880,11 @@
                     <!-- Export Card 1: Typst 0.15 -->
                     <div class="export-card">
                         <div class="export-card-icon typst-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="4 7 4 4 20 4 20 7"></polyline>
-                                <line x1="9" y1="20" x2="15" y2="20"></line>
-                                <line x1="12" y1="4" x2="12" y2="20"></line>
-                            </svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
                         </div>
                         <div class="export-card-content">
                             <h4>Typst 0.15 Manuscript (`main.typ`)</h4>
-                            <p>Modern lightning-fast typesetting layout. Formatted for IEEE and Nature style submissions
-                                with native tables and figure inclusions.</p>
+                            <p>Modern lightning-fast typesetting layout. Formatted for IEEE and Nature style submissions with native tables and figure inclusions.</p>
                             <div class="export-badge-row">
                                 <span class="format-pill">Typst 0.15</span>
                                 <span class="format-pill">Instant Compile</span>
@@ -1011,8 +894,7 @@
                             <button class="btn btn-primary btn-block" id="btnExportTypstCenter">
                                 Download Typst (.typ)
                             </button>
-                            <button class="btn btn-sm btn-outline btn-block mt-2" id="btnCopyTypstCmd"
-                                title="Copy CLI compilation command">
+                            <button class="btn btn-sm btn-outline btn-block mt-2" id="btnCopyTypstCmd" title="Copy CLI compilation command">
                                 Copy: typst compile main.typ
                             </button>
                         </div>
@@ -1021,16 +903,11 @@
                     <!-- Export Card 2: LaTeX Booktabs -->
                     <div class="export-card">
                         <div class="export-card-icon latex-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                         </div>
                         <div class="export-card-content">
                             <h4>LaTeX Academic Source (`main.tex`)</h4>
-                            <p>Pre-configured standard LaTeX with booktabs, microtype, graphicx, and amsmath. 100%
-                                Overleaf, ArXiv, and Tectonic compatible.</p>
+                            <p>Pre-configured standard LaTeX with booktabs, microtype, graphicx, and amsmath. 100% Overleaf, ArXiv, and Tectonic compatible.</p>
                             <div class="export-badge-row">
                                 <span class="format-pill">Overleaf Ready</span>
                                 <span class="format-pill">Booktabs</span>
@@ -1040,8 +917,7 @@
                             <button class="btn btn-secondary btn-block" id="btnExportTexCenter">
                                 Download LaTeX (.tex)
                             </button>
-                            <button class="btn btn-sm btn-outline btn-block mt-2" id="btnCopyTexCmd"
-                                title="Copy CLI compilation command">
+                            <button class="btn btn-sm btn-outline btn-block mt-2" id="btnCopyTexCmd" title="Copy CLI compilation command">
                                 Copy: tectonic main.tex
                             </button>
                         </div>
@@ -1050,18 +926,11 @@
                     <!-- Export Card 3: Compiled PDF -->
                     <div class="export-card">
                         <div class="export-card-icon pdf-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                            </svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                         </div>
                         <div class="export-card-content">
                             <h4>Compiled Manuscript (PDF)</h4>
-                            <p>Publication-ready PDF compiled directly via high-precision Tectonic engine. Includes
-                                embedded 300 DPI figures and booktabs.</p>
+                            <p>Publication-ready PDF compiled directly via high-precision Typst / Tectonic engine. Includes embedded 300 DPI figures and booktabs.</p>
                             <div class="export-badge-row">
                                 <span class="format-pill">300 DPI</span>
                                 <span class="format-pill">Camera-Ready</span>
@@ -1077,19 +946,11 @@
                     <!-- Export Card 4: Full Research Package ZIP -->
                     <div class="export-card full-package-card">
                         <div class="export-card-icon zip-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path
-                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                                </path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                         </div>
                         <div class="export-card-content">
                             <h4>Complete Reproducible Research Package (.ZIP)</h4>
-                            <p>All-in-one archive containing raw data, frequency tables, correlation matrices, high-res
-                                figures, LaTeX/Typst sources, Markdown chapter, and cryptographic passport.</p>
+                            <p>All-in-one archive containing raw data, frequency tables, correlation matrices, high-res figures, LaTeX/Typst sources, Markdown chapter, and cryptographic passport.</p>
                             <div class="export-badge-row">
                                 <span class="format-pill">Full Bundle</span>
                                 <span class="format-pill">Zero Ghostwriting</span>
@@ -1152,16 +1013,11 @@
                     <div class="section-header-flex">
                         <h4 class="section-label">Deterministic Python Verification Snippet</h4>
                         <button class="btn btn-sm btn-secondary" id="btnCopyPythonSnippet">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                             Copy Python Snippet
                         </button>
                     </div>
-                    <pre
-                        class="formula-code-block"><code id="formulaPythonCode"># Python verification code will appear here...</code></pre>
+                    <pre class="formula-code-block"><code id="formulaPythonCode"># Python verification code will appear here...</code></pre>
                 </div>
 
                 <!-- Vector Provenance Slice -->
@@ -1175,8 +1031,106 @@
         </div>
     </div>
 
+    <!-- Modal 3: Autonomous 1-Click Pipeline Progress & Telemetry Modal -->
+    <div class="modal" id="pipelineModal" style="display: none;">
+        <div class="modal-content modal-pipeline-content">
+            <div class="modal-header">
+                <div class="pipeline-header-title">
+                    <span class="pipeline-badge-live">
+                        <span class="pipeline-live-dot"></span>
+                        Autonomous Execution Running
+                    </span>
+                    <h3 id="pipelineModalTopic">Topic: Impact of Agentic AI on Clinical Diagnostics</h3>
+                </div>
+                <span class="close-btn" id="closePipelineModal">&times;</span>
+            </div>
+            <div class="modal-body pipeline-modal-body">
+                <!-- Progress Bar & Status -->
+                <div class="pipeline-progress-container">
+                    <div class="pipeline-progress-labels">
+                        <span id="pipelineStageStatus">Stage 1/6: Synthesizing Theoretical Model...</span>
+                        <span id="pipelinePercent" class="pipeline-pct">0%</span>
+                    </div>
+                    <div class="pipeline-progress-track">
+                        <div class="pipeline-progress-bar" id="pipelineProgressBar" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- 6-Stage Visual Stepper -->
+                <div class="pipeline-stepper" id="pipelineStepper">
+                    <div class="step-card active" id="step1">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Topic Framing & Hypotheses</h5>
+                            <p>IV, DV, Mediator & H1-H4</p>
+                        </div>
+                    </div>
+                    <div class="step-card" id="step2">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Econometric Data Generation</h5>
+                            <p>N=100 Covariance Matrix</p>
+                        </div>
+                    </div>
+                    <div class="step-card" id="step3">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>Statistical Analytics Engine</h5>
+                            <p>ANOVA, Tukey, OLS HC3</p>
+                        </div>
+                    </div>
+                    <div class="step-card" id="step4">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h5>Bitwise Calculation Ledger</h5>
+                            <p>Mathematical Proof Traces</p>
+                        </div>
+                    </div>
+                    <div class="step-card" id="step5">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h5>Peer Review Council Audit</h5>
+                            <p>Power & P-Hacking Check</p>
+                        </div>
+                    </div>
+                    <div class="step-card" id="step6">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h5>Typst 0.15 IEEE Compilation</h5>
+                            <p>Publication-Grade PDF</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Telemetry Log Terminal -->
+                <div class="pipeline-terminal">
+                    <div class="terminal-bar">
+                        <div class="terminal-dots">
+                            <span class="t-dot red"></span>
+                            <span class="t-dot yellow"></span>
+                            <span class="t-dot green"></span>
+                        </div>
+                        <span class="terminal-title">Computational Engine Telemetry Log</span>
+                    </div>
+                    <div class="terminal-logs" id="pipelineTerminalLogs">
+                        <div class="log-line info">[0.00s] Initializing Autonomous Research Studio v1.0.0...</div>
+                    </div>
+                </div>
+
+                <div class="pipeline-modal-actions">
+                    <button class="btn btn-secondary" id="btnCancelPipeline">Dismiss Modal</button>
+                    <button class="btn btn-primary" id="btnViewCompiledPaper" style="display:none;">
+                        View Compiled IEEE Manuscript &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Toast Notification Stack -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <!-- Core App Logic -->
     <script src="app.js"></script>
 </body>
-
 </html>

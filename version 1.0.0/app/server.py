@@ -34,13 +34,33 @@ import topic_synthesizer as ts
 
 class TopicSynthesizeRequest(BaseModel):
     topic: str
+    domain: Optional[str] = None
+    standard: Optional[str] = None
     discipline: Optional[str] = "General"
     target_standard: Optional[str] = "IEEE"
 
 class TopicPilotRequest(BaseModel):
     topic: str
-    sample_size: Optional[int] = 100
+    domain: Optional[str] = None
+    standard: Optional[str] = None
+    discipline: Optional[str] = "General"
     target_standard: Optional[str] = "IEEE"
+    sample_size: Optional[int] = 100
+
+class SurveyDataRequest(BaseModel):
+    topic: Optional[str] = None
+    domain: Optional[str] = None
+    standard: Optional[str] = None
+    sample_size: Optional[int] = 100
+    architecture: Optional[Dict[str, Any]] = None
+
+class AutonomousPipelineRequest(BaseModel):
+    topic: str
+    domain: Optional[str] = None
+    standard: Optional[str] = None
+    discipline: Optional[str] = "General"
+    target_standard: Optional[str] = "IEEE"
+    sample_size: Optional[int] = 100
 
 try:
     from templates import typst_generator
@@ -635,6 +655,7 @@ def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id:
     ledger = se.CalculationLedger()
 
     summary: Dict[str, Any] = {
+        "run_id": run_id,
         "sample_size": len(df),
         "total_variables": len(df.columns),
         "data_hash_sha256": data_hash,
@@ -996,36 +1017,90 @@ def health():
             "cronbach_alpha_reliability": True,
             "bitwise_calculation_ledger": True,
             "autonomous_peer_review_council": True,
-            "typst_0_15_export": True
+            "typst_0_15_export": True,
+            "synthesize_topic": True,
+            "generate_survey_data": True,
+            "run_autonomous_pipeline": True,
+            "preview_pdf_inline": True
         }
     }
 
 
+@app.post("/api/synthesize-topic")
 @app.post("/api/topic/synthesize")
-def api_topic_synthesize(req: TopicSynthesizeRequest):
+def api_synthesize_topic(req: TopicSynthesizeRequest):
+    domain = req.domain or req.discipline or "General"
+    std = req.standard or req.target_standard or "IEEE"
     arch = ts.synthesize_research_architecture(
         topic=req.topic,
-        discipline=req.discipline or "General",
-        target_standard=req.target_standard or "IEEE"
+        domain=domain,
+        discipline=domain,
+        target_standard=std
     )
     return arch
 
 
+@app.post("/api/generate-survey-data")
+def api_generate_survey_data(req: SurveyDataRequest):
+    if req.architecture:
+        arch = req.architecture
+    else:
+        domain = req.domain or "General"
+        std = req.standard or "IEEE"
+        arch = ts.synthesize_research_architecture(
+            topic=req.topic or "Empirical Dynamics in Complex Systems",
+            domain=domain,
+            target_standard=std
+        )
+    
+    sample_size = req.sample_size or 100
+    df = ts.generate_pilot_dataset(arch, sample_size=sample_size)
+    topic_slug = ts.sanitize_slug(arch.get("topic_raw") or "Research_Topic") or "Research_Topic"
+    filename = f"Survey_{topic_slug}.csv"
+    
+    return {
+        "status": "success",
+        "architecture": arch,
+        "filename": filename,
+        "sample_size": len(df),
+        "columns": list(df.columns),
+        "questionnaire": arch.get("questionnaire", []),
+        "rows": df.fillna("").head(200).to_dict(orient="records"),
+        "csv_text": df.to_csv(index=False)
+    }
+
+
+@app.post("/api/run-autonomous-pipeline")
 @app.post("/api/topic/simulate-pilot")
-def api_topic_simulate_pilot(req: TopicPilotRequest):
+def api_run_autonomous_pipeline(req: AutonomousPipelineRequest):
+    domain = req.domain or req.discipline or "General"
+    std = req.standard or req.target_standard or "IEEE"
+    sample_size = req.sample_size or 100
+    
+    # 1. Synthesize Research Architecture
     arch = ts.synthesize_research_architecture(
         topic=req.topic,
-        target_standard=req.target_standard or "IEEE"
+        domain=domain,
+        discipline=domain,
+        target_standard=std
     )
-    df = ts.generate_pilot_dataset(arch, sample_size=req.sample_size or 100)
+    
+    # 2. Synthesize Covariance-Structured Survey Data
+    df = ts.generate_pilot_dataset(arch, sample_size=sample_size)
     topic_slug = ts.sanitize_slug(req.topic) or "Research_Topic"
     filename = f"Pilot_{topic_slug}.csv"
-    run_id = f"pilot_{int(time.time())}"
+    run_id = f"pipeline_{int(time.time())}"
     
     pilot_csv_path = os.path.join(RUNS_DIR, filename)
     df.to_csv(pilot_csv_path, index=False)
     
+    # 3. Execute Statistical Engine & Document Pipeline
     summary, run_dir = analyze_dataframe(df, run_id=run_id, filename=filename)
+    
+    # Enrich summary with synthesized metadata
+    summary["topic_architecture"] = arch
+    summary["declarative_title"] = arch.get("declarative_title")
+    summary["theoretical_model"] = arch.get("theoretical_model")
     
     SESSION_DATA["df"] = df
     SESSION_DATA["filename"] = filename
@@ -1038,6 +1113,7 @@ def api_topic_simulate_pilot(req: TopicPilotRequest):
     
     return {
         "status": "success",
+        "stage": "completed",
         "architecture": arch,
         "filename": filename,
         "sample_size": summary["sample_size"],
@@ -1045,8 +1121,55 @@ def api_topic_simulate_pilot(req: TopicPilotRequest):
         "available_grouping_cols": summary["available_grouping_cols"],
         "active_group_col": summary["active_group_col"],
         "rows": df.fillna("").head(500).to_dict(orient="records"),
-        "summary": summary
+        "summary": summary,
+        "preview_pdf_url": "/api/preview-pdf",
+        "export_typst_url": "/api/export-typst",
+        "export_zip_url": "/api/export-zip",
+        "export_pdf_url": "/api/export-pdf"
     }
+
+
+@app.head("/api/preview-pdf")
+@app.get("/api/preview-pdf")
+def preview_pdf():
+    """
+    In-browser PDF preview endpoint returning application/pdf with inline disposition.
+    Allows researchers to view the compiled IEEE Transactions manuscript directly in an iframe/browser.
+    """
+    if not SESSION_DATA["last_run_dir"]:
+        load_sample()
+
+    run_dir = SESSION_DATA["last_run_dir"]
+    target_pdf = os.path.join(run_dir, "Research_Manuscript_Typst_v1.0.0.pdf")
+
+    # Check templates.preview_pdf if available
+    try:
+        import templates
+        if hasattr(templates, "preview_pdf"):
+            pdf_res = templates.preview_pdf(SESSION_DATA.get("summary"), run_dir, SESSION_DATA.get("filename"))
+            if pdf_res and os.path.exists(pdf_res):
+                target_pdf = pdf_res
+    except Exception:
+        pass
+
+    if not os.path.exists(target_pdf):
+        target_pdf = os.path.join(run_dir, "Research_Manuscript_v1.0.0.pdf")
+
+    if not os.path.exists(target_pdf):
+        compile_typst_to_pdf(run_dir)
+
+    if not os.path.exists(target_pdf):
+        compile_latex_to_pdf(run_dir)
+
+    if os.path.exists(target_pdf):
+        clean_fn = sanitize_filename(SESSION_DATA.get("filename", "Manuscript"))
+        return FileResponse(
+            target_pdf,
+            media_type="application/pdf",
+            headers={"Content-Disposition": f"inline; filename={clean_fn}.pdf"}
+        )
+
+    raise HTTPException(status_code=404, detail="Preview PDF could not be generated.")
 
 
 @app.post("/api/load-sample")
@@ -1318,10 +1441,5 @@ app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
-    print(f"[OmniScholar] Starting server on http://0.0.0.0:{port}")
-    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=False)
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    print(f"[OmniScholar] Starting server on http://127.0.0.1:{port}")
+    uvicorn.run(app, host="127.0.0.1", port=port)
