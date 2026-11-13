@@ -26,6 +26,10 @@ env/
 *.sublime-project
 *.sublime-workspace
 
+# Binaries & external toolkits
+tools/
+*.exe
+
 # OS specific files
 .DS_Store
 Thumbs.db

@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     arch.constructs.forEach(c => {
                         surveyHtml += `<div style="margin-top: 10px; margin-bottom: 6px;"><strong>${c.name} (${c.code})</strong></div>`;
                         c.items.forEach((it, idx) => {
-                            surveyHtml += `<div class="arch-survey-item">[${c.code}_${idx+1}] ${it}</div>`;
+                            surveyHtml += `<div class="arch-survey-item">[${c.code}_${idx + 1}] ${it}</div>`;
                         });
                     });
                     boxSurvey.innerHTML = surveyHtml;
