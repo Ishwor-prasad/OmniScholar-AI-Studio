@@ -890,7 +890,8 @@ def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id:
         latex_code += "\\begin{tabular}{lrr}\n\\toprule\n\\textbf{Category / Cohort} & \\textbf{Frequency ($n$)} & \\textbf{Percentage (\\%)} \\\\\n\\midrule\n"
         for f in v["frequencies"]:
             latex_code += f"{latex_escape(f['category'])} & {f['count']} & {f['percentage']:.2f}\\% \\\\\n"
-        latex_code += f"\\midrule\n\\textbf{{Total Sample ($N$)}} & \\textbf{{{summary['sample_size']}}} & \\textbf{{100.00\\%}} \\\\\n"
+        tot_size = summary['sample_size']
+        latex_code += f"\\midrule\n\\textbf{{Total Sample ($N$)}} & \\textbf{{{tot_size}}} & \\textbf{{" + "100.00\\%" + "}} \\\\\n"
         latex_code += "\\bottomrule\n\\end{tabular}\n\\end{table}\n"
         summary["latex_tables"].append({
             "variable": col,
@@ -916,10 +917,11 @@ The empirical investigation is conducted on a sample of $N={summary['sample_size
         inf_stat = inf.get('statistic', inf.get('f_statistic', 0.0))
         inf_df = inf.get('df', '')
         inf_p = inf.get('p_value', 1.0)
+        inf_decision = "reject the null hypothesis at the 5% level" if inf.get("significant") else "fail to reject the null hypothesis at the $\\alpha=0.05$ significance threshold"
         draft += f"""## 4.2 Inferential Hypothesis Testing
 To test for variance across participant cohorts, rigorous hypothesis testing was executed across groups defined by *{inf.get('grouping_variable', 'Cohort')}*. 
 
-The test ({inf.get('test', 'Hypothesis Test')}) yielded an empirical test statistic of {inf_stat} with $df={inf_df}$, producing an asymptotic $p$-value of $p={inf_p}$. Consequently, we {('reject the null hypothesis at the 5% level' if inf.get('significant') else 'fail to reject the null hypothesis at the $\\alpha=0.05$ significance threshold')}, confirming that {inf.get('interpretation', '')}
+The test ({inf.get('test', 'Hypothesis Test')}) yielded an empirical test statistic of {inf_stat} with $df={inf_df}$, producing an asymptotic $p$-value of $p={inf_p}$. Consequently, we {inf_decision}, confirming that {inf.get('interpretation', '')}
 """
 
     if summary.get("regression"):
