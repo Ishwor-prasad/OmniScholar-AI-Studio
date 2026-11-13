@@ -29,3 +29,4 @@ echo "[3/3] Verifying Typst compiler..."
 echo "=========================================="
 echo "  Build Completed Successfully!"
 echo "=========================================="
+
