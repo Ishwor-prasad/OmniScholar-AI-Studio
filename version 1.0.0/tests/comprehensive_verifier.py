@@ -364,7 +364,8 @@ def audit_bitwise_calculation_ledger(client: TestClient, report: VerificationRep
 def audit_typst_compilation(report: VerificationReport):
     print("\n--- 4. AUDITING TYPST 0.15 COMPILATION & PUBLICATION PDF MANUSCRIPT ---")
     
-    typst_bin = shutil.which("typst")
+    from server import get_typst_bin
+    typst_bin = get_typst_bin() or shutil.which("typst")
     report.log("TYPST", "Typst 0.15 CLI executable discovery", typst_bin is not None, f"Path: {typst_bin}")
     
     run_dir = Path(RUNS_DIR) / "sample"
@@ -380,7 +381,7 @@ def audit_typst_compilation(report: VerificationReport):
         if compiled_pdf.exists():
             compiled_pdf.unlink()
             
-        cmd = ["typst", "compile", str(main_typ), str(compiled_pdf)]
+        cmd = [typst_bin or "typst", "compile", str(main_typ), str(compiled_pdf)]
         res = subprocess.run(cmd, capture_output=True, text=True)
         no_warnings = len(res.stderr.strip()) == 0
         success = res.returncode == 0 and compiled_pdf.exists()
@@ -398,7 +399,7 @@ def audit_typst_compilation(report: VerificationReport):
         nature_typ = run_dir / "main_nature.typ"
         nature_pdf = run_dir / "verifier_nature_output.pdf"
         if nature_typ.exists():
-            cmd_nat = ["typst", "compile", str(nature_typ), str(nature_pdf)]
+            cmd_nat = [typst_bin or "typst", "compile", str(nature_typ), str(nature_pdf)]
             res_nat = subprocess.run(cmd_nat, capture_output=True, text=True)
             report.log("TYPST", "Nature layout Typst compilation", res_nat.returncode == 0 and nature_pdf.exists(), f"Size: {nature_pdf.stat().st_size if nature_pdf.exists() else 0} bytes")
 

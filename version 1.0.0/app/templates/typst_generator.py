@@ -40,16 +40,22 @@ def fmt_p(val: Any) -> str:
 
 def get_typst_bin() -> Optional[str]:
     """Finds the Typst compiler executable."""
+    which_typst = shutil.which("typst")
+    if which_typst:
+        return which_typst
+    curr_dir = os.path.dirname(os.path.abspath(__file__))
     candidates = [
-        "typst",
-        r"C:\Users\Estona\AppData\Local\Microsoft\WinGet\Packages\Typst.Typst_Microsoft.Winget.Source_8wekyb3d8bbwe\typst-x86_64-pc-windows-msvc\typst.exe",
+        os.path.join(curr_dir, "..", "bin", "typst.exe"),
+        os.path.join(curr_dir, "..", "bin", "typst"),
+        os.path.abspath(os.path.join(curr_dir, "..", "..", "..", "bin", "typst.exe")),
+        os.path.abspath(os.path.join(curr_dir, "..", "..", "..", "bin", "typst")),
+        os.path.expanduser(r"~\AppData\Local\Microsoft\WinGet\Packages\Typst.Typst_Microsoft.Winget.Source_8wekyb3d8bbwe\typst-x86_64-pc-windows-msvc\typst.exe"),
+        os.path.expanduser(r"~\AppData\Local\Programs\Typst\typst.exe"),
+        r"C:\Program Files\Typst\typst.exe"
     ]
     for cand in candidates:
-        if os.path.isabs(cand) and os.path.exists(cand):
+        if cand and os.path.exists(cand):
             return cand
-        which = shutil.which(cand)
-        if which:
-            return which
     return None
 
 def compile_typst_to_pdf(run_dir: str, typst_file: str = "main.typ", output_pdf: Optional[str] = None) -> Optional[str]:

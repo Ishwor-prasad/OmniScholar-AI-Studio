@@ -8,9 +8,16 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy import stats
-import statsmodels.api as sm
+from statsmodels.regression.linear_model import OLS
+from statsmodels.tools.tools import add_constant
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
+
+class _SMCompat:
+    OLS = OLS
+    add_constant = staticmethod(add_constant)
+
+sm = _SMCompat()
 
 print("=" * 70)
 print("  OmniScholar Independent Swarm Quality Verification Suite")

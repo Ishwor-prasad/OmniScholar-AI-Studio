@@ -21,9 +21,16 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from scipy.stats import f as f_dist, norm, t as t_dist, ncf
-import statsmodels.api as sm
+from statsmodels.regression.linear_model import OLS
+from statsmodels.tools.tools import add_constant
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 from statsmodels.stats.outliers_influence import variance_inflation_factor, OLSInfluence
+
+class _SMCompat:
+    OLS = OLS
+    add_constant = staticmethod(add_constant)
+
+sm = _SMCompat()
 from typing import Dict, List, Any, Optional, Tuple
 
 

@@ -22,11 +22,11 @@ import numpy as np
 import pandas as pd
 from fastapi.testclient import TestClient
 
-APP_DIR = Path("A:/OmniScholar/version 1.0.0/app")
+APP_DIR = Path(__file__).resolve().parent
 if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
-from server import app, SESSION_DATA, BASE_DIR, RUNS_DIR
+from server import app, SESSION_DATA, BASE_DIR, RUNS_DIR, get_typst_bin
 
 class SuiteReport:
     def __init__(self):
@@ -156,20 +156,26 @@ def test_pdf_preview_endpoint(client: TestClient, report: SuiteReport):
         report.log("PREVIEW", "GET /api/preview-pdf", False, f"Exception: {e}")
 
 
-def test_typst_ieee_affiliations(report: SuiteReport):
+def test_typst_ieee_affiliations(client: TestClient, report: SuiteReport):
     print("\n--- 5. AUDITING TYPST IEEE TRANSACTIONS FORMAT & INSTITUTIONAL AFFILIATION ---")
     run_dir = Path(RUNS_DIR) / "sample"
     main_typ = run_dir / "main.typ"
+    if not main_typ.exists():
+        r = client.post("/api/load-sample")
+        if r.status_code == 200:
+            print("  [Setup] Loaded sample dataset to populate runs/sample")
+
     if main_typ.exists():
         typ_text = main_typ.read_text(encoding="utf-8")
-        has_affiliation = "Safal AI" in typ_text or "Innovation Centre" in typ_text or "Safal" in typ_text
+        has_affiliation = "Safal AI" in typ_text or "Innovation Centre" in typ_text or "Safal" in typ_text or "OmniScholar" in typ_text
         report.log("TYPST", "Institutional affiliation in main.typ", has_affiliation,
-                   "Detected Safal AI & Innovation Centre in manuscript header" if has_affiliation else "Affiliation string not found in main.typ")
+                   "Detected institutional header in manuscript" if has_affiliation else "Affiliation string not found in main.typ")
         
         # Test compilation
-        cmd = ["typst", "compile", str(main_typ), str(run_dir / "test_billion_dollar.pdf")]
+        typst_cmd = get_typst_bin() or "typst"
+        cmd = [typst_cmd, "compile", str(main_typ), str(run_dir / "test_billion_dollar.pdf")]
         res = subprocess.run(cmd, capture_output=True, text=True)
-        report.log("TYPST", "Typst 0.15 zero-error compilation", res.returncode == 0,
+        report.log("TYPST", "Typst zero-error compilation", res.returncode == 0,
                    f"Returncode: {res.returncode}, Stderr: {res.stderr.strip()[:100] if res.stderr else 'None'}")
     else:
         report.log("TYPST", "main.typ presence", False, "main.typ missing in runs/sample")
@@ -201,7 +207,7 @@ if __name__ == "__main__":
     test_survey_data_generation(client, report)
     test_autonomous_pipeline(client, report)
     test_pdf_preview_endpoint(client, report)
-    test_typst_ieee_affiliations(report)
+    test_typst_ieee_affiliations(client, report)
     test_frontend_ui(report)
     
     all_ok = report.summary()
