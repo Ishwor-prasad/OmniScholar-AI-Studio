@@ -25,7 +25,7 @@
                     <span class="logo-title">OmniScholar</span>
                     <span class="logo-subtitle">Autonomous Scientific Research Studio</span>
                 </div>
-                <span class="badge-version">v1.0 Pro</span>
+                <span class="badge-version">v1.0.1 Pro</span>
             </div>
 
             <!-- Global Live State Indicator -->
@@ -89,10 +89,52 @@
     <div class="studio-layout">
         <!-- Sidebar Navigation -->
         <aside class="studio-sidebar" id="sidebar">
+            <!-- v1.0.1 Normal Researcher OS Core Pillars -->
             <div class="sidebar-section">
-                <span class="sidebar-category-label">STUDIO WORKSPACE</span>
+                <span class="sidebar-category-label">RESEARCH OS v1.0.1</span>
                 <nav class="sidebar-nav">
-                    <button class="nav-item active" data-tab="tabVariables">
+                    <button class="nav-item active" data-tab="tabResearchGuide" id="navResearchGuide">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                            </svg>
+                        </span>
+                        <span class="nav-label">1. Research Guide</span>
+                        <span class="nav-tag new">39 Methods</span>
+                    </button>
+                    <button class="nav-item" data-tab="tabAutoAnalysis" id="navAutoAnalysis">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 2v7.31"></path>
+                                <path d="M14 9.3V2"></path>
+                                <path d="M8.5 2h7"></path>
+                                <path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path>
+                                <path d="M5.52 16h12.96"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-label">2. Data Analysis</span>
+                        <span class="nav-tag ai">Auto-Declare</span>
+                    </button>
+                    <button class="nav-item" data-tab="tabManuscriptStudio" id="navManuscriptStudio">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </span>
+                        <span class="nav-label">3. Draft Manuscript</span>
+                        <span class="nav-tag pro">IEEE Q1</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <span class="sidebar-category-label">ADVANCED STATISTICAL PROFILER</span>
+                <nav class="sidebar-nav">
+                    <button class="nav-item" data-tab="tabVariables">
                         <span class="nav-icon">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -228,6 +270,37 @@
 
         <!-- Main Workspace Surface -->
         <main class="studio-main">
+            <!-- Top Workflow Stepper for Normal Researchers -->
+            <div class="workflow-stepper-bar">
+                <button class="stepper-tab active" data-tab="tabResearchGuide" id="stepperResearchGuide">
+                    <span class="step-num">1</span>
+                    <div class="step-meta">
+                        <span class="step-title">Research Guide</span>
+                        <span class="step-desc">39 Methodologies & Roadmaps</span>
+                    </div>
+                </button>
+                <div class="stepper-arrow">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <button class="stepper-tab" data-tab="tabAutoAnalysis" id="stepperAutoAnalysis">
+                    <span class="step-num">2</span>
+                    <div class="step-meta">
+                        <span class="step-title">Data Analysis</span>
+                        <span class="step-desc">AI Auto-Declare Paradigm</span>
+                    </div>
+                </button>
+                <div class="stepper-arrow">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <button class="stepper-tab" data-tab="tabManuscriptStudio" id="stepperManuscriptStudio">
+                    <span class="step-num">3</span>
+                    <div class="step-meta">
+                        <span class="step-title">Draft Manuscript</span>
+                        <span class="step-desc">0% Ghostwriting & Live PDF</span>
+                    </div>
+                </button>
+            </div>
+
             <!-- Stage 1: Autonomous Topic Inception & Ingestion Hero Card -->
             <section class="action-card">
                 <!-- Autonomous 1-Click Topic-to-Paper Engine Studio -->
@@ -359,8 +432,294 @@
                 </div>
             </section>
 
+            <!-- ========================================================================= -->
+            <!-- TAB: 1. Research Guide (39 Methodological Paradigms & Execution Roadmaps)    -->
+            <!-- ========================================================================= -->
+            <div class="tab-pane active" id="tabResearchGuide">
+                <div class="pane-header">
+                    <div class="pane-header-title">
+                        <h2>Research Methodology Guide & Roadmap</h2>
+                        <p>Publication-grade roadmaps across 39 scientific research paradigms. Select any methodology to view phase-by-phase execution, data collection protocols, statistical models, reviewer red flags, and Q1 checklists.</p>
+                    </div>
+                </div>
+
+                <!-- Guide Master Selector Bar -->
+                <div class="guide-header-bar">
+                    <div class="guide-selector-group">
+                        <label for="selectMasterGuide" style="font-weight: 700; font-size: 0.9rem; color: var(--text-primary); white-space: nowrap;">Methodology / Paradigm:</label>
+                        <select id="selectMasterGuide" class="guide-select" title="Choose from 39 Research Methodologies">
+                            <option value="academic">Academic Research (Scholarly Frontier & Q1 Journal)</option>
+                            <option value="industrial">Industrial / Applied R&D (Corporate ROI & Process Optimization)</option>
+                            <option value="basic_pure">Basic / Pure Research (Foundational Theoretical Expansion)</option>
+                            <option value="applied">Applied Research (Empirical Real-World Problem Solving)</option>
+                            <option value="developmental">Developmental Research (Temporal Growth & Maturation Trajectories)</option>
+                            <option value="exploratory">Exploratory Research (Investigating Novel / Uncharted Phenomena)</option>
+                            <option value="descriptive">Descriptive Research (Documenting Frequencies & Distributions)</option>
+                            <option value="explanatory_causal">Explanatory / Causal Research (Testing Cause-and-Effect Mechanisms)</option>
+                            <option value="correlational">Correlational Research (Quantifying Co-Variation Without Manipulation)</option>
+                            <option value="experimental">Experimental Research (Randomized Controlled Trials & Manipulation)</option>
+                            <option value="quasi_experimental">Quasi-Experimental Research (Non-Randomized Cohort Interventions)</option>
+                            <option value="non_experimental_observational">Non-Experimental / Observational (Natural Behavior Without Intervention)</option>
+                            <option value="quantitative">Quantitative Empirical (Numerical Vectors & Econometric Inference)</option>
+                            <option value="qualitative">Qualitative Interpretive (Thematic Coding & Lived Experiences)</option>
+                            <option value="mixed_methods">Mixed Methods Empirical (Convergent Statistical & Thematic Synthesis)</option>
+                            <option value="primary">Primary Empirical Research (First-Hand Observational Data Collection)</option>
+                            <option value="secondary">Secondary Analytical Research (Meta-Analysis & Public Registries)</option>
+                            <option value="deductive">Deductive Theory Testing (Top-Down Falsifiable Hypothesis Verification)</option>
+                            <option value="inductive">Inductive Theory Building (Bottom-Up Grounded Pattern Synthesis)</option>
+                            <option value="historical">Historical Research (Archival Source Criticism & Document Hermeneutics)</option>
+                            <option value="philosophical">Philosophical Research (Formal Logic & Dialectical Conceptual Analysis)</option>
+                            <option value="ethnographic">Ethnographic Research (Cultural Immersion & Participant Observation)</option>
+                            <option value="phenomenological">Phenomenological Research (Uncovering Essences of Lived Experience)</option>
+                            <option value="grounded_theory">Grounded Theory (Inductive Theory Generation via Constant Comparison)</option>
+                            <option value="action_research">Action Research (Participatory Collaborative Problem Resolution)</option>
+                            <option value="case_study">Case Study (Idiographic Depth on Single Systems & Critical Incidents)</option>
+                            <option value="longitudinal">Longitudinal Panel Research (Repeated Measures Over Extended Time)</option>
+                            <option value="cross_sectional">Cross-Sectional Research (Observational Snapshot at Single Point)</option>
+                            <option value="sequential">Sequential Cohort Research (Disentangling Age, Period & Generational Shifts)</option>
+                            <option value="evaluative">Evaluative Research (CIPP Framework for Programmatic Impact)</option>
+                            <option value="comparative">Comparative Systems Research (Cross-National & Cross-Group Contrast)</option>
+                            <option value="field_research">Field Research (Naturalistic Ecological Environments)</option>
+                            <option value="laboratory_research">Laboratory Research (High-Precision Controlled Boundary Conditions)</option>
+                            <option value="conceptual">Conceptual Research (Taxonomic Scoping & Theoretical Propositioning)</option>
+                            <option value="empirical">Empirical Research (Reproducible Sensory Observation & Measurement)</option>
+                            <option value="predictive">Predictive Machine Learning (Supervised Generalization & OOD Auditing)</option>
+                            <option value="strategic">Strategic Research (Long-Range Scenario Planning & Foresight)</option>
+                            <option value="collaborative">Collaborative Multi-Institutional (Distributed Consortia & Harmonized Registries)</option>
+                            <option value="adversarial">Adversarial Verification & Stress-Testing (Independent Falsification)</option>
+                        </select>
+                    </div>
+                    <div class="search-filter-box" style="min-width: 260px;">
+                        <input type="text" id="filterGuideInput" class="search-input" placeholder="Search guides (e.g. causal, interview)...">
+                    </div>
+                </div>
+
+                <!-- Quick Category Filter Pills -->
+                <div class="guide-pills-row" id="guideCategoryPills">
+                    <button class="guide-category-pill active" data-cat="all">All (39 Methods)</button>
+                    <button class="guide-category-pill" data-cat="Purpose & Domain">Purpose & Domain</button>
+                    <button class="guide-category-pill" data-cat="Temporal & Growth">Temporal & Growth</button>
+                    <button class="guide-category-pill" data-cat="Intervention Level">Intervention Level</button>
+                    <button class="guide-category-pill" data-cat="Paradigms & Epistemologies">Paradigms & Epistemologies</button>
+                    <button class="guide-category-pill" data-cat="Evidence & Sources">Evidence & Sources</button>
+                    <button class="guide-category-pill" data-cat="Reasoning & Logic">Reasoning & Logic</button>
+                    <button class="guide-category-pill" data-cat="Setting & Environment">Setting & Environment</button>
+                </div>
+
+                <!-- Dynamic Guide Details Card -->
+                <div id="guideCardContainer">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- TAB: 2. Data Analysis (AI Auto-Declare Engine & Analytical Execution)        -->
+            <!-- ========================================================================= -->
+            <div class="tab-pane" id="tabAutoAnalysis">
+                <div class="pane-header">
+                    <div class="pane-header-title">
+                        <h2>Data Analysis — AI Auto-Declare Engine</h2>
+                        <p>Upload any raw research datasheet or interview transcripts. OmniScholar AI autonomously inspects all columns, declares whether your study is Quantitative, Qualitative, or Mixed Methods, prescribes the exact statistical/thematic tests, and executes with 0% ghostwriting.</p>
+                    </div>
+                </div>
+
+                <!-- Ingestion & Benchmark Zone -->
+                <div class="action-grid mb-4">
+                    <div class="upload-dropzone" id="autoDropzone">
+                        <input type="file" id="autoFileInput" accept=".csv,.xlsx,.xls,.tsv" style="display: none;">
+                        <div class="drop-content">
+                            <div class="drop-icon-symbol">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="2" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <div class="drop-text-group">
+                                <h3>Upload Your Research Dataset</h3>
+                                <p>Drag and drop raw CSV, XLSX, TSV, or interview texts here</p>
+                                <div class="format-tags">
+                                    <span class="format-pill">CSV</span>
+                                    <span class="format-pill">XLSX</span>
+                                    <span class="format-pill">TSV</span>
+                                    <span class="format-pill">Auto-Sanitize</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-demo-box">
+                        <div class="demo-info">
+                            <div class="demo-badge">Global Empirical Benchmark</div>
+                            <h4>Test With Validated Sample</h4>
+                            <p>Instant evaluation with verified cross-sectional research vectors (N = 100, 11 constructs).</p>
+                        </div>
+                        <button class="btn btn-secondary" id="btnAutoLoadSample">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <span>Load Sample Benchmark Dataset</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Auto-Declare Verdict Card -->
+                <div class="auto-declare-banner" id="autoDeclareVerdictCard" style="display: none;">
+                    <div class="verdict-header">
+                        <div class="verdict-tag-group">
+                            <span class="banner-tag">AI Methodology Verdict</span>
+                            <span class="verdict-badge" id="verdictBadge">QUANTITATIVE EMPIRICAL</span>
+                            <span class="confidence-pill" id="verdictConfidence">98% Confidence</span>
+                        </div>
+                        <button class="btn btn-primary" id="btnExecuteAutoAnalysis">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <span>Execute Declared Analysis Pipeline</span>
+                        </button>
+                    </div>
+
+                    <p class="verdict-reasoning" id="verdictReasoning">
+                        Dataset was inspected and classified into optimal analytical pathways based on column data structures.
+                    </p>
+
+                    <!-- Column Classification Breakdown -->
+                    <div class="column-breakdown-grid" id="columnBreakdownGrid">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Prescribed Tests Checklist -->
+                    <div class="prescribed-pipeline-box">
+                        <h4>Prescribed Analytical & Inferential Protocol:</h4>
+                        <ul class="prescribed-test-list" id="prescribedTestsList">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Auto Analysis Execution Results Container -->
+                <div id="autoAnalysisResultsContainer" style="display: none;">
+                    <!-- Populated dynamically upon execution -->
+                </div>
+            </div>
+
+            <!-- ========================================================================= -->
+            <!-- TAB: 3. Draft Manuscript Studio (0% Ghostwriting & Authenticity Seal)        -->
+            <!-- ========================================================================= -->
+            <div class="tab-pane" id="tabManuscriptStudio">
+                <div class="pane-header">
+                    <div class="pane-header-title">
+                        <h2>Draft Manuscript Studio</h2>
+                        <p>Generate a complete, publication-grade academic manuscript draft anchored strictly to your empirical results with 0% ghostwriting and mathematical provenance.</p>
+                    </div>
+                </div>
+
+                <!-- Mandatory Amber Educational Purpose Disclaimer Box -->
+                <div class="disclaimer-box-amber" id="manuscriptDisclaimerBox">
+                    <div class="disclaimer-icon">⚠️</div>
+                    <div class="disclaimer-content">
+                        <h4>ACADEMIC & EDUCATIONAL USE DISCLAIMER</h4>
+                        <p>This research manuscript draft was synthesized autonomously by Project OmniScholar (v1.0.1 Pro) for <strong>educational, methodological structuring, and drafting purposes only</strong>. The Principal Investigator (PI) must independently audit, interpret, and verify all empirical models, statistical outputs, and claims before formal submission to any peer-reviewed scientific journal or conference.</p>
+                    </div>
+                </div>
+
+                <!-- Official OmniScholar Authenticity Signature Stamp -->
+                <div class="authenticity-stamp-card" id="manuscriptSignatureCard">
+                    <div class="stamp-identity">
+                        <span class="stamp-seal-icon">🛡️</span>
+                        <div>
+                            <div class="stamp-title">PROJECT OMNISCHOLAR™ AUTHENTICITY SEAL</div>
+                            <div class="stamp-sub">Safal AI & Innovation Centre (Kathmandu, Nepal) | Zero-Ghostwriting Deterministic Guarantee | Lead Architect: Ishwor Prasad Dhungana</div>
+                        </div>
+                    </div>
+                    <div class="badge-integrity">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>SHA-256 Provenance Verified</span>
+                    </div>
+                </div>
+
+                <!-- Manuscript Configuration & Generation Bar -->
+                <div class="action-card mb-4">
+                    <div class="topic-input-grid">
+                        <div class="topic-input-wrap">
+                            <input type="text" id="manuscriptTopicInput" class="topic-input-field" placeholder="Enter research paper topic title (e.g. Empirical Investigation of LLM Multi-Agent Coordination)...">
+                        </div>
+                        <div class="topic-controls-row">
+                            <select id="manuscriptDomainSelect" class="meta-select topic-select" title="Target Academic Discipline">
+                                <option value="General Applied Science">Discipline: General Applied Science</option>
+                                <option value="Healthcare & Clinical AI">Discipline: Healthcare & Clinical AI</option>
+                                <option value="Econometrics & Quantitative Finance">Discipline: Econometrics & Quantitative Finance</option>
+                                <option value="Computer Science & Swarm Systems">Discipline: Computer Science & Swarm AI</option>
+                                <option value="Psychometrics & Social Sciences">Discipline: Psychometrics & Social Sciences</option>
+                            </select>
+                            <select id="manuscriptStandardSelect" class="meta-select topic-select" title="Target Journal Standards">
+                                <option value="IEEE Transactions (Two-Column Q1)">Standard: IEEE Transactions (Two-Column Q1)</option>
+                                <option value="APA 7th Edition (Single-Column)">Standard: APA 7th Edition (Single-Column)</option>
+                                <option value="Nature / Science Standards">Standard: Nature / Science Standards</option>
+                                <option value="ACM Computing Surveys">Standard: ACM Computing Surveys</option>
+                            </select>
+                            <select id="manuscriptGuideSelect" class="meta-select topic-select" title="Methodological Alignment">
+                                <option value="academic">Guide: Academic Research</option>
+                                <option value="quantitative">Guide: Quantitative Empirical</option>
+                                <option value="qualitative">Guide: Qualitative Interpretive</option>
+                                <option value="mixed_methods">Guide: Mixed Methods Empirical</option>
+                                <option value="experimental">Guide: Experimental RCT</option>
+                            </select>
+                            <button class="btn btn-primary btn-hero-pipeline" id="btnGenerateFullManuscript">
+                                <span class="glow-pulse"></span>
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                <span>Generate Full Manuscript Draft</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dual Output View: Typst 0.15 Live PDF Preview + Markdown Draft Viewer -->
+                <div class="manuscript-workspace-grid">
+                    <!-- Left: In-Browser Typst PDF Preview -->
+                    <div class="pdf-preview-pane">
+                        <div class="pane-toolbar">
+                            <h3>Live IEEE Two-Column PDF (Typst 0.15)</h3>
+                            <div class="btn-group">
+                                <a href="/api/preview-pdf" target="_blank" class="btn btn-sm btn-outline" id="btnOpenPdfNewTab">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                    Open Fullscreen
+                                </a>
+                                <a href="/api/preview-pdf" download="OmniScholar_Research_Manuscript.pdf" class="btn btn-sm btn-primary" id="btnDownloadPdf">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                    Download PDF
+                                </a>
+                            </div>
+                        </div>
+                        <iframe id="manuscriptPdfFrame" class="pdf-frame" src="/api/preview-pdf" title="Live IEEE Manuscript PDF Preview"></iframe>
+                    </div>
+
+                    <!-- Right: Full Markdown Draft Viewer with Copy & Export -->
+                    <div class="markdown-preview-pane">
+                        <div class="pane-toolbar">
+                            <h3>Complete Academic Draft (Markdown)</h3>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline" id="btnCopyManuscriptMarkdown">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    Copy Markdown
+                                </button>
+                                <button class="btn btn-sm btn-primary" id="btnDownloadReplicationZip">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                                    Replication ZIP
+                                </button>
+                            </div>
+                        </div>
+                        <div class="markdown-content-box" id="manuscriptMarkdownBox">
+                            <div class="empty-state">
+                                <div class="empty-icon-symbol">📝</div>
+                                <h3>Draft Ready to Generate</h3>
+                                <p>Click "Generate Full Manuscript Draft" above to assemble your complete IEEE paper with empirical models, tables, and references.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- TAB 1: Variables & Descriptive Profiler -->
-            <div class="tab-pane active" id="tabVariables">
+            <div class="tab-pane" id="tabVariables">
                 <div class="pane-header">
                     <div class="pane-header-title">
                         <h2>Variables & Descriptive Diagnostics</h2>

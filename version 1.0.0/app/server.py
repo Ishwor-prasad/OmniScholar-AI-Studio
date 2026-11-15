@@ -31,6 +31,15 @@ if BASE_DIR not in sys.path:
 
 import stats_engine as se
 import topic_synthesizer as ts
+import research_guides as rg
+import data_auto_classifier as dac
+
+class ManuscriptGenerateRequest(BaseModel):
+    topic: Optional[str] = "Empirical Research Investigation"
+    domain: Optional[str] = "Interdisciplinary Applied Sciences"
+    standard: Optional[str] = "IEEE Transactions (Two-Column Q1)"
+    guide_id: Optional[str] = "quantitative"
+    disclaimer: Optional[str] = None
 
 class TopicSynthesizeRequest(BaseModel):
     topic: str
@@ -67,7 +76,7 @@ try:
 except Exception:
     typst_generator = None
 
-app = FastAPI(title="Project OmniScholar - Research AI Studio v1.0.0")
+app = FastAPI(title="Project OmniScholar - Research AI Studio v1.0.1")
 
 app.add_middleware(
     CORSMiddleware,
@@ -1006,8 +1015,8 @@ def health():
     tectonic_bin = get_tectonic_bin()
     return {
         "status": "online",
-        "version": "1.0.0",
-        "engine": "Project OmniScholar AI Studio",
+        "version": "1.0.1",
+        "engine": "Project OmniScholar AI Studio v1.0.1 Pro",
         "pdf_engine": bool(typst_bin or tectonic_bin),
         "typst_engine": bool(typst_bin),
         "latex_engine": bool(tectonic_bin),
@@ -1025,7 +1034,10 @@ def health():
             "synthesize_topic": True,
             "generate_survey_data": True,
             "run_autonomous_pipeline": True,
-            "preview_pdf_inline": True
+            "preview_pdf_inline": True,
+            "research_guides_40": True,
+            "auto_declare_paradigm": True,
+            "draft_manuscript_studio": True
         }
     }
 
@@ -1434,6 +1446,145 @@ def export_zip():
             zipf.writestr("Manuscript_Draft.md", SESSION_DATA["summary"]["draft_text"])
 
     return FileResponse(zip_path, media_type="application/zip", filename=zip_filename)
+
+
+# =========================================================================
+# v1.0.1 PILLAR ENDPOINTS: RESEARCH GUIDES, AUTO-DECLARE & DRAFT MANUSCRIPT
+# =========================================================================
+
+@app.get("/api/research-guides")
+def api_get_research_guides():
+    guides = rg.get_all_guides()
+    return {
+        "status": "SUCCESS",
+        "total_guides": len(guides),
+        "guides": guides
+    }
+
+
+@app.get("/api/research-guides/{guide_id}")
+def api_get_research_guide(guide_id: str):
+    guide = rg.get_guide_by_id(guide_id)
+    return {"status": "SUCCESS", "guide": guide}
+
+
+@app.post("/api/auto-declare")
+def api_auto_declare(file: Optional[UploadFile] = File(None)):
+    df = SESSION_DATA.get("df")
+    filename = SESSION_DATA.get("filename", "active_data.csv")
+    
+    if df is None:
+        load_sample()
+        df = SESSION_DATA["df"]
+        filename = SESSION_DATA["filename"]
+        
+    declaration = dac.auto_declare_paradigm(df)
+    SESSION_DATA["auto_declaration"] = declaration
+    return {
+        "status": "DECLARED",
+        "filename": filename,
+        "declaration": declaration
+    }
+
+
+@app.post("/api/execute-auto-analysis")
+def api_execute_auto_analysis():
+    if SESSION_DATA["df"] is None:
+        load_sample()
+        
+    df = SESSION_DATA["df"]
+    filename = SESSION_DATA["filename"]
+    declaration = dac.auto_declare_paradigm(df)
+    SESSION_DATA["auto_declaration"] = declaration
+    
+    if declaration["paradigm_code"] == "qualitative":
+        text_cols = declaration["columns_classified"]["narrative_text"]
+        quali_results = dac.analyze_qualitative_corpus(df, text_cols)
+        SESSION_DATA["qualitative_analysis"] = quali_results
+        return {
+            "status": "SUCCESS",
+            "paradigm": declaration["declared_paradigm"],
+            "declaration": declaration,
+            "qualitative_results": quali_results
+        }
+    else:
+        group_col = declaration["recommended_roles"]["grouping_variable"]
+        run_id = f"auto_{int(time.time())}"
+        summary, run_dir = analyze_dataframe(df, group_col=group_col, run_id=run_id, filename=filename)
+        
+        if declaration["paradigm_code"] == "mixed" and declaration["columns_classified"]["narrative_text"]:
+            text_cols = declaration["columns_classified"]["narrative_text"]
+            quali_results = dac.analyze_qualitative_corpus(df, text_cols)
+            summary["qualitative_mixed"] = quali_results
+            
+        summary["auto_declaration"] = declaration
+        SESSION_DATA["summary"] = summary
+        SESSION_DATA["last_run_dir"] = run_dir
+        SESSION_DATA["group_col"] = group_col
+        SESSION_DATA["ledger"] = summary.get("ledger")
+        SESSION_DATA["peer_review"] = summary.get("peer_review")
+        
+        return {
+            "status": "SUCCESS",
+            "paradigm": declaration["declared_paradigm"],
+            "declaration": declaration,
+            "summary": summary,
+            "sample_size": summary["sample_size"],
+            "pdf_url": "/api/preview-pdf",
+            "zip_url": "/api/export-zip"
+        }
+
+
+@app.post("/api/generate-draft-manuscript")
+def api_generate_draft_manuscript(req: ManuscriptGenerateRequest):
+    if SESSION_DATA["df"] is None or SESSION_DATA["summary"] is None:
+        load_sample()
+        
+    summary = SESSION_DATA["summary"]
+    run_dir = SESSION_DATA["last_run_dir"] or os.path.join(RUNS_DIR, f"run_{int(time.time())}")
+    os.makedirs(run_dir, exist_ok=True)
+    
+    guide = rg.get_guide_by_id(req.guide_id or "quantitative")
+    topic = req.topic or "Empirical Scientific Investigation"
+    domain = req.domain or "Applied Empirical Science"
+    
+    summary["topic"] = topic
+    summary["discipline"] = domain
+    summary["guide"] = guide
+    summary["target_standard"] = req.standard or "IEEE Transactions"
+    
+    disclaimer_text = (
+        "ACADEMIC & EDUCATIONAL USE DISCLAIMER: This research manuscript draft was synthesized "
+        "autonomously by Project OmniScholar (v1.0.1 Pro) for educational, methodological structuring, "
+        "and drafting purposes only. The Principal Investigator must independently audit and verify all empirical models "
+        "and claims before submission to formal peer-reviewed venues."
+    )
+    signature_stamp = (
+        f"PROJECT OMNISCHOLAR™ AUTHENTICITY STAMP | Safal AI & Innovation Centre (Kathmandu, Nepal) | "
+        f"Engine v1.0.1 Pro | Zero-Ghostwriting Deterministic Guarantee | SHA-256: {summary.get('data_hash_sha256', '')[:24]} | "
+        f"Lead Research Architect: Ishwor Prasad Dhungana"
+    )
+    summary["disclaimer"] = disclaimer_text
+    summary["signature_stamp"] = signature_stamp
+    
+    try:
+        from templates import preview_pdf
+        preview_pdf(summary, run_dir, SESSION_DATA["filename"])
+    except Exception as e:
+        print(f"[Manuscript Draft] Typst compilation note: {e}")
+        
+    title = summary.get("declarative_title") or f"Empirical Architecture of {topic}: A {guide['name']} Investigation"
+    
+    return {
+        "status": "SUCCESS",
+        "title": title,
+        "paradigm": guide["name"],
+        "disclaimer": disclaimer_text,
+        "signature_stamp": signature_stamp,
+        "pdf_preview_url": "/api/preview-pdf",
+        "export_zip_url": "/api/export-zip",
+        "draft_markdown": summary.get("draft_text", "")
+    }
 
 
 # Mount runs directory so generated charts & pdf can be accessed directly

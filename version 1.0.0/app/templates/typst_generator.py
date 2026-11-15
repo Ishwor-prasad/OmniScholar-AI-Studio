@@ -197,7 +197,19 @@ def build_ieee_manuscript(summary: Dict[str, Any], run_dir: str, dataset_name: s
   ]
 ]
 
-#v(0.8em)
+#v(0.4em)
+#block(
+  fill: rgb("fffbeb"),
+  stroke: 0.8pt + rgb("f59e0b"),
+  inset: 7pt,
+  radius: 3pt,
+  width: 100%
+)[
+  #text(weight: "bold", size: 7pt, fill: rgb("b45309"))[ACADEMIC & EDUCATIONAL USE DISCLAIMER:]
+  #text(size: 6.5pt, fill: rgb("92400e"))[ This research manuscript draft is generated autonomously by OmniScholar v1.0.1 for educational, methodological structuring, and drafting purposes only. All empirical models and claims must be independently audited by the Principal Investigator before submission to formal peer-reviewed venues.]
+]
+
+#v(0.6em)
 #block(
   fill: rgb("f8fafc"),
   stroke: 0.8pt + rgb("cbd5e1"),

@@ -70,6 +70,9 @@ $^2$ *Autonomous Research Operating System, Safal AI & Innovation Centre* (`engi
 *Target Publication:* IEEE Transactions on Computational Intelligence & Empirical Methodologies  
 *Dataset Provenance:* `{dataset_name}` | *SHA-256:* `{sha256}` | *DOI:* `10.1109/OMNI.2026.0100`
 
+> ⚠️ **ACADEMIC & EDUCATIONAL USE DISCLAIMER:**  
+> This research manuscript draft was synthesized autonomously by Project OmniScholar (v1.0.1 Pro) for educational, methodological structuring, and drafting purposes only. The Principal Investigator must independently audit and verify all empirical models and claims before submission to formal peer-reviewed venues.
+
 ---
 
 ## Abstract
