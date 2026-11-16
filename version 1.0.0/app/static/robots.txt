@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /runs/
+
+Sitemap: https://scholar.safalai.com.np/sitemap.xml

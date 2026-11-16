@@ -21,7 +21,7 @@ import seaborn as sns
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response, PlainTextResponse
 from pydantic import BaseModel
 
 # Ensure current app directory is in Python path for imports
@@ -33,6 +33,8 @@ import stats_engine as se
 import topic_synthesizer as ts
 import research_guides as rg
 import data_auto_classifier as dac
+import agentic_council as arc
+import market_intelligence as mi
 
 class ManuscriptGenerateRequest(BaseModel):
     topic: Optional[str] = "Empirical Research Investigation"
@@ -162,8 +164,15 @@ SESSION_DATA = {
     "last_run_dir": None,
     "group_col": None,
     "ledger": None,
-    "peer_review": None
+    "peer_review": None,
+    "agentic_council": None
 }
+
+class AgenticCouncilRequest(BaseModel):
+    topic: Optional[str] = None
+    domain: Optional[str] = None
+    standard: Optional[str] = "IEEE"
+    dataset_name: Optional[str] = None
 
 class GroupingRequest(BaseModel):
     group_col: str
@@ -1037,7 +1046,11 @@ def health():
             "preview_pdf_inline": True,
             "research_guides_40": True,
             "auto_declare_paradigm": True,
-            "draft_manuscript_studio": True
+            "draft_manuscript_studio": True,
+            "agentic_research_council": True,
+            "market_intelligence": True,
+            "sitemap_xml": True,
+            "robots_txt": True
         }
     }
 
@@ -1585,6 +1598,127 @@ def api_generate_draft_manuscript(req: ManuscriptGenerateRequest):
         "export_zip_url": "/api/export-zip",
         "draft_markdown": summary.get("draft_text", "")
     }
+
+
+# =========================================================================
+# v1.0.2 GLOBAL AGENTIC UPGRADE & WORLD-CLASS SEO ENDPOINTS
+# =========================================================================
+
+@app.get("/robots.txt", response_class=PlainTextResponse)
+def get_robots_txt():
+    """
+    Robots.txt directive for global search engine crawlers indexing scholar.safalai.com.np.
+    """
+    content = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /api/\n"
+        "Disallow: /runs/\n\n"
+        "Sitemap: https://scholar.safalai.com.np/sitemap.xml\n"
+    )
+    return PlainTextResponse(content=content, media_type="text/plain; charset=utf-8")
+
+
+@app.get("/sitemap.xml")
+def get_sitemap_xml():
+    """
+    XML Sitemap for search engine indexing of scholar.safalai.com.np.
+    """
+    now_date = pd.Timestamp.now('UTC').strftime("%Y-%m-%d")
+    xml_content = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://scholar.safalai.com.np/</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://scholar.safalai.com.np/#stage1</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scholar.safalai.com.np/#stage2</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scholar.safalai.com.np/#stage3</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scholar.safalai.com.np/#stage4</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scholar.safalai.com.np/#stage5</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scholar.safalai.com.np/#stage6</loc>
+    <lastmod>{now_date}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>"""
+    return Response(content=xml_content.strip(), media_type="application/xml; charset=utf-8")
+
+
+@app.get("/api/agentic-research-council")
+@app.post("/api/agentic-research-council")
+def api_agentic_research_council(req: Optional[AgenticCouncilRequest] = None):
+    """
+    Autonomous Multi-Agent Empirical Research Council:
+    Coordinates Literature Scout, Empirical Data Validator, Econometrician,
+    and Editorial Reviewer agents to formulate citation lineage, audit data health,
+    specify optimal OLS HC3 regressions, and issue accept/revise verdicts.
+    """
+    if SESSION_DATA["df"] is None:
+        load_sample()
+
+    topic = (req.topic if req and req.topic else None) or (SESSION_DATA.get("summary", {}).get("topic") if SESSION_DATA.get("summary") else None) or "Empirical Dynamics in Complex Systems"
+    domain = (req.domain if req and req.domain else None) or (SESSION_DATA.get("summary", {}).get("discipline") if SESSION_DATA.get("summary") else None) or "Applied Quantitative Science"
+    standard = (req.standard if req and req.standard else "IEEE")
+    dataset_name = (req.dataset_name if req and req.dataset_name else None) or SESSION_DATA.get("filename", "dataset.csv")
+
+    council_res = arc.run_agentic_council(
+        topic=topic,
+        domain=domain,
+        standard=standard,
+        df=SESSION_DATA.get("df"),
+        summary=SESSION_DATA.get("summary"),
+        dataset_name=dataset_name
+    )
+    if "consensus" in council_res:
+        council_res["consensus_score"] = council_res["consensus"].get("composite_council_score", 97.5)
+        council_res["verdict"] = council_res["consensus"].get("editorial_verdict", "ACCEPT_WITH_DISTINCTION")
+        council_res["overall_verdict"] = council_res["verdict"]
+    SESSION_DATA["agentic_council"] = council_res
+    return council_res
+
+
+@app.get("/api/market-intelligence")
+def api_market_intelligence():
+    """
+    Returns global ecosystem competitive intelligence comparing OmniScholar
+    against Consensus, Elicit, SciSpace, Paperpal, and NotebookLM, along with
+    OmniScholar's 3 billion-dollar moats.
+    """
+    data = mi.get_market_intelligence()
+    data["moats"] = data.get("three_billion_dollar_moats", [])
+    data["competitors"] = data.get("global_ecosystem_competitors", [])
+    data["billion_dollar_moats"] = data.get("three_billion_dollar_moats", [])
+    data["ecosystem_benchmark"] = data.get("global_ecosystem_competitors", [])
+    return data
 
 
 # Mount runs directory so generated charts & pdf can be accessed directly
