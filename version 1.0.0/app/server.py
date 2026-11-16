@@ -91,6 +91,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def add_no_cache_headers(request, call_next):
+    response = await call_next(request)
+    # Prevent aggressive browser and proxy caching of dynamic HTML and asset scripts
+    if request.url.path in ["/", "/index.html", "/app.js", "/style.css", "/api/health"]:
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
+
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 RUNS_DIR = os.path.join(BASE_DIR, "runs")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
@@ -1053,8 +1063,8 @@ def health():
     tectonic_bin = get_tectonic_bin()
     return {
         "status": "online",
-        "version": "1.0.1",
-        "engine": "Project OmniScholar AI Studio v1.0.1 Pro",
+        "version": "2050.2.1-SINGULARITY",
+        "engine": "Project OmniScholar 2050 Singularity AI Studio",
         "pdf_engine": bool(typst_bin or tectonic_bin),
         "typst_engine": bool(typst_bin),
         "latex_engine": bool(tectonic_bin),
