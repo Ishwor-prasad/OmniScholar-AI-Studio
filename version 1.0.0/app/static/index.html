@@ -190,6 +190,12 @@
 
             <!-- Header Actions & Glowing 1-Click Pipeline Button -->
             <div class="header-actions">
+                <button class="btn btn-quantum-header" id="btnHeaderQuantumLab" title="Switch to OmniScholar 2050 Quantum Lab (Causal Discovery &amp; Counterfactual Singularity)">
+                    <span class="quantum-atom-pulse">⚛️</span>
+                    <span>2050 Quantum Lab</span>
+                    <span class="badge-singularity-pill">Singularity</span>
+                </button>
+
                 <button class="btn btn-glowing-pipeline" id="btnHeaderAutoPipeline" title="Execute Autonomous End-to-End Research Pipeline (Topic -> Manuscript)">
                     <span class="glow-pulse"></span>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -235,6 +241,23 @@
     <div class="studio-layout">
         <!-- Sidebar Navigation -->
         <aside class="studio-sidebar" id="sidebar">
+            <!-- 2050 Quantum Lab Singularity Section -->
+            <div class="sidebar-section section-quantum-2050">
+                <span class="sidebar-category-label">SINGULARITY INTELLIGENCE 2050 AD</span>
+                <nav class="sidebar-nav">
+                    <button class="nav-item nav-quantum-item" data-tab="tabQuantumLab2050" id="navQuantumLab2050">
+                        <span class="nav-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-label">🚀 2050 Quantum Lab</span>
+                        <span class="nav-tag singularity-tag">Causal AI</span>
+                    </button>
+                </nav>
+            </div>
+
             <!-- v1.0.1 Normal Researcher OS Core Pillars -->
             <div class="sidebar-section">
                 <span class="sidebar-category-label">RESEARCH OS v1.0.1</span>
@@ -1985,6 +2008,293 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: OmniScholar 2050 Quantum Lab (Causal Discovery & Counterfactual Singularity) -->
+            <div class="tab-pane" id="tabQuantumLab2050">
+                <div class="quantum-lab-container">
+                    <!-- Hero Quantum Banner -->
+                    <div class="quantum-hero-banner">
+                        <div class="quantum-hero-content">
+                            <div class="quantum-tag-row">
+                                <span class="badge-singularity-glow">
+                                    <span class="singularity-pulse"></span>
+                                    Singularity Intelligence 2050 AD
+                                </span>
+                                <span class="badge-quantum-protocol">Pearl Do-Calculus &amp; Merkle Ledger v4.2</span>
+                            </div>
+                            <h2>OmniScholar 2050 AD — Autonomous Scientific Discovery &amp; Causal Intelligence</h2>
+                            <p class="quantum-hero-desc">
+                                Moving beyond associative correlation to genuine causal discovery: Autonomous Directed Acyclic Graph (DAG) discovery, Pearl's Do-Calculus counterfactual intervention simulation, Merkle Epistemic Cryptographic Proofs, and 6-Referee Adversarial Peer Debate.
+                            </p>
+                        </div>
+                        <div class="quantum-hero-actions">
+                            <button class="btn btn-primary btn-quantum-run" id="btnRunCausalDiscovery">
+                                <span class="quantum-atom-icon">⚛️</span>
+                                <span>Discover Causal DAG</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2050 Singularity Telemetry KPIs -->
+                    <div class="quantum-kpis-grid">
+                        <div class="q-kpi-card">
+                            <span class="q-kpi-label">Causal Structure</span>
+                            <span class="q-kpi-val text-accent" id="kpiDagIdentified">Identified (DAG)</span>
+                            <span class="q-kpi-sub">0 Backdoor Cycles (Acyclic)</span>
+                        </div>
+                        <div class="q-kpi-card">
+                            <span class="q-kpi-label">Average Treatment Effect (ATE)</span>
+                            <span class="q-kpi-val text-success" id="kpiAteTotal">+0.742 SD</span>
+                            <span class="q-kpi-sub">p &lt; 0.00001 (Identified)</span>
+                        </div>
+                        <div class="q-kpi-card">
+                            <span class="q-kpi-label">Merkle Epistemic Root</span>
+                            <span class="q-kpi-val text-indigo" id="kpiMerkleStatus">16/16 Verified</span>
+                            <span class="q-kpi-sub">Cryptographic Data-to-Claim</span>
+                        </div>
+                        <div class="q-kpi-card">
+                            <span class="q-kpi-label">Frontier Council Personas</span>
+                            <span class="q-kpi-val" id="kpiRefereesActive">6 Referees Active</span>
+                            <span class="q-kpi-sub">Adversarial Consensus Reached</span>
+                        </div>
+                    </div>
+
+                    <!-- Section 1: Interactive Causal DAG Vector Map -->
+                    <div class="quantum-panel causal-dag-panel">
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">STRUCTURAL CAUSAL MODELING</span>
+                                <h3>Interactive Directed Acyclic Graph (DAG) Vector Discovery</h3>
+                                <p>Automated causal discovery isolating root exposure, mediators, colliders, and outcome nodes with directional path coefficients (β) and backdoor paths.</p>
+                            </div>
+                            <div class="dag-legend">
+                                <span class="legend-chip root"><span class="chip-dot"></span> Treatment Node</span>
+                                <span class="legend-chip mediator"><span class="chip-dot"></span> Mediator Node</span>
+                                <span class="legend-chip outcome"><span class="chip-dot"></span> Target Outcome</span>
+                                <span class="legend-chip collider"><span class="chip-dot"></span> Controlled Confounder</span>
+                            </div>
+                        </div>
+
+                        <!-- Causal DAG SVG Canvas -->
+                        <div class="causal-dag-container" id="causalDagContainer">
+                            <!-- Responsive SVG Causal Graph rendered dynamically by app.js -->
+                        </div>
+
+                        <!-- DAG Structural Inference Diagnostics -->
+                        <div class="dag-diagnostics-grid">
+                            <div class="dag-diag-card">
+                                <h5>Direct vs. Indirect Causal Paths</h5>
+                                <div class="path-breakdown">
+                                    <div class="path-item">
+                                        <span class="path-formula">Direct: AI_Assistance → Diagnostic_Accuracy</span>
+                                        <span class="path-metric">β = +0.261 (p &lt; .001)</span>
+                                    </div>
+                                    <div class="path-item">
+                                        <span class="path-formula">Indirect 1: AI → Cognitive_Load → Diagnostic_Accuracy</span>
+                                        <span class="path-metric">β = +0.298 (p &lt; .001)</span>
+                                    </div>
+                                    <div class="path-item">
+                                        <span class="path-formula">Indirect 2: AI → Workflow_Speed → Diagnostic_Accuracy</span>
+                                        <span class="path-metric">β = +0.183 (p &lt; .001)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dag-diag-card">
+                                <h5>Pearl's Backdoor Identification Criterion</h5>
+                                <p class="backdoor-status-text">
+                                    <span class="badge-status-ready">Backdoor Criterion Satisfied</span>
+                                    Conditioning on <code>[Baseline_Practitioner_Experience, Case_Complexity]</code> d-separates all spurious non-causal confounding pathways. Total causal effect is non-parametrically identifiable.
+                                </p>
+                                <div class="perturbation-box">
+                                    <span class="p-label">Arrow Directionality Stability:</span>
+                                    <span class="p-val text-success">99.8% (10,000 Gaussian bootstrap perturbations)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Counterfactual "What-If" Policy Simulator -->
+                    <div class="quantum-panel counterfactual-panel">
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">PEARL'S DO-CALCULUS INTERVENTION ENGINE</span>
+                                <h3>Counterfactual "What-If" Policy Intervention Simulator</h3>
+                                <p>Simulating intervention distributions $E[Y | do(X = x)]$ across the continuous treatment spectrum in real time.</p>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" id="btnSimulateCounterfactual">
+                                <span>Recompute Intervention</span>
+                            </button>
+                        </div>
+
+                        <!-- Interactive Policy Slider Bar -->
+                        <div class="counterfactual-slider-wrapper">
+                            <div class="slider-header-flex">
+                                <label for="counterfactualSlider" class="slider-label">
+                                    Counterfactual Treatment Intervention: 
+                                    <strong class="treatment-var-name">do(AI_Assistance_Intensity = <span id="sliderDeltaVal">+25</span>%)</strong>
+                                </label>
+                                <span class="slider-badge" id="sliderInterventionBadge">Active Intervention</span>
+                            </div>
+                            <input type="range" min="-50" max="100" value="25" step="5" id="counterfactualSlider" class="quantum-slider" aria-label="Counterfactual Treatment Delta Slider">
+                            <div class="slider-ticks">
+                                <span>-50% (Deprivation)</span>
+                                <span>-25%</span>
+                                <span>0% (Status Quo)</span>
+                                <span>+25% (Moderate)</span>
+                                <span>+50% (High)</span>
+                                <span>+75%</span>
+                                <span>+100% (Maximum)</span>
+                            </div>
+                        </div>
+
+                        <!-- Counterfactual Simulation Output Cluster -->
+                        <div class="counterfactual-output-cluster" id="counterfactualOutput">
+                            <div class="cf-metrics-row">
+                                <div class="cf-metric-tile">
+                                    <span class="cf-label">Baseline Expected Outcome</span>
+                                    <span class="cf-val">72.4%</span>
+                                    <span class="cf-sub">Observed $E[Y]$ Status Quo</span>
+                                </div>
+                                <div class="cf-metric-tile highlight">
+                                    <span class="cf-label">Counterfactual Outcome $E[Y | do(X)]$</span>
+                                    <span class="cf-val text-accent" id="cfPredictedOutcome">85.6%</span>
+                                    <span class="cf-sub" id="cfCredibleInterval">95% CI: [82.1%, 89.2%]</span>
+                                </div>
+                                <div class="cf-metric-tile">
+                                    <span class="cf-label">Average Treatment Effect (ATE)</span>
+                                    <span class="cf-val text-success" id="cfAteVal">+13.2% (+0.74 SD)</span>
+                                    <span class="cf-sub">Net Causal Shift</span>
+                                </div>
+                                <div class="cf-metric-tile">
+                                    <span class="cf-label">Mediation Ratio</span>
+                                    <span class="cf-val" id="cfMediationRatio">64.8% Mediated</span>
+                                    <span class="cf-sub">Via Cognitive Load Reduction</span>
+                                </div>
+                            </div>
+
+                            <!-- Interactive SVG Response Curve -->
+                            <div class="cf-curve-wrapper">
+                                <div class="curve-header">
+                                    <h5>Counterfactual Potential Outcome Response Curve &amp; 95% Credible Interval Band</h5>
+                                    <span class="curve-tag">Non-Linear Polynomial Causal Spline</span>
+                                </div>
+                                <div class="cf-curve-svg-box" id="cfCurveSvgContainer">
+                                    <!-- Rendered dynamically by app.js -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Merkle Epistemic Proof Explorer -->
+                    <div class="quantum-panel merkle-panel">
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">IMMUTABLE MATHEMATICAL PROVENANCE</span>
+                                <h3>Cryptographic Merkle Epistemic Ledger (Root-to-Leaf Provenance)</h3>
+                                <p>Every claim, theorem, and statistical inference in the manuscript is hashed into an immutable Merkle tree linking text claims directly to raw vector cells.</p>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" id="btnVerifyMerkleProof">
+                                <span>Verify Epistemic Root</span>
+                            </button>
+                        </div>
+
+                        <!-- Merkle Root Banner -->
+                        <div class="merkle-root-banner">
+                            <div class="merkle-root-info">
+                                <span class="merkle-tag">Merkle Root Hash (SHA-256)</span>
+                                <code class="merkle-root-code" id="merkleRootHash">9f8e4b7c2a1d0f5e8b6a3c9e2f1a4d7b5c8e0a3f6b9c2d1e4a7f0b3e6d9c2a1b</code>
+                            </div>
+                            <div class="merkle-root-meta">
+                                <span class="merkle-meta-item">Tree Depth: <strong>4 Levels</strong></span>
+                                <span class="merkle-meta-item">Leaves: <strong>16 Verified Claims</strong></span>
+                                <span class="merkle-meta-item text-success">State: <strong>Cryptographically Sound</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Visual Merkle Proof Tree Explorer -->
+                        <div class="merkle-proof-container" id="merkleProofContainer">
+                            <!-- Visual Merkle Tree nodes rendered dynamically by app.js -->
+                        </div>
+                    </div>
+
+                    <!-- Section 4: 6-Referee Adversarial Frontier Peer Review Debate -->
+                    <div class="quantum-panel debate-panel">
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">SYNTHETIC SCIENTIFIC INTELLIGENCE</span>
+                                <h3>2050 Frontier Autonomous Adversarial Peer Review Council</h3>
+                                <p>Six synthetic academic personas debate the study's causality, sample power, theoretical novelty, and ethical alignment in adversarial rounds.</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" id="btnTriggerFrontierDebate">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                <span>Initiate Adversarial Round</span>
+                            </button>
+                        </div>
+
+                        <!-- 6 Personas Avatar Strip -->
+                        <div class="referees-strip">
+                            <div class="persona-pill active">
+                                <span class="persona-icon">👑</span>
+                                <div class="persona-info">
+                                    <span class="p-name">Prof. Elena Vance</span>
+                                    <span class="p-role">Nature Editor-in-Chief</span>
+                                </div>
+                            </div>
+                            <div class="persona-pill">
+                                <span class="persona-icon">📐</span>
+                                <div class="persona-info">
+                                    <span class="p-name">Dr. Marcus Thorne</span>
+                                    <span class="p-role">Econometrician Hawk</span>
+                                </div>
+                            </div>
+                            <div class="persona-pill">
+                                <span class="persona-icon">🛡️</span>
+                                <div class="persona-info">
+                                    <span class="p-name">Dr. Aris Thorne</span>
+                                    <span class="p-role">Meta-Science Lead</span>
+                                </div>
+                            </div>
+                            <div class="persona-pill">
+                                <span class="persona-icon">📊</span>
+                                <div class="persona-info">
+                                    <span class="p-name">Dr. Sarah Jenkins</span>
+                                    <span class="p-role">Bayesian Statistician</span>
+                                </div>
+                            </div>
+                            <div class="persona-pill">
+                                <span class="persona-icon">⚡</span>
+                                <div class="persona-info">
+                                    <span class="p-name">Dr. Kenji Takahashi</span>
+                                    <span class="p-role">Red-Teamer &amp; Adversary</span>
+                                </div>
+                            </div>
+                            <div class="persona-pill">
+                                <span class="persona-icon">📜</span>
+                                <div class="persona-info">
+                                    <span class="p-name">Dr. Anya Rostova</span>
+                                    <span class="p-role">Epistemic Integrity</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Debate Stream -->
+                        <div class="debate-stream-container">
+                            <div class="terminal-bar">
+                                <div class="terminal-dots">
+                                    <span class="t-dot red"></span>
+                                    <span class="t-dot yellow"></span>
+                                    <span class="t-dot green"></span>
+                                </div>
+                                <span class="terminal-title">Adversarial Council Debate Stream (Round 3 Consensus)</span>
+                                <span class="telemetry-ping">6 Personas Debating</span>
+                            </div>
+                            <div class="referee-debate-stream" id="refereeDebateStream">
+                                <!-- Dynamic speech cards rendered by app.js -->
+                            </div>
                         </div>
                     </div>
                 </div>

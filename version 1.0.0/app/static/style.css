@@ -4411,3 +4411,735 @@ body {
     color: var(--warning);
     font-weight: 600;
 }
+
+/* ==========================================================================
+   OmniScholar 2050 AD — Quantum Lab & Causal Intelligence Singularity
+   ========================================================================== */
+
+/* Header 2050 Button */
+.btn-quantum-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(236, 72, 153, 0.18));
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+.btn-quantum-header:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+    border-color: rgba(236, 72, 153, 0.7);
+    transform: translateY(-1px);
+    box-shadow: 0 0 25px rgba(236, 72, 153, 0.35);
+}
+
+.quantum-atom-pulse {
+    display: inline-block;
+    animation: atomSpin 4s linear infinite;
+}
+
+@keyframes atomSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.badge-singularity-pill {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+    color: #fff;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Sidebar Singularity Section */
+.section-quantum-2050 {
+    margin-bottom: 8px;
+}
+
+.nav-quantum-item {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+    border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+.nav-quantum-item:hover,
+.nav-quantum-item.active {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.25));
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+}
+
+.singularity-tag {
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Quantum Lab Container */
+.quantum-lab-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 40px;
+}
+
+/* Hero Quantum Banner */
+.quantum-hero-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.85), rgba(30, 27, 75, 0.85)), var(--bg-card);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    border-radius: var(--radius-lg);
+    padding: 26px 30px;
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
+    gap: 24px;
+}
+
+.quantum-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge-singularity-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(236, 72, 153, 0.15);
+    border: 1px solid rgba(236, 72, 153, 0.4);
+    color: #f472b6;
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.singularity-pulse {
+    width: 7px;
+    height: 7px;
+    background: #ec4899;
+    border-radius: 50%;
+    animation: livePulse 1.5s infinite ease-in-out;
+}
+
+.badge-quantum-protocol {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    background: var(--bg-card-secondary);
+    padding: 3px 8px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--border-subtle);
+}
+
+.quantum-hero-content h2 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    margin: 10px 0 6px 0;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.quantum-hero-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 760px;
+}
+
+.btn-quantum-run {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    border: none;
+    padding: 12px 22px;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.btn-quantum-run:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.55);
+}
+
+/* Singularity KPIs Grid */
+.quantum-kpis-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 1024px) {
+    .quantum-kpis-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.q-kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.q-kpi-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.q-kpi-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+.q-kpi-sub {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Quantum Panels Generic */
+.quantum-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
+    gap: 20px;
+}
+
+.panel-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent-indigo);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.panel-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+}
+
+.panel-header p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.45;
+}
+
+/* --- Section 1: Causal DAG Vector Map --- */
+.dag-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.legend-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--bg-card-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+}
+
+.legend-chip .chip-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-chip.root .chip-dot { background: #38bdf8; }
+.legend-chip.mediator .chip-dot { background: #818cf8; }
+.legend-chip.outcome .chip-dot { background: #10b981; }
+.legend-chip.collider .chip-dot { background: #f59e0b; }
+
+.causal-dag-container {
+    width: 100%;
+    min-height: 380px;
+    background: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.causal-dag-svg {
+    width: 100%;
+    height: 380px;
+}
+
+.dag-diagnostics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 900px) {
+    .dag-diagnostics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dag-diag-card {
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dag-diag-card h5 {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.path-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.path-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-card-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xs);
+    padding: 6px 10px;
+    font-size: 0.8rem;
+}
+
+.path-formula {
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+.path-metric {
+    font-weight: 700;
+    color: var(--accent-blue);
+    font-family: var(--font-mono);
+}
+
+.backdoor-status-text {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.backdoor-status-text code {
+    background: var(--bg-card-secondary);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-mono);
+    color: var(--accent-indigo);
+}
+
+.perturbation-box {
+    margin-top: 4px;
+    font-size: 0.82rem;
+    display: flex;
+    gap: 8px;
+}
+
+.p-label { color: var(--text-tertiary); font-weight: 600; }
+.p-val { font-weight: 700; font-family: var(--font-mono); }
+
+/* --- Section 2: Counterfactual Simulator --- */
+.counterfactual-slider-wrapper {
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.slider-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.treatment-var-name {
+    color: var(--accent-indigo);
+    font-family: var(--font-mono);
+}
+
+.slider-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    text-transform: uppercase;
+}
+
+.quantum-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--bg-card-secondary);
+    outline: none;
+    -webkit-appearance: none;
+    accent-color: #8b5cf6;
+    cursor: pointer;
+}
+
+.slider-ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+}
+
+.counterfactual-output-cluster {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cf-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+@media (max-width: 900px) {
+    .cf-metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.cf-metric-tile {
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cf-metric-tile.highlight {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.08)), var(--bg-surface-solid);
+    border-color: rgba(129, 140, 248, 0.4);
+}
+
+.cf-label {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.cf-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+.cf-sub {
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+}
+
+.cf-curve-wrapper {
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.curve-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.curve-header h5 {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.curve-tag {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+}
+
+.cf-curve-svg-box {
+    width: 100%;
+    height: 240px;
+    background: var(--bg-code);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+/* --- Section 3: Merkle Epistemic Proof Explorer --- */
+.merkle-root-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    gap: 20px;
+}
+
+.merkle-root-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.merkle-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-indigo);
+}
+
+.merkle-root-code {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--accent-blue);
+    word-break: break-all;
+}
+
+.merkle-root-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+}
+
+.merkle-proof-container {
+    background: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    min-height: 280px;
+    overflow-x: auto;
+}
+
+.merkle-tree-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-width: 600px;
+}
+
+.merkle-leaves-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.merkle-leaf-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xs);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.78rem;
+}
+
+.merkle-leaf-card.verified {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.leaf-claim { font-weight: 600; color: #fff; }
+.leaf-hash { font-family: var(--font-mono); font-size: 0.7rem; color: #94a3b8; }
+.leaf-status { font-size: 0.68rem; font-weight: 700; color: var(--success); }
+
+/* --- Section 4: 6-Referee Debate Stream --- */
+.referees-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 1024px) {
+    .referees-strip {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.persona-pill {
+    background: var(--bg-surface-solid);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.persona-pill.active {
+    border-color: var(--accent-indigo);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.08));
+}
+
+.persona-icon { font-size: 1.25rem; flex-shrink: 0; }
+.persona-info { display: flex; flex-direction: column; overflow: hidden; }
+.p-name { font-size: 0.78rem; font-weight: 700; color: var(--text-primary); white-space: nowrap; text-overflow: ellipsis; }
+.p-role { font-size: 0.68rem; color: var(--text-tertiary); white-space: nowrap; text-overflow: ellipsis; }
+
+.debate-stream-container {
+    background: var(--bg-code);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.referee-debate-stream {
+    padding: 18px;
+    max-height: 380px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.debate-bubble {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s ease;
+}
+
+.debate-bubble:hover {
+    border-color: rgba(99, 102, 241, 0.35);
+}
+
+.debate-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+}
+
+.speaker-avatar { font-size: 1.1rem; }
+.speaker-name { font-weight: 700; color: #fff; }
+.speaker-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+}
+
+.speaker-badge.nature { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
+.speaker-badge.econ { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+.speaker-badge.meta { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.speaker-badge.bayes { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+.speaker-badge.red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+.speaker-badge.ethics { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+.debate-timestamp {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+.debate-text {
+    font-size: 0.85rem;
+    color: #e2e8f0;
+    line-height: 1.5;
+    margin: 0;
+}
