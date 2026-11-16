@@ -223,3 +223,4 @@ def analyze_qualitative_corpus(df: pd.DataFrame, text_cols: List[str]) -> Dict[s
         },
         "coreq_compliance": "32 of 32 items verified"
     }
+
