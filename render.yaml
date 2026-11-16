@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: omnischolar-ai-studio
+    name: scholar.safalai.com.np
     runtime: python
     plan: free
     region: oregon
