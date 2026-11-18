@@ -166,7 +166,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2050.2.1">
+    <link rel="stylesheet" href="style.css?v=2050.3.0">
 </head>
 
 <body>
@@ -207,6 +207,11 @@
 
             <!-- Header Actions & Glowing 1-Click Pipeline Button -->
             <div class="header-actions">
+                <button class="btn btn-secondary btn-header-monograph" id="btnHeaderMonograph"
+                    title="Direct Preview of 30+ Page Doctoral Research Monograph PDF">
+                    <span>📜 30+ Page Monograph</span>
+                </button>
+
                 <button class="btn btn-quantum-header" id="btnHeaderQuantumLab"
                     title="Switch to OmniScholar 2050 Quantum Lab (Causal Discovery &amp; Counterfactual Singularity)">
                     <span class="quantum-atom-pulse">⚛️</span>
@@ -610,6 +615,11 @@
                                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                                 </svg>
                                 <span>Generate Empirical Research Paper</span>
+                            </button>
+                            <button class="btn btn-quantum-monograph" id="btnLaunchMonographFromTopic"
+                                title="Execute 2050 Auto-Pilot Loop and Compile 30+ Page Doctoral Monograph from Topic">
+                                <span class="quantum-atom-pulse">⚡</span>
+                                <span>Auto-Pilot 30+ Page Monograph</span>
                             </button>
                         </div>
                     </div>
@@ -1541,6 +1551,10 @@
                             tables.</p>
                     </div>
                     <div class="pdf-viewer-toolbar">
+                        <button class="btn btn-secondary" id="btnSwitchMonographPdf"
+                            title="Switch to 30+ Page Doctoral Research Monograph PDF">
+                            📜 30+ Page Monograph
+                        </button>
                         <button class="btn btn-secondary" id="btnRecompilePdf"
                             title="Recompile Typst manuscript on-the-fly">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -3007,7 +3021,7 @@
     <div id="toastContainer" class="toast-container"></div>
 
     <!-- Core App Logic with 2050 Singularity Cache-Busting -->
-    <script src="app.js?v=2050.2.1"></script>
+    <script src="app.js?v=2050.3.0"></script>
 </body>
 
 </html>

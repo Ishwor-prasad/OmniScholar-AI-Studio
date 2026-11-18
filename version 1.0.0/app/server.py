@@ -96,10 +96,12 @@ app.add_middleware(
 async def add_no_cache_headers(request, call_next):
     response = await call_next(request)
     # Prevent aggressive browser and proxy caching of dynamic HTML and asset scripts
-    if request.url.path in ["/", "/index.html", "/app.js", "/style.css", "/api/health"]:
-        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    if request.url.path in ["/", "/index.html", "/app.js", "/style.css", "/api/health"] or any(request.url.path.endswith(ext) for ext in [".html", ".js", ".css"]):
+        response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0"
         response.headers["Pragma"] = "no-cache"
         response.headers["Expires"] = "0"
+        response.headers["Cloudflare-CDN-Cache-Control"] = "no-store"
+        response.headers["CDN-Cache-Control"] = "no-store"
     return response
 
 STATIC_DIR = os.path.join(BASE_DIR, "static")

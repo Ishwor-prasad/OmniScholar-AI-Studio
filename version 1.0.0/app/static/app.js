@@ -3434,6 +3434,43 @@ ${r3Commentary.innerText}
                 window.location.href = '/api/export-typst?monograph=1';
             });
         }
+
+        // Global Header & Inception Launcher Hooks
+        const btnHeaderMonograph = document.getElementById('btnHeaderMonograph');
+        if (btnHeaderMonograph) {
+            btnHeaderMonograph.addEventListener('click', () => {
+                if (monographIframe) {
+                    monographIframe.src = '/api/export-monograph-pdf';
+                }
+                if (monographModal) {
+                    monographModal.style.display = 'flex';
+                }
+            });
+        }
+
+        const btnLaunchMonographFromTopic = document.getElementById('btnLaunchMonographFromTopic');
+        if (btnLaunchMonographFromTopic) {
+            btnLaunchMonographFromTopic.addEventListener('click', () => {
+                const topicVal = (inputTopic && inputTopic.value.trim()) || 'Empirical Architecture of Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets';
+                if (pilotTopic) pilotTopic.value = topicVal;
+                switchTab('tabQuantumLab2050');
+                if (btnLaunch) {
+                    btnLaunch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    btnLaunch.click();
+                }
+            });
+        }
+
+        const btnSwitchMonographPdf = document.getElementById('btnSwitchMonographPdf');
+        if (btnSwitchMonographPdf) {
+            btnSwitchMonographPdf.addEventListener('click', () => {
+                const pdfFrame = document.getElementById('pdfViewerFrame');
+                if (pdfFrame) {
+                    pdfFrame.src = '/api/export-monograph-pdf';
+                    showToast('Doctoral Monograph Loaded', 'Switched to 31-Page Doctoral Research Monograph PDF (Typst 0.15)', 'success');
+                }
+            });
+        }
     }
 
     // Initialize v1.0.1 on startup
