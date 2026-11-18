@@ -146,6 +146,24 @@ def audit_2050_endpoints(client: TestClient, report: AuditReport):
     verdict = r4.json().get("editorial_verdict") or r4.json().get("verdict")
     report.log("API_2050", "POST /api/2050/frontier-council-debate", r4.status_code == 200 and score is not None, f"Status: {r4.status_code}, Score: {score}, Verdict: {verdict}")
 
+    # 4.5 Auto-Pilot Loop (End-to-End 7-Stage Autonomous Loop)
+    r5 = client.post("/api/2050/auto-pilot-loop", json={
+        "topic": "Autonomous Singularity and Empirical Intelligence",
+        "domain": "Computer Science & Machine Intelligence",
+        "sample_size": 100
+    })
+    r5_data = r5.json() if r5.status_code == 200 else {}
+    r5_pages = r5_data.get("page_count", 0)
+    report.log("API_2050", "POST /api/2050/auto-pilot-loop", r5.status_code == 200 and r5_pages >= 30,
+               f"Status: {r5.status_code}, Pages: {r5_pages}, Time: {r5_data.get('execution_time_seconds')}s")
+
+    # 4.6 30+ Page Monograph PDF Export Endpoint
+    r6 = client.get("/api/export-monograph-pdf")
+    import re
+    pages_count = len(re.findall(rb'/Type\s*/Page\b', r6.content)) if r6.status_code == 200 else 0
+    report.log("API_2050", "GET /api/export-monograph-pdf (>=30 Pages)", r6.status_code == 200 and pages_count >= 30,
+               f"Status: {r6.status_code}, Size: {len(r6.content)} bytes, Verified Pages: {pages_count}")
+
 
 def audit_frontend_quantum_lab(report: AuditReport):
     print("\n--- 5. AUDITING FRONTEND QUANTUM LAB 2050 UI ---")

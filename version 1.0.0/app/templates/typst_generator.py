@@ -71,9 +71,9 @@ def compile_typst_to_pdf(run_dir: str, typst_file: str = "main.typ", output_pdf:
         return None
 
     if output_pdf is None:
-        target_pdf = os.path.join(run_dir, "Research_Manuscript_Typst_v1.0.0.pdf")
+        target_pdf = os.path.abspath(os.path.join(run_dir, "Research_Manuscript_Typst_v1.0.0.pdf"))
     else:
-        target_pdf = os.path.join(run_dir, output_pdf)
+        target_pdf = os.path.abspath(os.path.join(run_dir, output_pdf))
 
     try:
         cmd = [typst_bin, "compile", typst_file, target_pdf]

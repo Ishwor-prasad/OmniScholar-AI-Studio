@@ -484,6 +484,15 @@ def verify_merkle_claim(
     }
 
 
+def build_merkle_ledger_from_summary(
+    summary: Optional[Dict[str, Any]] = None,
+    df: Optional[Any] = None,
+    dataset_name: str = "dataset.csv"
+) -> Dict[str, Any]:
+    """Convenience alias for autonomous pilot pipeline orchestration."""
+    return generate_merkle_epistemic_passport(summary=summary, df=df, dataset_name=dataset_name)
+
+
 if __name__ == "__main__":
     passport = generate_merkle_epistemic_passport()
     print(f"Merkle Root: {passport['merkle_root_hash']}")

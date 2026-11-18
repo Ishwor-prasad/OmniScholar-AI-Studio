@@ -501,3 +501,4 @@ for i, name in enumerate(["Intercept", "Signal_Intensity", "Transmission_Frictio
 
 ---
 *End of Doctoral Research Monograph — Safal AI & Innovation Centre (Kathmandu, Nepal)*
+

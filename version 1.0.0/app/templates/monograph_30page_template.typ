@@ -848,7 +848,7 @@ Independent auditors can verify every number in this monograph by executing the 
   inset: 10pt,
   radius: 4pt
 )[
-  #text(size: 7.5pt, fill: rgb("f8fafc"), font: ("Consolas", "Courier New", "monospace"))[
+  #text(size: 7.5pt, fill: rgb("f8fafc"), font: ("Consolas", "Courier New"))[
 ```python
 # OmniScholar Independent Bitwise Replication Script
 import pandas as pd, numpy as np, scipy.stats as stats, statsmodels.api as sm

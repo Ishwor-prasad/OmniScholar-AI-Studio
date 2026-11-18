@@ -38,6 +38,7 @@ import agentic_council as arc
 import market_intelligence as mi
 import causal_discovery_2050 as cd2050
 import merkle_epistemic_ledger_2050 as mel2050
+import autonomous_pilot_loop as apl
 
 class ManuscriptGenerateRequest(BaseModel):
     topic: Optional[str] = "Empirical Research Investigation"
@@ -182,8 +183,16 @@ SESSION_DATA = {
     "causal_dag_2050": None,
     "counterfactual_2050": None,
     "merkle_passport_2050": None,
-    "frontier_council_2050": None
+    "frontier_council_2050": None,
+    "monograph_pdf_path": None,
+    "auto_pilot_run": None
 }
+
+class AutoPilotLoopRequest(BaseModel):
+    topic: Optional[str] = "Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets"
+    domain: Optional[str] = "Finance & Financial Economics"
+    standard: Optional[str] = "Doctoral Research Monograph (30+ Pages Q1)"
+    sample_size: Optional[int] = 100
 
 class AgenticCouncilRequest(BaseModel):
     topic: Optional[str] = None
@@ -221,14 +230,14 @@ class RegressionRequest(BaseModel):
 # DOCUMENT GENERATORS (Built-in with dynamic @engine delegation)
 # =========================================================================
 
-def compile_typst_to_pdf(run_dir: str, typst_file: str = "main.typ") -> Optional[str]:
+def compile_typst_to_pdf(run_dir: str, typst_file: str = "main.typ", output_pdf: Optional[str] = None) -> Optional[str]:
     """
     Delegates to engine's compile_typst_to_pdf if available, otherwise runs local Typst binary.
     """
-    target_pdf = os.path.join(run_dir, "Research_Manuscript_v1.0.0.pdf")
+    target_pdf = os.path.join(run_dir, output_pdf if output_pdf else "Research_Manuscript_v1.0.0.pdf")
 
     if typst_generator and hasattr(typst_generator, "compile_typst_to_pdf"):
-        res_pdf = typst_generator.compile_typst_to_pdf(run_dir, typst_file)
+        res_pdf = typst_generator.compile_typst_to_pdf(run_dir, typst_file, output_pdf=output_pdf)
         if res_pdf and os.path.exists(res_pdf):
             if not os.path.exists(target_pdf) or res_pdf != target_pdf:
                 shutil.copy2(res_pdf, target_pdf)
@@ -259,14 +268,14 @@ def compile_typst_to_pdf(run_dir: str, typst_file: str = "main.typ") -> Optional
     return None
 
 
-def generate_typst_manuscript(summary: Dict[str, Any], run_dir: str, dataset_name: str) -> str:
+def generate_typst_manuscript(summary: Dict[str, Any], run_dir: str, dataset_name: str, layout_style: str = "monograph") -> str:
     """
     Generates a high-fidelity Typst 0.15 scientific manuscript (main.typ).
     Delegates to engine module if present.
     """
     if typst_generator and hasattr(typst_generator, "generate_typst_manuscript"):
         try:
-            return typst_generator.generate_typst_manuscript(summary, run_dir, dataset_name)
+            return typst_generator.generate_typst_manuscript(summary, run_dir, dataset_name, layout_style=layout_style)
         except Exception as e:
             print(f"[OmniScholar] typst_generator warning: {e}")
 
@@ -689,7 +698,7 @@ if __name__ == "__main__":
 # CORE DATAFRAME ANALYZER
 # =========================================================================
 
-def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id: str = "latest", filename: str = "dataset.csv"):
+def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id: str = "latest", filename: str = "dataset.csv", topic: Optional[str] = None, domain: Optional[str] = None, target_standard: Optional[str] = None):
     run_dir = os.path.join(RUNS_DIR, run_id)
     figs_dir = os.path.join(run_dir, "figures")
     tables_dir = os.path.join(run_dir, "frequency_tables")
@@ -731,6 +740,13 @@ def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id:
         "pdf_generated": False,
         "typst_generated": False
     }
+
+    if topic:
+        summary["topic"] = topic
+    if domain:
+        summary["domain"] = domain
+    if target_standard:
+        summary["target_standard"] = target_standard
 
     sns.set_theme(style="whitegrid", palette="muted")
 
@@ -1014,12 +1030,18 @@ def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id:
     latex_pdf = compile_latex_to_pdf(run_dir)
 
     # 15. Generate Typst 0.15 Manuscript & Compile via Typst
-    generate_typst_manuscript(summary, run_dir, filename)
-    typst_pdf = compile_typst_to_pdf(run_dir)
+    std_lower = str(summary.get("target_standard", "")).lower()
+    layout_style = "monograph" if ("monograph" in std_lower or "30" in std_lower or "treatise" in std_lower or summary.get("topic")) else "ieee"
+    generate_typst_manuscript(summary, run_dir, filename, layout_style=layout_style)
+    typst_pdf = compile_typst_to_pdf(run_dir, "main.typ", "main.pdf")
     if typst_pdf and os.path.exists(typst_pdf):
+        # Also copy to legacy expected path
+        target_v1 = os.path.join(run_dir, "Research_Manuscript_v1.0.0.pdf")
+        if not os.path.exists(target_v1):
+            shutil.copyfile(typst_pdf, target_v1)
         summary["typst_generated"] = True
         summary["pdf_generated"] = True
-        summary["pdf_url"] = f"runs/{run_id}/Research_Manuscript_v1.0.0.pdf"
+        summary["pdf_url"] = f"runs/{run_id}/main.pdf"
     elif latex_pdf and os.path.exists(latex_pdf):
         summary["pdf_generated"] = True
         summary["pdf_url"] = f"runs/{run_id}/Research_Manuscript_v1.0.0.pdf"
@@ -1067,7 +1089,10 @@ def health():
             "causal_discovery_dag_2050": True,
             "counterfactual_do_calculus_2050": True,
             "merkle_epistemic_proof_2050": True,
-            "frontier_council_debate_2050": True
+            "frontier_council_debate_2050": True,
+            "auto_pilot_loop_2050": True,
+            "export_monograph_pdf": True,
+            "doctoral_monograph_30page": True
         }
     }
 
@@ -1119,8 +1144,8 @@ def api_generate_survey_data(req: SurveyDataRequest):
 @app.post("/api/run-autonomous-pipeline")
 @app.post("/api/topic/simulate-pilot")
 def api_run_autonomous_pipeline(req: AutonomousPipelineRequest):
-    domain = req.domain or req.discipline or "General"
-    std = req.standard or req.target_standard or "IEEE"
+    domain = req.domain or req.discipline or "Finance & Financial Economics"
+    std = req.standard or req.target_standard or "Doctoral Monograph & Treatise (30+ Pages, Q1 Comprehensive Review)"
     sample_size = req.sample_size or 100
     
     # 1. Synthesize Research Architecture
@@ -1141,7 +1166,14 @@ def api_run_autonomous_pipeline(req: AutonomousPipelineRequest):
     df.to_csv(pilot_csv_path, index=False)
     
     # 3. Execute Statistical Engine & Document Pipeline
-    summary, run_dir = analyze_dataframe(df, run_id=run_id, filename=filename)
+    summary, run_dir = analyze_dataframe(
+        df, 
+        run_id=run_id, 
+        filename=filename,
+        topic=req.topic,
+        domain=domain,
+        target_standard=std
+    )
     
     # Enrich summary with synthesized metadata
     summary["topic_architecture"] = arch
@@ -1186,7 +1218,8 @@ def preview_pdf():
         load_sample()
 
     run_dir = SESSION_DATA["last_run_dir"]
-    target_pdf = os.path.join(run_dir, "Research_Manuscript_Typst_v1.0.0.pdf")
+    main_pdf = os.path.join(run_dir, "main.pdf")
+    target_pdf = main_pdf if os.path.exists(main_pdf) else os.path.join(run_dir, "Research_Manuscript_Typst_v1.0.0.pdf")
 
     # Check templates.preview_pdf if available
     try:
@@ -1229,7 +1262,18 @@ def load_sample():
 
     df = pd.read_csv(sample_path)
     filename = "Global_Empirical_Research_Benchmark.csv"
-    summary, run_dir = analyze_dataframe(df, run_id="sample", filename=filename)
+    default_topic = "Empirical Architecture of Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets"
+    default_domain = "Finance & Financial Economics"
+    default_std = "Doctoral Monograph & Treatise (30+ Pages, Q1 Comprehensive Review)"
+    
+    summary, run_dir = analyze_dataframe(
+        df, 
+        run_id="sample", 
+        filename=filename,
+        topic=default_topic,
+        domain=default_domain,
+        target_standard=default_std
+    )
 
     SESSION_DATA["df"] = df
     SESSION_DATA["filename"] = filename
@@ -1392,6 +1436,44 @@ def export_typst(compile: bool = Query(True, description="Whether to compile and
     raise HTTPException(status_code=404, detail="Typst manuscript could not be found or compiled.")
 
 
+@app.head("/api/export-monograph-pdf")
+@app.get("/api/export-monograph-pdf")
+def export_monograph_pdf(download: Optional[bool] = False):
+    """
+    Exports the comprehensive 30+ page Doctoral Research Monograph PDF.
+    Returns Content-Disposition: inline by default (for in-browser preview) or attachment if download=true.
+    """
+    if not SESSION_DATA["last_run_dir"]:
+        load_sample()
+
+    run_dir = SESSION_DATA["last_run_dir"]
+    monograph_pdf = os.path.join(run_dir, "monograph_30page.pdf")
+    
+    if not os.path.exists(monograph_pdf):
+        try:
+            import templates
+            summary = SESSION_DATA.get("summary") or {}
+            templates.generate_typst_manuscript(summary, run_dir, SESSION_DATA.get("filename", "dataset.csv"), layout_style="monograph")
+            res = templates.compile_typst_to_pdf(run_dir, "main.typ", "monograph_30page.pdf")
+        except Exception as e:
+            print(f"[Monograph Export] Compile exception: {e}")
+
+    target_pdf = monograph_pdf if os.path.exists(monograph_pdf) else os.path.join(run_dir, "main.pdf")
+    if not os.path.exists(target_pdf) and SESSION_DATA.get("monograph_pdf_path") and os.path.exists(SESSION_DATA["monograph_pdf_path"]):
+        target_pdf = SESSION_DATA["monograph_pdf_path"]
+    
+    if os.path.exists(target_pdf):
+        clean_fn = sanitize_filename(SESSION_DATA.get("filename", "Doctoral_Monograph"))
+        disp = "attachment" if download else "inline"
+        return FileResponse(
+            target_pdf,
+            media_type="application/pdf",
+            content_disposition_type=disp,
+            filename=f"Doctoral_Monograph_30Page_{clean_fn}.pdf"
+        )
+    raise HTTPException(status_code=404, detail="Doctoral Monograph PDF could not be compiled.")
+
+
 @app.get("/api/export-pdf")
 def export_pdf():
     if not SESSION_DATA["last_run_dir"]:
@@ -1452,6 +1534,28 @@ def export_zip():
     run_dir = SESSION_DATA["last_run_dir"]
     zip_filename = f"OmniScholar_Research_Package_{sanitize_filename(SESSION_DATA['filename'])}.zip"
     zip_path = os.path.join(RUNS_DIR, zip_filename)
+
+    # Ensure 30-page monograph is registered in run_dir as Doctoral_Monograph_30Page.pdf
+    main_pdf = os.path.join(run_dir, "main.pdf")
+    mono_pdf = os.path.join(run_dir, "monograph_30page.pdf")
+    doc_mono_pdf = os.path.join(run_dir, "Doctoral_Monograph_30Page.pdf")
+    src_pdf = mono_pdf if os.path.exists(mono_pdf) else (main_pdf if os.path.exists(main_pdf) else None)
+    if src_pdf and not os.path.exists(doc_mono_pdf):
+        try:
+            shutil.copyfile(src_pdf, doc_mono_pdf)
+        except Exception:
+            pass
+
+    # Ensure autopilot report is included if available
+    if SESSION_DATA.get("auto_pilot_run"):
+        ap_report_path = os.path.join(run_dir, "AutoPilot_Execution_Report.json")
+        if not os.path.exists(ap_report_path):
+            try:
+                import json
+                with open(ap_report_path, "w", encoding="utf-8") as apf:
+                    json.dump(SESSION_DATA["auto_pilot_run"], apf, indent=2, default=str)
+            except Exception:
+                pass
 
     # Delegate to engine bundle builder if present
     try:
@@ -2067,6 +2171,55 @@ def api_2050_frontier_council_debate(req: Optional[FrontierCouncilDebateRequest]
     debate_result = generate_frontier_council_debate(topic=topic, domain=domain, df=df, summary=summary, intensity=intensity)
     SESSION_DATA["frontier_council_2050"] = debate_result
     return debate_result
+
+
+class AutoPilotRequest(BaseModel):
+    topic: Optional[str] = "Empirical Interactions of Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets"
+    domain: Optional[str] = "Finance & Financial Economics"
+    standard: Optional[str] = "Doctoral Monograph & Treatise (30+ Pages, Q1 Comprehensive Review)"
+    sample_size: Optional[int] = 100
+
+@app.get("/api/2050/auto-pilot-loop")
+@app.post("/api/2050/auto-pilot-loop")
+def api_2050_auto_pilot_loop(
+    req: Optional[AutoPilotRequest] = None,
+    topic: Optional[str] = None,
+    domain: Optional[str] = None,
+    standard: Optional[str] = None,
+    sample_size: Optional[int] = None
+):
+    """
+    OmniScholar 2050 Singularity: End-to-End Autonomous Auto-Pilot Scientific Discovery Loop.
+    Executes all 7 stages from topic to compiled 30+ page monograph with zero ghostwriting.
+    Supports JSON body (POST) or query parameters (GET/POST).
+    """
+    chosen_topic = (req and req.topic) or topic or "Empirical Interactions of Algorithmic Execution Signals and Downside Asymmetric Risk in Frontier Equity Markets"
+    chosen_domain = (req and req.domain) or domain or "Finance & Financial Economics"
+    chosen_standard = (req and req.standard) or standard or "Doctoral Monograph & Treatise (30+ Pages, Q1 Comprehensive Review)"
+    chosen_sample_size = (req and req.sample_size) or sample_size or 100
+
+    from autonomous_pilot_loop import run_autonomous_pilot_loop
+    result = run_autonomous_pilot_loop(
+        topic=chosen_topic,
+        domain=chosen_domain,
+        standard=chosen_standard,
+        sample_size=chosen_sample_size,
+        analyze_fn=analyze_dataframe
+    )
+    
+    summary = result.get("summary")
+    if summary:
+        run_dir = os.path.join(RUNS_DIR, result["run_id"])
+        SESSION_DATA["summary"] = summary
+        SESSION_DATA["last_run_dir"] = run_dir
+        SESSION_DATA["filename"] = f"Pilot_{ts.sanitize_slug(chosen_topic)}.csv"
+        SESSION_DATA["dataset_sha256"] = result["dataset_hash"]
+        SESSION_DATA["topic"] = chosen_topic
+        SESSION_DATA["domain"] = chosen_domain
+        SESSION_DATA["monograph_pdf_path"] = os.path.join(run_dir, "main.pdf")
+        SESSION_DATA["auto_pilot_run"] = result
+
+    return result
 
 
 # Mount runs directory so generated charts & pdf can be accessed directly
