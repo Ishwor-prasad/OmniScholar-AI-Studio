@@ -9,6 +9,7 @@ from .typst_generator import generate_typst_manuscript, compile_typst_to_pdf, pr
 from .latex_generator import generate_latex_manuscript, latex_escape
 from .passport_generator import generate_reproducibility_passport
 from .bundle_builder import build_export_bundle, generate_paper_markdown
+from .monograph_30page_generator import build_monograph_30page_manuscript, build_monograph_30page_markdown
 
 __all__ = [
     "generate_typst_manuscript",
@@ -20,4 +21,6 @@ __all__ = [
     "generate_reproducibility_passport",
     "build_export_bundle",
     "generate_paper_markdown",
+    "build_monograph_30page_manuscript",
+    "build_monograph_30page_markdown",
 ]

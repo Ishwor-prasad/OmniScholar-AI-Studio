@@ -2490,12 +2490,12 @@ ${r3Commentary.innerText}
         btnGenerateFullManuscript.addEventListener('click', async () => {
             const topic = (manuscriptTopicInput && manuscriptTopicInput.value.trim()) || 'Empirical Investigation of Complex Scientific Systems';
             const domain = manuscriptDomainSelect ? manuscriptDomainSelect.value : 'General Applied Science';
-            const standard = manuscriptStandardSelect ? manuscriptStandardSelect.value : 'IEEE Transactions (Two-Column Q1)';
+            const standard = manuscriptStandardSelect ? manuscriptStandardSelect.value : 'Doctoral Monograph & Treatise (30+ Pages, Q1 Comprehensive Review)';
             const guideId = manuscriptGuideSelect ? manuscriptGuideSelect.value : 'academic';
 
             btnGenerateFullManuscript.disabled = true;
-            btnGenerateFullManuscript.innerHTML = '<span>Compiling IEEE Paper & Typst 0.15...</span>';
-            showToast('Synthesizing Draft', 'Compiling zero-ghostwriting manuscript with Typst 0.15...', 'info');
+            btnGenerateFullManuscript.innerHTML = '<span>Compiling 30+ Page Monograph with Typst 0.15...</span>';
+            showToast('Synthesizing Draft', 'Compiling 30+ page doctoral monograph with Typst 0.15...', 'info');
 
             try {
                 const res = await fetch('/api/generate-draft-manuscript', {

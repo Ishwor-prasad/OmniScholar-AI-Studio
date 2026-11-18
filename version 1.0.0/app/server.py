@@ -981,37 +981,11 @@ def analyze_dataframe(df: pd.DataFrame, group_col: Optional[str] = None, run_id:
         })
 
     # 10. Anti-Ghostwriting Manuscript Drafting
-    draft = f"""# Section 4: Empirical Results and Quantitative Analytics
-
-## 4.1 Sample Profile and Descriptive Diagnostics
-The empirical investigation is conducted on a sample of $N={summary['sample_size']}$ verified observational vectors derived from `{filename}` (SHA-256: `{data_hash[:16]}...`). An initial audit of the data revealed zero synthetic hallucinations across critical constructs.
-
-"""
-    for col, v in list(summary["variables"].items())[:4]:
-        top_cat = v["frequencies"][0] if v["frequencies"] else {"category": "N/A", "percentage": 0}
-        draft += f"Regarding **{col}**, the majority cohort was **{top_cat['category']}** representing **{top_cat['percentage']}%** of respondents ($n={top_cat.get('count', 0)}$). "
-        if v["type"] == "numeric":
-            draft += f"The metric demonstrated an empirical mean of $M={v['mean']}$ ($SD={v['std']}$, $\\text{{Mdn}}={v['median']}$), with a skewness coefficient of $\\gamma_1={v['skewness']}$, confirming an academically sound distributional profile. "
-        draft += "\n\n"
-
-    if summary["inferential"]:
-        inf = summary["inferential"][0]
-        inf_stat = inf.get('statistic', inf.get('f_statistic', 0.0))
-        inf_df = inf.get('df', '')
-        inf_p = inf.get('p_value', 1.0)
-        inf_decision = "reject the null hypothesis at the 5% level" if inf.get("significant") else "fail to reject the null hypothesis at the $\\alpha=0.05$ significance threshold"
-        draft += f"""## 4.2 Inferential Hypothesis Testing
-To test for variance across participant cohorts, rigorous hypothesis testing was executed across groups defined by *{inf.get('grouping_variable', 'Cohort')}*. 
-
-The test ({inf.get('test', 'Hypothesis Test')}) yielded an empirical test statistic of {inf_stat} with $df={inf_df}$, producing an asymptotic $p$-value of $p={inf_p}$. Consequently, we {inf_decision}, confirming that {inf.get('interpretation', '')}
-"""
-
-    if summary.get("regression"):
-        reg = summary["regression"]
-        draft += f"""\n## 4.3 Hierarchical Linear Regression with Huber-White HC3 Robust Standard Errors
-To determine direct dependencies while controlling for potential heteroskedasticity, hierarchical linear regression models were fitted. Model 1 accounted for $R^2 = {reg['model_1']['r_squared']:.4f}$. The expanded Model 2 incorporating robust HC3 standard errors explained $R^2 = {reg['model_2']['r_squared']:.4f}$ ($F = {reg['model_2']['f_stat']:.3f}$, $p = {reg['model_2']['p_value']:.4f}$). The incremental variance explained was $\\Delta R^2 = {reg['model_comparison']['delta_r_squared']:.4f}$ ($\\Delta F = {reg['model_comparison']['f_change']:.3f}$, $p = {reg['model_comparison']['p_value_change']:.4f}$).
-"""
-    summary["draft_text"] = draft
+    try:
+        from templates import build_monograph_30page_markdown
+        summary["draft_text"] = build_monograph_30page_markdown(summary, filename)
+    except Exception as e:
+        summary["draft_text"] = draft
 
     # 11. Reproducibility Passport
     summary["passport"] = {
@@ -1624,10 +1598,12 @@ def api_generate_draft_manuscript(req: ManuscriptGenerateRequest):
     summary["signature_stamp"] = signature_stamp
     
     try:
-        from templates import preview_pdf
+        from templates import preview_pdf, build_monograph_30page_markdown
         preview_pdf(summary, run_dir, SESSION_DATA["filename"])
+        # Generate the comprehensive 30+ page doctoral monograph in Markdown for the browser viewer
+        summary["draft_text"] = build_monograph_30page_markdown(summary, SESSION_DATA["filename"])
     except Exception as e:
-        print(f"[Manuscript Draft] Typst compilation note: {e}")
+        print(f"[Manuscript Draft] Monograph generation note: {e}")
         
     title = summary.get("declarative_title") or f"Empirical Architecture of {topic}: A {guide['name']} Investigation"
     

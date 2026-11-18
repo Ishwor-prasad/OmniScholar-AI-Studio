@@ -88,14 +88,24 @@ def compile_typst_to_pdf(run_dir: str, typst_file: str = "main.typ", output_pdf:
         print(f"[OmniScholar Engine] Exception compiling Typst: {e}")
         return None
 
-def preview_pdf(summary: Dict[str, Any], run_dir: str, filename: str = "dataset.csv") -> str:
+def preview_pdf(summary: Dict[str, Any], run_dir: str, filename: str = "dataset.csv", layout_style: Optional[str] = None) -> str:
     """
     Generates and compiles the Typst manuscript to main.pdf (and Research_Manuscript_v1.0.0.pdf),
     ensuring that a valid PDF is ready for inline browser preview.
+    Supports 30+ page Doctoral Monograph, IEEE Transactions, and Nature styles.
     Returns the absolute path to main.pdf.
     """
     os.makedirs(run_dir, exist_ok=True)
-    generate_typst_manuscript(summary, run_dir, filename, layout_style="ieee")
+    if not layout_style:
+        std = (summary.get("target_standard") or summary.get("standard") or "").lower()
+        if "monograph" in std or "30" in std or "treatise" in std or "doctoral" in std:
+            layout_style = "monograph"
+        elif "nature" in std or "science" in std:
+            layout_style = "nature"
+        else:
+            layout_style = "monograph" if summary.get("topic") else "ieee"
+
+    generate_typst_manuscript(summary, run_dir, filename, layout_style=layout_style)
     
     main_pdf = os.path.join(run_dir, "main.pdf")
     default_pdf = os.path.join(run_dir, "Research_Manuscript_Typst_v1.0.0.pdf")
@@ -884,28 +894,44 @@ All data analyses were executed programmatically using Python (v3.13) with NumPy
 """
     return typ
 
-def generate_typst_manuscript(summary: Dict[str, Any], run_dir: str, dataset_name: str, layout_style: str = "ieee") -> str:
+def generate_typst_manuscript(summary: Dict[str, Any], run_dir: str, dataset_name: str, layout_style: str = "monograph") -> str:
     """
-    Builds automated Typst 0.15 manuscripts in both IEEE and Nature styles,
-    saving main.typ as the active selected style, plus main_ieee.typ and main_nature.typ.
-    Returns the absolute path to main.typ.
+    Builds automated Typst 0.15 manuscripts supporting:
+    1. 30+ Page Doctoral Research Monograph & Comprehensive Treatise (main_monograph.typ)
+    2. IEEE Transactions Two-Column (main_ieee.typ)
+    3. Nature / Science Single-Column (main_nature.typ)
+    Sets main.typ as the active selected style and returns its path.
     """
     os.makedirs(run_dir, exist_ok=True)
 
+    from .monograph_30page_generator import build_monograph_30page_manuscript
+    monograph_src = build_monograph_30page_manuscript(summary, run_dir, dataset_name)
     ieee_src = build_ieee_manuscript(summary, run_dir, dataset_name)
     nature_src = build_nature_manuscript(summary, run_dir, dataset_name)
 
+    monograph_path = os.path.join(run_dir, "main_monograph.typ")
     ieee_path = os.path.join(run_dir, "main_ieee.typ")
     nature_path = os.path.join(run_dir, "main_nature.typ")
     main_path = os.path.join(run_dir, "main.typ")
 
+    with open(monograph_path, "w", encoding="utf-8") as f:
+        f.write(monograph_src)
     with open(ieee_path, "w", encoding="utf-8") as f:
         f.write(ieee_src)
     with open(nature_path, "w", encoding="utf-8") as f:
         f.write(nature_src)
 
-    # Save active main.typ based on layout_style
-    active_src = nature_src if layout_style.lower() == "nature" else ieee_src
+    # Determine active style
+    std = (summary.get("target_standard") or summary.get("standard") or "").lower()
+    style_lower = (layout_style or "").lower()
+    if style_lower in ["nature", "science"] or "nature" in std or "science" in std:
+        active_src = nature_src
+    elif style_lower in ["ieee", "acm"] or ("ieee" in std and "monograph" not in std):
+        active_src = ieee_src
+    else:
+        # Default is the 30+ page monograph
+        active_src = monograph_src
+
     with open(main_path, "w", encoding="utf-8") as f:
         f.write(active_src)
 
